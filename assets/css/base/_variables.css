@@ -1,0 +1,129 @@
+/* =========================================
+   1. CONFIGURAÇÕES GERAIS E VARIÁVEIS
+   ========================================= */
+   :root {
+    /* Cores do Tema (Dark Lab) */
+    --bg-app: #0f172a;      /* Fundo da tela */
+    --panel-bg: #1e293b;    /* Fundo de painéis */
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    
+    /* Cores dos Blocos (Neon) */
+    --color-normal: #94a3b8; /* MUDANÇA: Cinza Claro (Prata) para destacar do fundo */
+    --color-bee: #10b981;    
+    --color-ghost: #ec4899;  
+    --color-cop: #3b82f6;    /* Azul (Polícia) */
+    
+    /* Tamanhos e Espaçamentos */
+    --cell-size: 11.5vw;     /* Tamanho da célula (Mobile) */
+    --gap-size: 4px;         /* Espaço entre células */
+    --radius-lg: 16px;
+    --radius-md: 8px;
+    
+    /* Layout Seguro */
+    --max-app-width: 500px;
+    --header-height: 100px;
+    --dock-height: 140px;
+    --safe-top: env(safe-area-inset-top, 0px);
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
+    --safe-left: env(safe-area-inset-left, 0px);
+    --safe-right: env(safe-area-inset-right, 0px);
+}
+
+/* Ajuste para Desktop/Tablet */
+@media (min-width: 500px) {
+    :root { 
+        --cell-size: 52px; 
+    }
+}
+
+/* Reset Básico */
+* { margin: 0; padding: 0; box-sizing: border-box; user-select: none; -webkit-tap-highlight-color: transparent; }
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-app);
+    color: var(--text-main);
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden; /* Impede rolagem da página inteira */
+    display: flex; justify-content: center; align-items: center;
+    /* Fundo com leve gradiente radial para profundidade */
+    background: radial-gradient(circle at 50% 30%, #1e293b 0%, #0f172a 80%);
+}
+
+#app {
+    width: 100%; 
+    max-width: var(--max-app-width); 
+    height: 100%;
+    position: relative;
+    display: flex; 
+    flex-direction: column;
+    justify-content: space-between; /* Distribui topo, meio e fim */
+    padding: 10px;
+}
+
+/* =========================================
+   1. CONFIGURAÇÕES GERAIS E VARIÁVEIS
+   ========================================= */
+   :root {
+    /* Cores do Tema (Dark Lab) */
+    --bg-app: #0f172a;      /* Fundo da tela */
+    --panel-bg: #1e293b;    /* Fundo de painéis */
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    
+    /* Cores dos Blocos (Neon) */
+    --color-normal: #94a3b8; /* MUDANÇA: Cinza Claro (Prata) para destacar do fundo */
+    --color-bee: #10b981;    
+    --color-ghost: #ec4899;  
+    --color-cop: #3b82f6;    /* Azul (Polícia) */
+    
+    /* Tamanhos e Espaçamentos */
+    --cell-size: 11.5vw;     /* Tamanho da célula (Mobile) */
+    --gap-size: 4px;         /* Espaço entre células */
+    --radius-lg: 16px;
+    --radius-md: 8px;
+    
+    /* Layout Seguro */
+    --max-app-width: 500px;
+    --header-height: 100px;
+    --dock-height: 140px;
+    --safe-top: env(safe-area-inset-top, 0px);
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
+    --safe-left: env(safe-area-inset-left, 0px);
+    --safe-right: env(safe-area-inset-right, 0px);
+}
+
+/* Ajuste para Desktop/Tablet */
+@media (min-width: 500px) {
+    :root { 
+        --cell-size: 52px; 
+    }
+}
+
+/* Reset Básico */
+* { margin: 0; padding: 0; box-sizing: border-box; user-select: none; -webkit-tap-highlight-color: transparent; }
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-app);
+    color: var(--text-main);
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden; /* Impede rolagem da página inteira */
+    display: flex; justify-content: center; align-items: center;
+    /* Fundo com leve gradiente radial para profundidade */
+    background: radial-gradient(circle at 50% 30%, #1e293b 0%, #0f172a 80%);
+}
+
+#app {
+    width: 100%; 
+    max-width: var(--max-app-width); 
+    height: 100%;
+    position: relative;
+    display: flex; 
+    flex-direction: column;
+    justify-content: space-between; /* Distribui topo, meio e fim */
+    padding: 10px;
+}

@@ -1,0 +1,33 @@
+/* =========================================
+   BLOCK LANDS - ADVENTURE
+   Sistema de CSS Modular
+   ========================================= */
+
+/* BASE - Configurações Fundamentais */
+@import './base/_variables.css';
+@import './base/_reset.css';
+@import './base/_typography.css';
+@import './base/_animations.css';
+@import './base/_world-themes.css';
+
+/* COMPONENTS - Componentes Reutilizáveis */
+@import './components/_buttons.css';
+@import './components/_cards.css';
+@import './components/_progression.css';
+@import './components/_modal.css';
+@import './components/_hud.css';
+@import './components/_tooltips.css';
+@import './components/_progress-bars.css';
+@import './components/_enemy-sprites.css';
+
+/* SCREENS - Telas do Jogo */
+@import './screens/_loading.css';
+@import './screens/_main-menu.css';
+@import './screens/_character-select.css';
+@import './screens/_world-select.css';
+@import './screens/_game.css';
+@import './screens/_boss-battle.css';
+@import './screens/_pause.css';
+@import './screens/_settings.css';
+@import './screens/_achievements.css';
+@import './screens/_store.css';

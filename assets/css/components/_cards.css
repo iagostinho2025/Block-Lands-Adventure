@@ -1,0 +1,198 @@
+/* =========================================
+   CARDS
+   ========================================= */
+
+.card-icon-box { font-size: 1.8rem; opacity: 0.9; }
+.card-texts { flex: 1; }
+.card-texts h3 { font-family: 'Poppins', sans-serif; font-size: 1.15rem; font-weight: 700; margin-bottom: 3px; }
+.card-texts p { font-size: 0.85rem; color: rgba(255,255,255,0.85); font-weight: 500; }
+.card-arrow { font-size: 1.2rem; opacity: 0.6; font-weight: bold; }
+
+/* Cores Cards */
+.card-classic { background: linear-gradient(135deg, #0ea5e9, #0284c7); }
+.card-adventure { background: linear-gradient(135deg, #ef4444, #dc2626); }
+.card-blitz { background: linear-gradient(135deg, #d946ef, #c026d3); }
+
+.card-tag {
+    position: absolute; top: 12px; right: 12px;
+    background: #fbbf24; color: #000; 
+    font-size: 0.65rem; font-weight: 800; text-transform: uppercase;
+    padding: 4px 8px; border-radius: 6px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* --- SIDEBAR (MENU LATERAL) --- */
+.overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);
+    z-index: 99; opacity: 0; transition: opacity 0.3s; pointer-events: none;
+}
+.overlay.visible { opacity: 1; pointer-events: all; }
+
+.card-visual {
+    height: 220px; /* <-- MUDANÇA PRINCIPAL: De 140px para 220px */
+    position: relative;
+    background: #0f172a;
+    display: flex;
+    align-items: flex-end; /* Garante que os pés fiquem na base */
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Ajuste fino na imagem para ela preencher bem o novo espaço */
+.card-visual img {
+    max-height: 100%; /* <-- ALTERADO: Respeita o limite de altura */
+    max-width: 100%;  /* <-- AJUSTE: Garante que não estoure a largura */
+    object-fit: contain; /* <-- IMPORTANTE: Mostra a imagem inteira sem cortes */
+    z-index: 2;
+    transform: none;
+    margin-bottom: 0; /* Garante que fique na base se sobrar espaço */
+}
+
+.card-glow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0; left: 0;
+    z-index: 1;
+    opacity: 0.3;
+}
+
+.glow-fire { background: radial-gradient(circle at bottom, #ef4444, transparent 70%); }
+.glow-magic { background: radial-gradient(circle at bottom, #8b5cf6, transparent 70%); }
+
+.card-info {
+    padding: 12px; /* Padding reduzido */
+    text-align: left;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-info h3 {
+    font-size: 1.1rem; /* Fonte menor */
+    color: #fff;
+    margin-bottom: 8px;
+    white-space: nowrap; /* Não quebra linha no nome */
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-bottom: 10px;
+}
+
+.tag-power, .tag-difficulty {
+    font-size: 0.6rem; /* Tags bem pequenas */
+    padding: 3px 6px;
+    border-radius: 4px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.tag-power { background: rgba(255,255,255,0.1); color: #fbbf24; }
+.world-card {
+    background: rgba(30, 41, 59, 0.7); /* Fundo escuro semitransparente */
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 24px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    overflow: hidden;
+}
+
+.world-card:active { transform: scale(0.96); }
+
+/* Ícone do Mundo (Fundo com gradiente) */
+.world-icon-container {
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    display: flex; justify-content: center; align-items: center;
+    font-size: 2rem;
+    margin-bottom: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    border: 2px solid rgba(255,255,255,0.2);
+}
+
+.world-name {
+    font-family: 'Poppins';
+    font-size: 0.9rem;
+.world-card {
+    background: rgba(30, 41, 59, 0.6);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+    padding: 20px 15px;
+    display: flex; flex-direction: column; align-items: center; text-align: center;
+    position: relative; cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+}
+.world-card:active { transform: scale(0.96); }
+
+/* Círculo do Boss (Destaque) */
+.world-boss-circle {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    display: flex; justify-content: center; align-items: center;
+    font-size: 2.2rem; /* Boss bem grande */
+    margin-bottom: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    border: 2px solid rgba(255,255,255,0.2);
+    position: relative;
+    z-index: 2;
+}
+
+/* Título e Detalhes */
+.world-card-title {
+    font-family: 'Poppins'; font-size: 0.95rem; font-weight: 700; color: #fff;
+    margin-bottom: 4px; display: flex; align-items: center; gap: 6px;
+    justify-content: center;
+}
+.world-card-info { font-size: 0.75rem; color: #94a3b8; font-weight: 500; }
+.boss-highlight { color: #fbbf24; display: block; margin-top: 2px; }
+
+/* Estado Bloqueado */
+.world-locked { opacity: 0.5; filter: grayscale(1); pointer-events: none; }
+.world-locked .world-boss-circle { background: #334155 !important; }
+.lock-icon {
+    position: absolute; top: 12px; right: 12px;
+    font-size: 1rem; color: #94a3b8;
+}
+/* =========================================
+   16. HEADER PREMIUM (MODO AVENTURA)
+   ========================================= */
+
+/* Esconde o header padrão quando necessário via JS */
+.hidden-header { display: none !important; }
+.world-card-image {
+    width: 140px; 
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+    transition: transform 0.2s;
+}
+
+.world-card-image:active { transform: scale(1.05); }
+
+/* MUNDO BLOQUEADO */
+.world-card-image.locked {
+    opacity: 1; /* Imagem viva */
+    cursor: default;
+}
+
+/* Ícone de Cadeado */
+.lock-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.5rem;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));
+    pointer-events: none;
+}
+

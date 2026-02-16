@@ -1,0 +1,197 @@
+/* ============================================
+   NOTIFICAÇÕES DE GANHO DE CRISTAIS
+   ============================================
+
+   Sistema de notificações animadas que aparecem
+   quando o jogador ganha cristais.
+
+   Design:
+   - Slide in de cima para baixo
+   - Permanece visível por 2.5s
+   - Fade out suave
+   - Mobile-first (responsivo)
+   - Sem quebrar layout (position fixed)
+*/
+
+.crystal-notification {
+    position: fixed;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+
+    /* Layout */
+    background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+    border-radius: 16px;
+    padding: 12px 20px;
+    min-width: 200px;
+    max-width: 90vw;
+
+    /* Sombras premium */
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.3),
+        0 8px 24px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        0 0 0 1px rgba(0, 0, 0, 0.1);
+
+    /* Borda interna sutil */
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+
+    /* Animação inicial */
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+    /* Prevent text selection */
+    user-select: none;
+    pointer-events: none;
+}
+
+/* Estado visível (animação slide in) */
+.crystal-notification.show {
+    top: 80px;
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+}
+
+/* Conteúdo principal (cristal + quantidade) */
+.crystal-notification-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 6px;
+}
+
+/* Ícone do cristal */
+.crystal-notification-icon {
+    font-size: 1.8rem;
+    line-height: 1;
+
+    /* Animação de pulso sutil */
+    animation: crystalPulse 1s ease-in-out infinite;
+
+    /* Sombra dourada */
+    filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.4));
+}
+
+@keyframes crystalPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* Quantidade de cristais */
+.crystal-notification-amount {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #fff;
+    text-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.4),
+        0 0 12px rgba(251, 191, 36, 0.4);
+    letter-spacing: 0.5px;
+}
+
+/* Motivo do ganho (texto descritivo) */
+.crystal-notification-reason {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================
+   VARIAÇÕES POR TIPO DE RECOMPENSA
+   ============================================ */
+
+/* Boss derrotado (vermelho/laranja) */
+.crystal-notification.boss-reward {
+    background: linear-gradient(135deg, #f87171 0%, #dc2626 100%);
+}
+
+/* Novo mundo desbloqueado (dourado) */
+.crystal-notification.world-reward {
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+    box-shadow:
+        0 4px 12px rgba(251, 191, 36, 0.4),
+        0 8px 24px rgba(251, 191, 36, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.crystal-notification.world-reward .crystal-notification-amount {
+    color: #000;
+    text-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.2),
+        0 0 12px rgba(255, 255, 255, 0.6);
+}
+
+.crystal-notification.world-reward .crystal-notification-reason {
+    color: rgba(0, 0, 0, 0.8);
+}
+
+/* Primeira vitória do dia (roxo) */
+.crystal-notification.daily-reward {
+    background: linear-gradient(135deg, #e879f9 0%, #c026d3 100%);
+}
+
+/* ============================================
+   RESPONSIVIDADE
+   ============================================ */
+
+@media (max-width: 400px) {
+    .crystal-notification {
+        padding: 10px 16px;
+        min-width: 180px;
+    }
+
+    .crystal-notification.show {
+        top: 70px;
+    }
+
+    .crystal-notification-icon {
+        font-size: 1.5rem;
+    }
+
+    .crystal-notification-amount {
+        font-size: 1.2rem;
+    }
+
+    .crystal-notification-reason {
+        font-size: 0.7rem;
+    }
+}
+
+/* Dispositivos muito pequenos */
+@media (max-width: 360px) {
+    .crystal-notification {
+        padding: 8px 12px;
+        min-width: 160px;
+    }
+
+    .crystal-notification-content {
+        gap: 8px;
+    }
+
+    .crystal-notification-icon {
+        font-size: 1.3rem;
+    }
+
+    .crystal-notification-amount {
+        font-size: 1.1rem;
+    }
+}
+
+/* Landscape mobile (previne overlap com elementos do jogo) */
+@media (max-height: 500px) and (orientation: landscape) {
+    .crystal-notification.show {
+        top: 10px;
+    }
+}

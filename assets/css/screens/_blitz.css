@@ -1,0 +1,151 @@
+/* =========================================
+   BLITZ MODE
+   Isolated HUD + layout adjustments
+   ========================================= */
+
+#app.is-screen-blitz .blitz-hud {
+    display: flex;
+}
+
+#app.is-screen-blitz #classic-stats,
+#app.is-screen-blitz #classic-missions,
+#app.is-screen-blitz #classic-score-hero,
+#app.is-screen-blitz #goals-area,
+#app.is-screen-blitz #powerups-area,
+#app.is-screen-blitz #controls-bar,
+#app.is-screen-blitz #boss-hp-hud,
+#app.is-screen-blitz .game-gear-badge,
+#app.is-screen-blitz #guardian-info-overlay {
+    display: none !important;
+}
+
+#app.is-screen-blitz .game-area,
+#app.is-screen-blitz #game-board,
+#app.is-screen-blitz #dock {
+    visibility: visible;
+    opacity: 1;
+}
+
+.blitz-hud {
+    position: absolute;
+    top: 56px;
+    left: 0;
+    width: 100%;
+    z-index: 18;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    pointer-events: none;
+}
+
+.blitz-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    border-radius: 12px;
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.2));
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.35);
+    backdrop-filter: blur(4px);
+}
+
+.blitz-letter {
+    display: grid;
+    grid-template-columns: repeat(5, 7px);
+    grid-template-rows: repeat(7, 7px);
+    gap: 2px;
+}
+
+.blitz-letter.is-space {
+    width: 14px;
+}
+
+.blitz-pixel {
+    width: 7px;
+    height: 7px;
+    border-radius: 2px;
+    background: transparent;
+    opacity: 0;
+}
+
+.blitz-pixel.is-on {
+    opacity: 1;
+    border: 1px solid rgba(226, 232, 240, 0.45);
+    box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.25);
+}
+
+.blitz-letter.is-filled .blitz-pixel.is-on {
+    background: linear-gradient(180deg, #e2e8f0, #94a3b8);
+    border-color: rgba(226, 232, 240, 0.9);
+    box-shadow: 0 2px 6px rgba(148, 163, 184, 0.5), inset 0 0 0 1px rgba(30, 41, 59, 0.2);
+}
+
+.blitz-timer {
+    width: min(320px, 82vw);
+}
+
+.blitz-timer-track {
+    position: relative;
+    height: 10px;
+    border-radius: 999px;
+    background: rgba(30, 41, 59, 0.6);
+    box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.2);
+    overflow: hidden;
+}
+
+.blitz-timer-fill {
+    height: 100%;
+    width: 0%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #fbbf24, #f97316);
+    box-shadow: 0 0 12px rgba(249, 115, 22, 0.45);
+    transition: width 0.08s linear;
+}
+
+.blitz-timer-glow {
+    position: absolute;
+    inset: -6px;
+    background: radial-gradient(circle, rgba(251, 191, 36, 0.25), transparent 60%);
+    pointer-events: none;
+}
+
+.blitz-modal {
+    position: absolute;
+    inset: 0;
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(15, 23, 42, 0.72);
+    backdrop-filter: blur(4px);
+}
+
+.blitz-modal.hidden {
+    display: none;
+}
+
+.blitz-modal-card {
+    width: min(320px, 86vw);
+    padding: 20px;
+    border-radius: 18px;
+    text-align: center;
+    background: linear-gradient(180deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95));
+    border: 1px solid rgba(148, 163, 184, 0.25);
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.45);
+}
+
+.blitz-modal-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #f8fafc;
+    margin-bottom: 14px;
+}
+
+.blitz-modal-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}

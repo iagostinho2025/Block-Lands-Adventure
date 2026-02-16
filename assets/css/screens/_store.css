@@ -1,0 +1,671 @@
+/* ============================================
+   TELA DA LOJA DE MESTRES
+   ============================================
+
+   Sistema de loja onde o jogador pode comprar
+   power-ups e outros itens usando cristais.
+
+   Design: Mobile-first, premium, responsivo
+   ============================================ */
+
+/* ============================================
+   LAYOUT PRINCIPAL
+   ============================================ */
+
+.store-layout {
+    background:
+        radial-gradient(ellipse at 50% 0%, rgba(247, 213, 140, 0.18) 0%, transparent 45%),
+        linear-gradient(180deg, #2a1f14 0%, #0f0b07 100%),
+        repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0 2px, transparent 2px 6px);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* ============================================
+   HEADER DA LOJA
+   ============================================ */
+
+.store-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    background:
+        linear-gradient(180deg, rgba(63, 44, 24, 0.95) 0%, rgba(34, 24, 14, 0.95) 100%);
+    border-bottom: 1px solid rgba(186, 140, 74, 0.4);
+    box-shadow:
+        0 6px 16px rgba(0, 0, 0, 0.45),
+        inset 0 1px 0 rgba(255, 224, 168, 0.15);
+    position: relative;
+    z-index: 10;
+}
+
+.store-header h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #f2d08a;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+    margin: 0;
+    flex: 1;
+    text-align: center;
+}
+
+.currency-badge-compact {
+    background: linear-gradient(145deg, rgba(62, 44, 26, 0.95), rgba(34, 24, 14, 0.95));
+    border-radius: 16px;
+    padding: 6px 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid rgba(186, 140, 74, 0.5);
+    box-shadow:
+        inset 0 2px 6px rgba(0, 0, 0, 0.4),
+        0 2px 6px rgba(0, 0, 0, 0.35);
+}
+
+.currency-badge-compact .crystal-icon {
+    font-size: 1rem;
+    line-height: 1;
+}
+
+.currency-badge-compact .crystal-value-store {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #f2d08a;
+}
+
+/* ============================================
+   CONTEÚDO DA LOJA
+   ============================================ */
+
+.store-content {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 0;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* ============================================
+   TABS DE CATEGORIAS
+   ============================================ */
+
+.store-tabs {
+    display: flex;
+    gap: 8px;
+    padding: 16px 16px 12px;
+    background: linear-gradient(180deg, rgba(40, 28, 16, 0.8) 0%, transparent 100%);
+    border-bottom: 1px solid rgba(186, 140, 74, 0.35);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.store-tab {
+    flex: 1;
+    min-width: 140px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 10px 12px;
+    background: linear-gradient(145deg, rgba(76, 54, 30, 0.8), rgba(40, 28, 16, 0.9));
+    border: 1px solid rgba(186, 140, 74, 0.35);
+    border-radius: 10px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    color: rgba(245, 235, 210, 0.8);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.store-tab .tab-icon {
+    font-size: 1.3rem;
+    line-height: 1;
+    opacity: 0.8;
+}
+
+.store-tab:active {
+    transform: scale(0.97);
+}
+
+.store-tab.active {
+    background: linear-gradient(145deg, #d7b15b 0%, #a1732a 100%);
+    border-color: rgba(255, 222, 156, 0.8);
+    color: #1c1408;
+    box-shadow:
+        0 4px 12px rgba(223, 179, 98, 0.5),
+        inset 0 1px 0 rgba(255, 245, 210, 0.6);
+}
+
+.store-tab.active .tab-icon {
+    opacity: 1;
+}
+
+.store-tab[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.store-tab .tab-badge {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: #8b2b2b;
+    color: #fff;
+    font-size: 0.6rem;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* ============================================
+   CATEGORIAS DE PRODUTOS
+   ============================================ */
+
+.store-category {
+    display: none;
+    padding: 16px;
+}
+
+.store-category.active {
+    display: block;
+}
+
+/* ============================================
+   GRID DE PRODUTOS
+   ============================================ */
+
+.store-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    align-items: stretch;
+}
+
+/* ============================================
+   CARD DE PRODUTO
+   ============================================ */
+
+.store-item {
+    position: relative;
+    display: flex;
+    height: 100%;
+}
+
+.store-item:active {
+    transform: scale(0.98);
+}
+
+/* Featured Item (Pacote Completo) */
+.store-item.featured {
+    border-color: rgba(201, 158, 86, 0.9);
+}
+
+.featured-badge {
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    background: linear-gradient(135deg, #8b2b2b 0%, #5b1a1a 100%);
+    color: #fff;
+    font-size: 0.55rem;
+    font-weight: 800;
+    padding: 3px 8px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.5);
+}
+
+/* ============================================
+   ELEMENTOS DO CARD
+   ============================================ */
+
+/* ============================================
+   CARTÃO COMPACTO (MASTER ITEM CARD)
+   ============================================ */
+
+.master-item-card {
+    background: #f3ead8;
+    border: 1px solid rgba(188, 162, 122, 0.7);
+    border-radius: 14px;
+    box-shadow:
+        0 6px 12px rgba(0, 0, 0, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    min-height: 200px;
+    overflow: hidden;
+}
+
+.master-item-card__header {
+    padding: 8px 10px;
+    background: linear-gradient(180deg, rgba(255, 248, 235, 0.9) 0%, rgba(235, 220, 196, 0.95) 100%);
+    text-align: center;
+}
+
+.master-item-card__title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: #3c2a17;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
+    margin: 0;
+}
+
+.master-item-card__content {
+    flex: 1;
+    display: grid;
+    place-items: center;
+    padding: 10px;
+    background: rgba(255, 250, 244, 0.8);
+}
+
+.master-item-card__footer {
+    margin-top: auto;
+}
+
+.master-item-card__icon {
+    grid-column: 1;
+    grid-row: 1;
+    font-size: 2.4rem;
+    line-height: 1;
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.25));
+}
+
+.master-item-card__qty {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: end;
+    align-self: end;
+    background: #7a3a24;
+    color: #fff;
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+    transform: translate(10%, 20%);
+}
+
+.master-item-card__price-icon {
+    font-size: 1rem;
+    line-height: 1;
+}
+
+.master-item-card__price-value {
+    font-size: 1rem;
+    font-weight: 800;
+    font-family: 'Cinzel', serif;
+}
+
+/* ============================================
+   FOOTER DO CARD (Preço + Botão)
+   ============================================ */
+
+.item-footer {
+    grid-area: footer;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 6px;
+    margin: 0;
+    min-width: 96px;
+}
+
+.item-price {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.price-icon {
+    font-size: 1rem;
+    line-height: 1;
+}
+
+.price-value {
+    font-family: 'Cinzel', serif;
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #f2d08a;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+.price-original {
+    font-size: 0.85rem;
+    color: rgba(248, 250, 252, 0.4);
+    text-decoration: line-through;
+    margin-left: -2px;
+}
+
+/* ============================================
+   BOTÃO DE COMPRA
+   ============================================ */
+
+.btn-buy {
+    width: 100%;
+    border: none;
+    border-top: 1px solid rgba(170, 138, 96, 0.6);
+    background: #e7d3b2;
+    padding: 10px 8px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #3c2a17;
+    letter-spacing: 0.4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: filter 0.2s ease;
+}
+
+.btn-buy:active {
+    filter: brightness(0.95);
+}
+
+.btn-buy-featured {
+    background: #e0c48e;
+    color: #2f1f11;
+}
+
+.btn-buy[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* ============================================
+   MENSAGEM "EM BREVE"
+   ============================================ */
+
+.coming-soon-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 20px;
+    min-height: 300px;
+}
+
+.coming-soon-icon {
+    font-size: 4rem;
+    margin-bottom: 16px;
+    opacity: 0.7;
+}
+
+.coming-soon-message h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #f3e3c0;
+    margin: 0 0 12px;
+}
+
+.coming-soon-message p {
+    font-family: 'Georgia', serif;
+    font-size: 0.95rem;
+    color: rgba(243, 227, 192, 0.65);
+    max-width: 300px;
+}
+
+/* ============================================
+   MODAL DE CONFIRMAÇÃO
+   ============================================ */
+
+.store-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(10, 7, 4, 0.85);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 20px;
+}
+
+.store-modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: linear-gradient(135deg, #3a2a17 0%, #1a120a 100%);
+    border: 1px solid rgba(186, 140, 74, 0.5);
+    border-radius: 16px;
+    padding: 28px 24px;
+    max-width: 360px;
+    width: 100%;
+    text-align: center;
+
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.5),
+        0 16px 48px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 235, 200, 0.12);
+}
+
+.modal-icon {
+    font-size: 4rem;
+    margin-bottom: 16px;
+}
+
+.modal-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #f3e3c0;
+    margin: 0 0 8px;
+}
+
+.modal-description {
+    font-family: 'Georgia', serif;
+    font-size: 0.9rem;
+    color: rgba(243, 227, 192, 0.7);
+    margin: 0 0 20px;
+}
+
+.modal-price-info {
+    background: rgba(30, 22, 13, 0.7);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(186, 140, 74, 0.25);
+}
+
+.modal-price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    font-family: 'Georgia', serif;
+    font-size: 0.95rem;
+}
+
+.modal-price-row:last-child {
+    margin-bottom: 0;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-weight: 700;
+}
+
+.modal-price-label {
+    color: rgba(243, 227, 192, 0.7);
+}
+
+.modal-price-value {
+    color: #f2d08a;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.modal-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.modal-btn {
+    padding: 14px 20px;
+    border: 1px solid rgba(186, 140, 74, 0.4);
+    border-radius: 12px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.modal-btn-cancel {
+    background: rgba(40, 28, 16, 0.9);
+    color: rgba(243, 227, 192, 0.85);
+    border: 1px solid rgba(186, 140, 74, 0.25);
+}
+
+.modal-btn-cancel:active {
+    transform: scale(0.97);
+}
+
+.modal-btn-confirm {
+    background: linear-gradient(135deg, #c8a35a 0%, #8c6a2c 100%);
+    color: #1b1408;
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 245, 210, 0.6);
+}
+
+.modal-btn-confirm:active {
+    transform: scale(0.97);
+}
+
+/* ============================================
+   TOAST DE FEEDBACK
+   ============================================ */
+
+.store-toast {
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: rgba(28, 20, 12, 0.95);
+    border: 1px solid rgba(186, 140, 74, 0.35);
+    border-radius: 14px;
+    padding: 16px 24px;
+    max-width: 320px;
+    z-index: 10000;
+    opacity: 0;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.store-toast.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
+.store-toast.success {
+    border-color: rgba(103, 145, 80, 0.6);
+}
+
+.store-toast.error {
+    border-color: rgba(139, 43, 43, 0.7);
+}
+
+.toast-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.toast-icon {
+    font-size: 1.8rem;
+}
+
+.toast-message {
+    font-family: 'Georgia', serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #f3e3c0;
+    line-height: 1.3;
+}
+
+/* ============================================
+   RESPONSIVIDADE
+   ============================================ */
+
+/* Grid 2 colunas em telas maiores */
+@media (min-width: 400px) {
+    .store-item.featured {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (min-width: 900px) {
+    .store-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+/* Ajustes para tablets/desktop */
+@media (min-width: 500px) {
+    .store-header h2 {
+        font-size: 1.4rem;
+    }
+
+    .store-content {
+        padding: 0;
+    }
+
+    .store-tabs {
+        padding: 20px 20px 16px;
+    }
+
+    .store-category {
+        padding: 20px;
+    }
+
+    .store-grid {
+        gap: 20px;
+    }
+}
+
+/* Landscape mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    .store-header {
+        padding: 12px 16px;
+    }
+
+    .store-header h2 {
+        font-size: 1.1rem;
+    }
+
+    .store-tabs {
+        padding: 12px 16px 8px;
+    }
+
+    .store-tab {
+        padding: 8px 10px;
+    }
+}

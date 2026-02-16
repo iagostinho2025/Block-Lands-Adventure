@@ -1,0 +1,213 @@
+/* =========================================
+   7. MODAL E ANIMAÇÕES
+   ========================================= */
+#effects-layer { pointer-events: none; position: absolute; top:0; left:0; width:100%; height:100%; overflow:hidden; z-index: 50; }
+
+/* Texto Flutuante Base */
+.floating-text {
+    position: absolute; 
+    font-family: 'Poppins', sans-serif; 
+    font-weight: 900; 
+    font-size: 3rem; 
+    transform: translate(-50%, -50%);
+    animation: popUp 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    white-space: nowrap;
+    z-index: 100;
+}
+
+@keyframes popUp { 
+    0% { opacity:0; transform:translate(-50%,-50%) scale(0.5) rotate(-10deg); } 
+    50% { opacity:1; transform:translate(-50%,-150%) scale(1.2) rotate(0deg); } 
+    100% { opacity:0; transform:translate(-50%,-250%) scale(1) rotate(0deg); } 
+}
+
+/* CORES DAS MENSAGENS (CORRIGIDO) */
+/* Adicionamos background-clip em CADA uma para garantir que não vire um quadrado */
+
+/* Good = Verde */
+.text-good { 
+    background: linear-gradient(to bottom, #ffffff, #22c55e); 
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 10px rgba(34, 197, 94, 0.6));
+}
+
+/* Great = Azul */
+.text-great { 
+    background: linear-gradient(to bottom, #ffffff, #3b82f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.6));
+}
+
+/* Excellent = Rosa/Roxo */
+.text-excellent { 
+    background: linear-gradient(to bottom, #ffffff, #d946ef);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 10px rgba(217, 70, 239, 0.6));
+}
+
+/* Perfect = Dourado */
+.text-perfect { 
+    background: linear-gradient(to bottom, #ffffff, #fbbf24);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 3.8rem; 
+    filter: drop-shadow(0 0 15px rgba(251, 191, 36, 0.8));
+}
+
+/* Modal Game Over */
+.modal { 
+    position:fixed; top:0; left:0; width:100%; height:100%; 
+    background:rgba(0,0,0,0.9); 
+    display:flex; justify-content:center; align-items:center; 
+    z-index:200; 
+    transition:opacity 0.3s;
+}
+.modal.hidden { opacity:0; pointer-events:none; }
+
+.glass-panel { 
+    background: #1e293b; 
+    padding: 30px; 
+    border-radius: 20px; 
+    text-align: center; 
+    color: #fff; 
+    border: 1px solid rgba(255,255,255,0.1); 
+    width: 85%; max-width: 350px;
+    box-shadow: 0 0 50px rgba(0,0,0,0.7);
+}
+
+.score-display strong { font-size: 3.5rem; color: #fbbf24; display: block; margin: 10px 0; }
+
+.btn-primary { 
+    margin-top:20px; padding:15px; width: 100%; 
+    background: linear-gradient(to right, #3b82f6, #2563eb); 
+    border:none; border-radius:10px; 
+    color:#fff; font-weight:bold; font-size: 1.1rem; 
+    cursor:pointer; 
+    box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+}
+.btn-primary:active { transform: scale(0.98); }
+
+/* =========================================
+   9. TELAS DE FIM DE JOGO (PREMIUM)
+   ========================================= */
+
+/* Fundo do Modal (Mais escuro e borrado) */
+.modal {
+    backdrop-filter: blur(8px);
+    background: rgba(15, 23, 42, 0.85);
+    z-index: 9999;
+}
+
+/* Modal de vitória sem overlay escuro */
+#modal-victory {
+    background: transparent;
+}
+
+/* Modal de derrota sem overlay escuro */
+#modal-gameover {
+    background: transparent;
+}
+
+/* Modal clássico sem overlay escuro */
+#modal-classic-result {
+    background: transparent;
+}
+
+/* Modal blitz com o mesmo visual do clássico */
+#blitz-modal {
+    background: transparent;
+}
+
+/* Painel Base */
+.glass-panel {
+    transform: scale(0.9);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    
+    /* Borda sutil */
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    max-width: 400px;
+    width: 90%;
+}
+
+/* Animação ao abrir */
+.modal:not(.hidden) .glass-panel {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* Ícone Grande (Topo) */
+.modal-icon-container {
+    width: 80px; height: 80px;
+    margin: -50px auto 20px auto; /* Sobe para fora do card */
+    background: #1e293b;
+    border-radius: 50%;
+    display: flex; justify-content: center; align-items: center;
+    border: 4px solid #0f172a;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+.modal-icon { font-size: 3rem; }
+
+/* Título e Texto */
+.modal-title {
+    font-size: 1.8rem; font-weight: 800; margin-bottom: 5px;
+    background: linear-gradient(to right, #fff, #cbd5e1);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.modal-desc {
+    color: var(--text-muted); font-size: 0.9rem; margin-bottom: 25px; line-height: 1.5;
+}
+
+/* Caixa de Pontuação */
+.result-box {
+    background: rgba(0,0,0,0.2);
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 25px;
+    display: flex; flex-direction: column; gap: 5px;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+.result-label { font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 1px; }
+.result-value { font-size: 2.5rem; font-weight: 900; color: #fff; line-height: 1; }
+
+
+/* --- TEMA: GAME OVER (FALHA) --- */
+.theme-fail { border-top: 4px solid #ef4444; }
+.theme-fail .modal-icon-container { background: linear-gradient(135deg, #ef4444, #7f1d1d); }
+.btn-fail { 
+    background: linear-gradient(to right, #ef4444, #b91c1c);
+    box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+}
+
+/* --- TEMA: VITÓRIA (SUCESSO) --- */
+.theme-win { border-top: 4px solid #fbbf24; }
+
+.win-glow {
+    background: linear-gradient(135deg, #fbbf24, #d97706);
+    box-shadow: 0 0 30px rgba(251, 191, 36, 0.4);
+    animation: bounce 2s infinite;
+}
+
+.win-box .result-value {
+    color: #fbbf24;
+    text-shadow: 0 0 15px rgba(251, 191, 36, 0.5);
+}
+
+.btn-win {
+    background: linear-gradient(to right, #fbbf24, #d97706);
+    box-shadow: 0 4px 15px rgba(251, 191, 36, 0.4);
+    color: #000; /* Texto preto no botão dourado para contraste */
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}

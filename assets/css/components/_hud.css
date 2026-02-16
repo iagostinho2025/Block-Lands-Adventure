@@ -1,0 +1,177 @@
+/* =========================================
+   2. CABEÇALHO E METAS (PREMIUM REDESIGN)
+   ========================================= */
+.game-header {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 15px; 
+    margin-bottom: 25px; /* Mais espaço para respirar */
+    flex-shrink: 0;
+}
+
+.logo {
+    font-family: 'Poppins', sans-serif; 
+    font-size: 1.8rem; /* Um pouco maior */
+    letter-spacing: 2px;
+    font-weight: 900;
+    text-transform: uppercase;
+    /* Gradiente Metálico/Neon */
+    background: linear-gradient(to right, #fff 20%, var(--color-cop) 50%, var(--color-ghost) 80%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.4));
+}
+
+.goals-container { 
+    display: flex; 
+    gap: 25px; /* Mais espaçamento entre os itens */
+    justify-content: center; 
+    width: 100%;
+}
+
+.goal-item { 
+    display: flex; flex-direction: column; align-items: center; gap: 8px; 
+    position: relative;
+    min-width: 70px;
+}
+
+/* O Círculo agora é um "Porta-Retrato" do Emoji */
+.goal-circle {
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    
+    /* Vidro Profundo */
+    background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0.2) 100%);
+    backdrop-filter: blur(5px);
+    
+    /* Borda sutil padrão */
+    border: 2px solid rgba(255, 255, 255, 0.05);
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.5), 0 10px 20px rgba(0,0,0,0.3);
+    
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.goal-emoji {
+    font-size: 2rem; /* Emoji Grande */
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));
+    transition: transform 0.3s;
+}
+
+/* Cores específicas das bordas (Sutilmente coloridas desde o início) */
+.type-bee-glow { border-color: rgba(16, 185, 129, 0.3); box-shadow: 0 0 15px rgba(16, 185, 129, 0.1); }
+.type-ghost-glow { border-color: rgba(236, 72, 153, 0.3); box-shadow: 0 0 15px rgba(236, 72, 153, 0.1); }
+.type-cop-glow { border-color: rgba(59, 130, 246, 0.3); box-shadow: 0 0 15px rgba(59, 130, 246, 0.1); }
+
+
+/* Informações (Texto embaixo) */
+.goal-info {
+    display: flex; flex-direction: column; align-items: center; gap: 2px;
+}
+
+.goal-counter {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.goal-label { 
+    font-size: 0.6rem; 
+    color: var(--text-muted); 
+    font-weight: 700; 
+    text-transform: uppercase; 
+    letter-spacing: 1px;
+    opacity: 0.7;
+}
+
+/* --- ESTADO DE META CUMPRIDA (Animação) --- */
+
+/* Quando completa, o círculo brilha forte e o emoji pula */
+.goal-item.completed .goal-circle { 
+    transform: scale(1.1); 
+    background: rgba(255,255,255,0.1);
+}
+.goal-item.completed .goal-emoji {
+    transform: scale(1.2) rotate(10deg);
+}
+
+/* Cores Fortes quando completado */
+#goal-item-bee.completed .goal-circle { 
+    border-color: var(--color-bee); 
+    box-shadow: 0 0 30px var(--color-bee), inset 0 0 10px var(--color-bee);
+}
+#goal-item-ghost.completed .goal-circle { 
+    border-color: var(--color-ghost); 
+    box-shadow: 0 0 30px var(--color-ghost), inset 0 0 10px var(--color-ghost);
+}
+#goal-item-cop.completed .goal-circle { 
+    border-color: var(--color-cop); 
+    box-shadow: 0 0 30px var(--color-cop), inset 0 0 10px var(--color-cop);
+}
+
+/* O contador vira um checkmark verde/dourado */
+.goal-item.completed .goal-counter {
+    color: #fbbf24; /* Dourado */
+    font-size: 1.2rem;
+    text-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
+}
+
+/* =========================================
+   16. HEADER PREMIUM (MODO AVENTURA)
+   ========================================= */
+
+/* Esconde o header padrão quando necessário via JS */
+.hidden-header { display: none !important; }
+
+/* O Novo Header Premium */
+.premium-world-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 24px;
+    
+    background: #1e293b; 
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    
+    /* Aumentei para 60px para dar respiro aos cards */
+    margin: -20px -20px 60px -20px; 
+    position: relative;
+    z-index: 10;
+}
+
+/* Botão Voltar Premium */
+.btn-premium-back {
+    position: absolute;
+    left: 20px; /* Fixo na esquerda */
+    
+    width: 42px; height: 42px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.1); /* Efeito Vidro */
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #fff;
+    font-size: 1.2rem;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.btn-premium-back:active {
+    transform: scale(0.92);
+    background: rgba(255,255,255,0.2);
+}
+
+/* Título Centralizado */
+.premium-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    margin: 0;
+}
+

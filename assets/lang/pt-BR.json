@@ -1,0 +1,562 @@
+{
+    "app": {
+        "title": "Block Lands: Adventure",
+        "version": "Block Lands: Adventure v1.0.4"
+    },
+    "settings": {
+        "title": "Configura\u00e7\u00f5es",
+        "audio_title": "\u00c1UDIO & EFEITOS",
+        "music": "M\u00fasica",
+        "sfx": "Efeitos Sonoros",
+        "haptics": "Vibra\u00e7\u00e3o",
+        "performance": "Performance",
+        "performance_auto": "Autom\u00e1tico",
+        "performance_quality": "Qualidade",
+        "performance_stable60": "Est\u00e1vel 60 FPS",
+        "lang_title": "IDIOMA",
+        "data_title": "DADOS",
+        "reset_btn": "Apagar Progresso",
+        "reset_confirm": "Tem certeza? Isso apagar\u00e1 todo o seu progresso!",
+        "version": "Vers\u00e3o"
+    },
+    "loading": {
+        "connecting": "Conectando aos servidores...",
+        "polishing": "Polindo espadas...",
+        "mapping": "Desenhando mapas...",
+        "summoning": "Invocando chef\u00f5es...",
+        "finalizing": "Finalizando...",
+        "start_msg": "Iniciando a jornada..."
+    },
+    "sidebar": {
+        "greeting": "Bem vindo (a)",
+        "level_prefix": "N\u00edvel",
+        "achievements": "Conquistas",
+        "store": "Loja de Mestres",
+        "how_to_play": "Como Jogar",
+        "settings": "Configura\u00e7\u00f5es",
+        "language": "Idioma",
+        "terms": "Termos e Privacidade"
+    },
+    "menu": {
+        "modes_title": "MODOS DE JOGO",
+        "classic_title": "Modo Cl\u00e1ssico",
+        "classic_desc": "Sem tempo, apenas relaxe.",
+        "adventure_title": "Modo Aventura",
+        "adventure_desc": "Derrote chef\u00f5es e avance.",
+        "blitz_title": "Modo Blitz",
+        "blitz_desc": "Corra contra o tempo!",
+        "tag_new": "Novo",
+        "blitz_coming_soon": "Modo Blitz: Em breve! \u26a1"
+    },
+    "story_slides": {
+        "1": "Meu nome \u00e9 Thalion. Sou um elfo da floresta.",
+        "2": "Esta noite, tudo mudou. O Mago Negro atacou nossa vila.",
+        "3": "Minha fam\u00edlia... meus amigos... todos levados pela fuma\u00e7a escura.",
+        "4": "Eu e Nyx, meu lobo, tentamos lutar, mas somos jovens demais.",
+        "5": "Precisamos de um Campe\u00e3o para alcan\u00e7ar o Castelo Sombrio.",
+        "6": "Voc\u00ea... carrega o poder que precisamos. Qual caminho voc\u00ea escolher\u00e1?"
+    },
+    "story_guardian_gate_opening": "O Guardi\u00e3o dos Mundos foi vencido, e o Port\u00e3o se abre com um estrondo ancestral.\n\nUma chama distante ilumina o horizonte: a Terra do Fogo chama pelo primeiro desafio.",
+    "story_fire_ignis_aftermath": "O Tit\u00e3 de Fogo tombou e as chamas do vulc\u00e3o cederam. Das cinzas, uma trilha de brasas revela um caminho antigo.\n\nMas o calor era apenas o primeiro teste\u2026 Ao longe, a Floresta Negra desperta \u2014 e algo nela observa cada passo.",
+    "story_forest_aracna_aftermath": "As teias de Aracna se desfizeram e o sil\u00eancio tomou a Floresta Negra. Entre ra\u00edzes antigas, um brilho frio desponta: o caminho para as Montanhas Eternas.\n\nMas a n\u00e9voa guarda segredos\u2026 e algo mais pesado desperta nas rochas.",
+    "story_mountain_golem_aftermath": "Com o Golem Rei derrotado, a montanha se silencia. As rochas cedem e revelam um antigo caminho soterrado.\n\n\u00c0 frente, o vento sopra areia e lamentos \u2014 o Deserto da Morte aguarda.",
+    "story_desert_grok_aftermath": "A poeira baixa e o Warlord Grok jaz nas dunas. Entre ossos e ru\u00ednas, um portal de sombras se abre.\n\nO Castelo Sombrio ergue-se no horizonte, e o ar pesa como press\u00e1gio.",
+    "story_castle_dark_wizard_aftermath": "O Mago Negro caiu. As sombras recuam e o castelo enfim se cala.\n\nMas a paz \u00e9 fr\u00e1gil\u2026 e a hist\u00f3ria de Block Lands est\u00e1 apenas come\u00e7ando.",
+    "worlds": {
+        "map_title": "Mapa dos Mundos",
+        "tutorial": "O Port\u00e3o",
+        "fire": "Terra do Fogo",
+        "forest": "Floresta Negra",
+        "mountain": "Montanha de Ferro",
+        "desert": "Deserto da Morte",
+        "castle": "Castelo Sombrio",
+        "locked_msg": "MUNDO BLOQUEADO"
+    },
+    "bosses": {
+        "guardian": "Guardi\u00e3o",
+        "ignis": "Ignis",
+        "magmor": "Magmor",
+        "pyra": "F\u00eanix Infernal",
+        "wolf_alpha": "Lobo Alfa",
+        "ent_ancient": "Ent Anci\u00e3o",
+        "aracna": "Aracna",
+        "troll": "Troll",
+        "giant": "Gigante",
+        "golem_king": "Golem Rei",
+        "mummy": "M\u00famia",
+        "scorpion": "Escorpi\u00e3o",
+        "warlord_grok": "Warlord Grok",
+        "gargoyle": "G\u00e1rgula",
+        "knight": "Cavaleiro Sombrio",
+        "dark_wizard": "Mago Negro",
+        "defeated": "DERROTADO"
+    },
+    "game": {
+        "hero_thalion_ready": "THALION PRONTO!",
+        "hero_nyx_ready": "NYX PRONTO!",
+        "hero_player_ready": "ESPADA PRONTA!",
+        "aim_single": "MIRAR: ALVO \u00daNICO",
+        "aim_thalion": "MIRAR: 1 BLOCO",
+        "aim_nyx": "MIRAR: 3 BLOCOS",
+        "aim_player": "MIRAR: CORTE DUPLO",
+        "magnet_select": "SELECIONE UM BLOCO",
+        "magnet_dest": "ESCOLHA O DESTINO",
+		"hero_mage_ready": "MAGA PRONTA!",
+        "aim_mage": "MIRAR: LUZ DIVINA"
+    },
+    "ui": {
+        "victory": "Vit\u00f3ria!",
+        "game_over": "Foi Quase",
+        "objectives": "Objetivos",
+        "progress": "Progresso",
+        "rewards": "Recompensas",
+        "score": "Pontua\u00e7\u00e3o:",
+        "btn_continue": "Continuar",
+        "btn_back": "Voltar",
+        "btn_restart": "Reiniciar",
+        "btn_menu": "Menu",
+        "combo": "COMBO"
+    },
+    "feedback": {
+        "good": "BOA!",
+        "great": "\u00d3TIMO!",
+        "excellent": "EXCELENTE!",
+        "perfect": "PERFEITO!",
+        "wow": "UAU!",
+        "holycow": "CARAMBA!!",
+        "unreal": "IRREAL!!!"
+    },
+    "hero_select": {
+        "title": "Escolha seu Campe\u00e3o",
+        "subtitle": "Quem ir\u00e1 liderar o ataque contra as sombras?"
+    },
+    "heroes": {
+        "warrior_name": "O Guerreiro",
+        "warrior_desc": "Portador de uma espada encantada com fogo antigo. Ele realiza dois golpes sequenciais, atingindo a coluna alvo e a vizinha.",
+        "warrior_skill": "L\u00e2mina de Fogo",
+        "warrior_effect": "Corte Duplo Vertical (6 Blocos)",
+        "mage_name": "A Maga",
+        "mage_desc": "Guardi\u00e3 da luz ancestral. Ela invoca uma magia que purifica uma \u00e1rea larga, atingindo o centro e as laterais.",
+        "mage_skill": "Luz Divina",
+        "mage_effect": "\u00c1rea Retangular (3x2)",
+        "label_skill": "Habilidade Especial:",
+        "tag_damage": "\u2694\ufe0f Dano Bruto",
+        "tag_easy": "\u2b50 F\u00e1cil",
+        "tag_control": "\u2728 Controle",
+        "tag_tactical": "\u2b50 T\u00e1tico" 
+    },
+    "story_nav": {
+        "skip": "Pular",
+        "next": "Continuar"
+    },
+	"hero_loading": {
+        "warrior_1": "Equipando armadura...",
+        "warrior_2": "Afiando l\u00e2mina...",
+        "mage_1": "Abrindo grim\u00f3rio...",
+        "mage_2": "Canalizando mana...",
+        "common": "Entrando no Port\u00e3o..."
+    },
+	"campfire": {
+        "text": "A fogueira crepita sob o luar. O caminho para o Castelo Sombrio est\u00e1 selado por uma magia antiga.\n\nPara prosseguir, voc\u00ea deve provar seu valor vencendo o **Guardi\u00e3o dos Mundos**.",
+        "btn_start": "🔥 Enfrentar o Guardião"
+    },
+	"classic": {
+        "title": "Modo Cl\u00e1ssico",
+        "score": "Pontua\u00e7\u00e3o",
+        "level": "N\u00edvel",
+        "best": "Recorde",
+        "lines": "Linhas",
+        "combo": "COMBO",
+        "feedback_good": "BOA!",
+        "feedback_great": "\u00d3TIMO!",
+        "feedback_excellent": "EXCELENTE!",
+        "feedback_perfect": "PERFEITO!",
+        "feedback_unreal": "IRREAL!!!"
+    },
+	"missions": {
+		"clear_2x": "Limpe 2 linhas de uma vez (2x)",
+		"combo_3x": "Fa\u00e7a combo 3x",
+		"score_500": "Alcance 500 pontos",
+		"placements_5": "Coloque 5 pe\u00e7as",
+		"clear_1x_5": "Limpe 5 linhas (qualquer)",
+		"reward_score": "+{value} pontos!",
+		"reward_multiplier": "Multiplicador {value}x!"
+	},
+	"achievements": {
+		"first_steps": {
+			"title": "Primeiros Passos",
+			"desc": "Complete seu primeiro n\u00edvel"
+		},
+		"guardian_slayer": {
+			"title": "Ca\u00e7ador de Guardi\u00f5es",
+			"desc": "Derrote o Guardi\u00e3o dos Mundos"
+		},
+		"classic_beginner": {
+			"title": "Iniciante Cl\u00e1ssico",
+			"desc": "Fa\u00e7a 1.000 pontos no Modo Cl\u00e1ssico"
+		},
+		"classic_skilled": {
+			"title": "Jogador Habilidoso",
+			"desc": "Fa\u00e7a 5.000 pontos no Modo Cl\u00e1ssico"
+		},
+		"classic_master": {
+			"title": "Mestre Cl\u00e1ssico",
+			"desc": "Fa\u00e7a 10.000 pontos no Modo Cl\u00e1ssico"
+		},
+		"combo_rookie": {
+			"title": "Novato em Combos",
+			"desc": "Alcance um combo de 5x"
+		},
+		"combo_pro": {
+			"title": "Pro em Combos",
+			"desc": "Alcance um combo de 10x"
+		},
+		"combo_legend": {
+			"title": "Lenda dos Combos",
+			"desc": "Alcance um combo de 15x"
+		},
+		"line_clearer": {
+			"title": "Limpador de Linhas",
+			"desc": "Limpe 100 linhas no total"
+		},
+		"line_veteran": {
+			"title": "Veterano Limpador",
+			"desc": "Limpe 500 linhas no total"
+		},
+		"perfect_clear": {
+			"title": "Clear Perfeito",
+			"desc": "Limpe 4 linhas de uma vez"
+		},
+		"mission_starter": {
+			"title": "Iniciante em Miss\u00f5es",
+			"desc": "Complete 10 miss\u00f5es"
+		},
+		"mission_hunter": {
+			"title": "Ca\u00e7ador de Miss\u00f5es",
+			"desc": "Complete 50 miss\u00f5es"
+		},
+		"perfect_run": {
+			"title": "Run Perfeita",
+			"desc": "Complete todas as 3 miss\u00f5es em uma run"
+		},
+		"fire_conqueror": {
+			"title": "Conquistador do Fogo",
+			"desc": "Complete a Terra do Fogo"
+		},
+		"forest_survivor": {
+			"title": "Sobrevivente da Floresta",
+			"desc": "Sobreviva \u00e0 Floresta Negra"
+		},
+		"mountain_champion": {
+			"title": "Campe\u00e3o da Montanha",
+			"desc": "Complete a Montanha de Ferro"
+		},
+		"desert_wanderer": {
+			"title": "Andarilho do Deserto",
+			"desc": "Complete o Deserto da Morte"
+		},
+		"final_victory": {
+			"title": "Vit\u00f3ria Final",
+			"desc": "Derrote o Mago Negro"
+		},
+		"speedrunner": {
+			"title": "Velocista",
+			"desc": "Complete um n\u00edvel em menos de 60 segundos"
+		},
+		"no_powers": {
+			"title": "Habilidade Pura",
+			"desc": "Derrote o Mago Negro sem usar poderes"
+		}
+	},
+	"store": {
+		"title": "Loja de Mestres",
+		"tab_powerups": "Power-Ups",
+		"tab_unlockables": "Desbloque\u00e1veis",
+		"btn_buy": "Comprar",
+		"save": "Economize 20%",
+		"coming_soon": "Em Breve",
+		"coming_soon_desc": "Novos itens exclusivos chegar\u00e3o em breve!",
+		"badge_featured": "POPULAR",
+		"magnet_pack_name": "Magneto",
+		"magnet_pack_desc": "1 Power-Up para reposicionar blocos",
+		"magnet_pack_desc_modal": "Reposicione blocos durante a partida.",
+		"rotate_pack_name": "Rota\u00e7\u00e3o",
+		"rotate_pack_desc": "1 Power-Up para girar blocos",
+		"rotate_pack_desc_modal": "Gire uma pe\u00e7a para encaixar no tabuleiro.",
+		"swap_pack_name": "Troca",
+		"swap_pack_desc": "1 Power-Up para trocar blocos",
+		"swap_pack_desc_modal": "Troque duas pe\u00e7as da sua m\u00e3o.",
+		"complete_pack_name": "Pacote Completo",
+		"complete_pack_desc": "3x de cada Power-Up (9 no total)",
+		"confirm_title": "Confirmar Compra?",
+		"price_label": "Pre\u00e7o:",
+		"balance_label": "Seu saldo:",
+		"new_balance_label": "Novo saldo:",
+		"btn_cancel": "Cancelar",
+		"btn_confirm": "Confirmar",
+		"insufficient_funds": "Cristais Insuficientes",
+		"purchase_success": "Compra realizada com sucesso!",
+		"purchase_error": "Erro ao processar compra",
+		"insufficient_crystals": "Cristais insuficientes!",
+		"powerup_cap_reached": "Limite de Power-Up atingido (m\u00e1x. 3)."
+	},
+	"progression": {
+		"level_up": "N\u00edvel alcan\u00e7ado!",
+		"rank_up": "NOVO RANK",
+		"continue": "Continuar"
+	},
+	"guardian_info": {
+		"title": "O Guardi\u00e3o dos Mundos",
+		"subtitle": "Entrada do reino \u2014 registre seus primeiros passos",
+		"sections": {
+			"boss_powers": "Poderes do Chefe",
+			"relics": "Itens do Mundo",
+			"heroes": "Poderes dos Her\u00f3is"
+		},
+		"boss": {
+			"portal_title": "Portal Ancestral",
+			"portal_desc": "A cada 3 rodadas sem dano cria um obst\u00e1culo no tabuleiro.",
+			"restore_title": "Restaura\u00e7\u00e3o",
+			"restore_desc": "Se ficar 3 jogadas sem dano, regenera 1 HP."
+		},
+		"items": {
+			"amulet_title": "Amuleto",
+			"amulet_desc": "Comum \u2014 causa 1 de dano ao boss.",
+			"dagger_title": "Adaga",
+			"dagger_desc": "Rara \u2014 causa 3 de dano ao boss.",
+			"key_title": "Chave Ancestral",
+			"key_desc": "\u00c9pica \u2014 causa 5 de dano ao boss."
+		},
+		"heroes": {
+			"thalion_title": "Thalion",
+			"thalion_desc": "Flecha precisa: remove 1 bloco alvo.",
+			"nyx_title": "Nyx",
+			"nyx_desc": "Investida: remove 3 blocos na coluna acima do alvo.",
+			"warrior_title": "Guerreiro",
+			"warrior_desc": "Corte duplo: atinge 2 colunas por 3 blocos.",
+			"mage_title": "Maga",
+			"mage_desc": "Luz divina: \u00e1rea 2x3 ao redor do alvo."
+		}
+	},
+	"fire_info": {
+		"elite10": {
+			"title": "Magmor, o Implac\u00e1vel",
+			"subtitle": "Elite do Fogo \u2014 N\u00edvel 10",
+			"boss": {
+				"coal_title": "Carv\u00e3o Vivo",
+				"coal_desc": "A cada 5 jogadas, cria Carv\u00e3o em uma c\u00e9lula vazia segura."
+			}
+		},
+		"elite15": {
+			"title": "F\u00eanix Infernal",
+			"subtitle": "Elite do Fogo \u2014 N\u00edvel 15",
+			"boss": {
+				"regen_title": "Renascimento",
+				"regen_desc": "Se ficar 3 turnos sem dano, regenera 2 HP."
+			}
+		},
+		"boss20": {
+			"title": "Ignis, Senhor das Chamas",
+			"subtitle": "Boss do Fogo \u2014 N\u00edvel 20",
+			"boss": {
+				"coal_title": "Carv\u00e3o Vivo",
+				"coal_desc": "A cada 5 jogadas, cria Carv\u00e3o em uma c\u00e9lula vazia segura.",
+				"regen_title": "Renascimento",
+				"regen_desc": "Se ficar 3 turnos sem dano, regenera 2 HP.",
+				"petrify_title": "Petrificar Fogo",
+				"petrify_desc": "A cada 7 jogadas, transforma Fogo em Pedra."
+			}
+		},
+		"items": {
+			"fire_title": "Fogo",
+			"fire_desc": "Comum \u2014 causa 1 de dano ao boss.",
+			"heart_title": "Cora\u00e7\u00e3o Ardente",
+			"heart_desc": "Raro \u2014 causa 3 de dano ao boss.",
+			"collision_title": "Colis\u00e3o",
+			"collision_desc": "\u00c9pico \u2014 causa 5 de dano ao boss."
+		}
+	},
+	"forest_info": {
+		"elite30": {
+			"title": "Lobo Alfa",
+			"subtitle": "Elite da Floresta \u2014 N\u00edvel 30",
+			"boss": {
+				"thorns_title": "Espinhos Predat\u00f3rios",
+				"thorns_desc": "A cada 4 jogadas, transforma Folhas em Espinhos."
+			}
+		},
+		"elite35": {
+			"title": "Ent Anci\u00e3o",
+			"subtitle": "Elite da Floresta \u2014 N\u00edvel 35",
+			"boss": {
+				"roots_title": "Ra\u00edzes Vivas",
+				"roots_desc": "A cada 3 turnos, cria Espinhos em c\u00e9lula vazia segura.",
+				"regen_title": "Savia Ancestral",
+				"regen_desc": "A cada 5 turnos, regenera 3 HP."
+			}
+		},
+		"boss40": {
+			"title": "Aracna, M\u00e3e das Teias",
+			"subtitle": "Boss da Floresta \u2014 N\u00edvel 40",
+			"boss": {
+				"thorns_title": "Espinhos Predat\u00f3rios",
+				"thorns_desc": "A cada 4 jogadas, transforma Folhas em Espinhos.",
+				"roots_title": "Ra\u00edzes Vivas",
+				"roots_desc": "A cada 3 turnos, cria Espinhos em c\u00e9lula vazia segura.",
+				"web_title": "Teia Venenosa",
+				"web_desc": "A cada 6 turnos, transforma Cogumelos em Teia."
+			}
+		},
+		"items": {
+			"leaf_title": "Folha",
+			"leaf_desc": "Comum \u2014 causa 1 de dano ao boss.",
+			"poison_title": "Veneno",
+			"poison_desc": "Raro \u2014 causa 3 de dano ao boss.",
+			"mushroom_title": "Cogumelo",
+			"mushroom_desc": "\u00c9pico \u2014 causa 5 de dano ao boss."
+		}
+	},
+	"mountain_info": {
+		"elite50": {
+			"title": "Troll",
+			"subtitle": "Elite da Montanha \u2014 N\u00edvel 50",
+			"boss": {
+				"rocks_title": "Rochas Vivas",
+				"rocks_desc": "A cada 5 jogadas, cria Rochas em c\u00e9lula vazia segura."
+			}
+		},
+		"elite55": {
+			"title": "Gigante",
+			"subtitle": "Elite da Montanha \u2014 N\u00edvel 55",
+			"boss": {
+				"crush_title": "Esmagar Picaretas",
+				"crush_desc": "A cada 4 turnos, transforma Picaretas em Rochas.",
+				"armor_title": "Armadura de Pedra",
+				"armor_desc": "A cada 6 turnos, ativa a armadura (efeito visual)."
+			}
+		},
+		"boss60": {
+			"title": "Golem Rei",
+			"subtitle": "Boss da Montanha \u2014 N\u00edvel 60",
+			"boss": {
+				"rocks_title": "Rochas Vivas",
+				"rocks_desc": "A cada 5 jogadas, cria Rochas em c\u00e9lula vazia segura.",
+				"crush_title": "Esmagar Picaretas",
+				"crush_desc": "A cada 4 turnos, transforma Picaretas em Rochas.",
+				"quake_title": "Terremoto",
+				"quake_desc": "A cada 7 turnos, transforma Ouro em Escombros."
+			}
+		},
+		"items": {
+			"gold_title": "Ouro",
+			"gold_desc": "Comum \u2014 causa 1 de dano ao boss.",
+			"pickaxe_title": "Picareta",
+			"pickaxe_desc": "Raro \u2014 causa 3 de dano ao boss.",
+			"iron_title": "Ferro",
+			"iron_desc": "\u00c9pico \u2014 causa 5 de dano ao boss."
+		}
+	},
+	"desert_info": {
+		"elite70": {
+			"title": "M\u00famia",
+			"subtitle": "Elite do Deserto \u2014 N\u00edvel 70",
+			"boss": {
+				"quicksand_title": "Areia Movedi\u00e7a",
+				"quicksand_desc": "A cada 6 jogadas, transforma Ossos em Areia Movedi\u00e7a."
+			}
+		},
+		"elite75": {
+			"title": "Escorpi\u00e3o",
+			"subtitle": "Elite do Deserto \u2014 N\u00edvel 75",
+			"boss": {
+				"sand_poison_title": "Veneno da Areia",
+				"sand_poison_desc": "A cada 4 turnos, transforma Areia em Areia Movedi\u00e7a.",
+				"quicksand_title": "Areia Movedi\u00e7a",
+				"quicksand_desc": "A cada 5 turnos, cria Areia Movedi\u00e7a em c\u00e9lula vazia segura."
+			}
+		},
+		"boss80": {
+			"title": "Warlord Grok",
+			"subtitle": "Boss do Deserto \u2014 N\u00edvel 80",
+			"boss": {
+				"bone_quicksand_title": "Areia Movedi\u00e7a",
+				"bone_quicksand_desc": "A cada 6 jogadas, transforma Ossos em Areia Movedi\u00e7a.",
+				"sand_quicksand_title": "Veneno da Areia",
+				"sand_quicksand_desc": "A cada 4 turnos, transforma Areia em Areia Movedi\u00e7a.",
+				"sandstorm_title": "Tempestade de Areia",
+				"sandstorm_desc": "A cada 8 turnos, transforma Caveiras em Tempestade."
+			}
+		},
+		"items": {
+			"bone_title": "Osso",
+			"bone_desc": "Comum \u2014 causa 1 de dano ao boss.",
+			"sand_title": "Areia",
+			"sand_desc": "Raro \u2014 causa 3 de dano ao boss.",
+			"skull_title": "Caveira",
+			"skull_desc": "\u00c9pico \u2014 causa 5 de dano ao boss."
+		}
+	},
+	"castle_info": {
+		"elite90": {
+			"title": "G\u00e1rgula",
+			"subtitle": "Elite do Castelo \u2014 N\u00edvel 90",
+			"boss": {
+				"magic_shadow_title": "Sombras Crescentes",
+				"magic_shadow_desc": "A cada 5 jogadas, transforma Magia em Sombras.",
+				"shadow_spawn_title": "Sombras Vivas",
+				"shadow_spawn_desc": "A cada 7 jogadas, cria Sombras em c\u00e9lula vazia segura."
+			}
+		},
+		"elite95": {
+			"title": "Cavaleiro Sombrio",
+			"subtitle": "Elite do Castelo \u2014 N\u00edvel 95",
+			"boss": {
+				"magic_shadow_title": "Sombras Crescentes",
+				"magic_shadow_desc": "A cada 5 jogadas, transforma Magia em Sombras.",
+				"skull_shadow_title": "Escudo Sombrio",
+				"skull_shadow_desc": "A cada 4 jogadas, transforma Caveiras em Sombras."
+			}
+		},
+		"boss100": {
+			"title": "Mago Negro",
+			"subtitle": "Boss do Castelo \u2014 N\u00edvel 100",
+			"boss": {
+				"magic_shadow_title": "Sombras Crescentes",
+				"magic_shadow_desc": "A cada 5 jogadas, transforma Magia em Sombras.",
+				"skull_shadow_title": "Escudo Sombrio",
+				"skull_shadow_desc": "A cada 4 jogadas, transforma Caveiras em Sombras.",
+				"void_title": "Eclipse Sombrio",
+				"void_desc": "A cada 6 jogadas, transforma Cristais em V\u00e1cuo.",
+				"shadow_spawn_title": "Sombras Vivas",
+				"shadow_spawn_desc": "A cada 8 jogadas, cria Sombras em c\u00e9lula vazia segura."
+			}
+		},
+		"items": {
+			"magic_title": "Magia",
+			"magic_desc": "Comum \u2014 causa 1 de dano ao boss.",
+			"skull_title": "Caveira",
+			"skull_desc": "Raro \u2014 causa 3 de dano ao boss.",
+			"crystal_title": "Cristal",
+			"crystal_desc": "\u00c9pico \u2014 causa 5 de dano ao boss."
+		}
+	},
+	"classic": {
+		"best": "Recorde",
+		"result_title": "Resultado",
+		"result_time": "Tempo",
+		"result_score": "Pontuação",
+		"result_xp": "XP ganho",
+		"result_lines": "Linhas",
+		"result_combo": "Melhor combo",
+		"result_new_record": "Novo recorde!"
+	}
+	,
+	"blitz": {
+		"result_title": "Resultado",
+		"result_time": "Tempo",
+		"result_blocks": "Blocos",
+		"result_xp": "XP ganho",
+		"result_lines": "Linhas",
+		"result_combo": "Melhor combo"
+	}
+}

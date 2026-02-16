@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title data-i18n="app.title">Block Lands: Adventure</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel:wght@600;700&family=Inter:wght@400;500;600&family=Poppins:wght@600;700;900&family=Uncial+Antiqua&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+
+    <div id="loading-screen" class="loading-overlay">
+        <div class="loading-content">
+            <div class="loading-text" id="loading-text" data-i18n="loading.start_msg">Iniciando a jornada...</div>
+            
+            <div class="loading-bar-track">
+                <div class="loading-bar-fill" id="loading-bar-fill">
+                    <div class="loading-bar-glow"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="app">
+        
+        <div id="menu-overlay" class="overlay hidden"></div>
+        
+        <aside id="app-sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <div class="profile-card">
+                    <div class="profile-row">
+                        <div class="avatar-circle rank-avatar" id="rank-avatar">🪄</div>
+                        <div class="profile-info">
+                            <span class="greeting profile-rank" id="rank-title">Aprendiz I</span>
+                            <span class="level-badge profile-rank-label">XP</span>
+                        </div>
+                    </div>
+                    <div class="progression-xp-row">
+                        <div class="progression-xp-bar">
+                            <div class="progression-xp-fill" id="rank-xp-fill" style="width: 0%;"></div>
+                        </div>
+                        <span class="progression-xp-text" id="rank-xp-text">0 / 100</span>
+                    </div>
+                </div>
+                
+                <button id="btn-close-sidebar" class="btn-icon-close">✕</button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <button id="btn-achievements" class="sidebar-item">
+                    <span class="icon">🏆</span> <span data-i18n="sidebar.achievements">Conquistas</span>
+                </button>
+                <button class="sidebar-item highlight-gold">
+                    <span class="icon">💎</span> <span data-i18n="sidebar.store">Loja de Mestres</span>
+                </button>
+                <button class="sidebar-item">
+                    <span class="icon">📜</span> <span data-i18n="sidebar.how_to_play">Como Jogar</span>
+                </button>
+                
+                <div class="separator"></div>
+                
+                <button class="sidebar-item">
+                    <span class="icon">⚙️</span> <span data-i18n="sidebar.settings">Configurações</span>
+                </button>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <button class="footer-link" data-i18n="sidebar.terms">
+                    🔒 Termos e Privacidade
+                </button>
+                <small data-i18n="app.version">Block Lands: Adventure v1.0.4</small>
+            </div>
+        </aside>
+
+        <div id="screen-menu" class="screen active-screen home-layout">
+            
+            <header class="home-header">
+                <div class="header-left">
+                    <button id="btn-open-sidebar" class="btn-round-icon">
+                        <span style="margin-top: -2px;">☰</span>
+                    </button>
+                </div>
+
+                <div class="header-right">
+                    <div class="currency-badge">
+                        <span class="crystal-icon">💎</span>
+                        <span class="crystal-value">0</span>
+                    </div>
+                </div>
+            </header>
+
+            <section class="home-logo-section">
+                <img src="assets/img/logo.png" alt="Block Lands Logo" class="home-logo-img">
+            </section>
+
+            <section class="game-modes-container">
+                <h3 class="section-title" data-i18n="menu.modes_title">MODOS DE JOGO</h3>
+                
+                <div id="btn-mode-casual" class="mode-card card-classic">
+                    <div class="card-icon-box">♾️</div>
+                    <div class="card-texts">
+                        <h3 data-i18n="menu.classic_title">Modo Clássico</h3>
+                        <p data-i18n="menu.classic_desc">Sem tempo, apenas relaxe.</p>
+                    </div>
+                    <div class="card-arrow">➜</div>
+                </div>
+
+                <div id="btn-mode-adventure" class="mode-card card-adventure">
+                    <div class="card-icon-box">⚔️</div>
+                    <div class="card-texts">
+                        <h3 data-i18n="menu.adventure_title">Modo Aventura</h3>
+                        <p data-i18n="menu.adventure_desc">Derrote chefões e avance.</p>
+                    </div>
+                    <div class="card-arrow">➜</div>
+                </div>
+
+                <div id="btn-mode-blitz" class="mode-card card-blitz">
+                    <div class="card-icon-box">⚡</div>
+                    <div class="card-texts">
+                        <h3 data-i18n="menu.blitz_title">Modo Blitz</h3>
+                        <p data-i18n="menu.blitz_desc">Corra contra o tempo!</p>
+                    </div>
+                    <div class="card-tag" data-i18n="menu.tag_new">Novo</div>
+                </div>
+            </section>
+        </div>
+
+        <div id="screen-levels" class="screen hidden">
+            <div class="levels-grid" id="levels-container"></div>
+        </div>
+
+        <div id="screen-story" class="screen hidden" style="background-image: url('./assets/img/bg_story.WebP'); background-size: cover; background-position: center;">
+            
+            <div class="story-overlay">
+                <button id="btn-skip-story" class="btn-skip-premium">
+                    <span data-i18n="story_nav.skip">Pular</span> ⏩
+                </button>
+
+                <div class="story-container">
+                    <div class="story-image-box">
+                        <img id="story-reaction-img" src="" alt="Thalion" style="opacity: 0;">
+                    </div>
+
+                    <div id="story-slides">
+                        <p id="story-text" class="story-text-typing"></p>
+                    </div>
+                    
+                    <div class="story-controls">
+                        <button id="btn-next-slide" class="btn-epic">
+                            <span data-i18n="story_nav.next">Continuar</span> ➜
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="screen-hero-select" class="screen hidden hero-select-layout">
+            <header class="hero-select-header">
+                <h2 class="hero-select-title" data-i18n="hero_select.title">Escolha seu Campeão</h2>
+                <p class="hero-select-subtitle" data-i18n="hero_select.subtitle">Quem irá liderar o ataque contra as sombras?</p>
+            </header>
+
+            <div class="heroes-container">
+                <div class="hero-card" id="card-warrior" onclick="window.gameInstance.selectHero('warrior')">
+                    <div class="card-visual">
+                        <img src="assets/img/card_warrior.png" alt="Warrior">
+                        <div class="card-glow glow-fire"></div>
+                    </div>
+                    <div class="card-info">
+                        <h3 data-i18n="heroes.warrior_name">O Guerreiro</h3>
+                        <div class="card-tags">
+                            <span class="tag-power" data-i18n="heroes.tag_damage">⚔️ Dano Bruto</span>
+                            <span class="tag-difficulty" data-i18n="heroes.tag_easy">⭐ Fácil</span>
+                        </div>
+                        <p class="hero-desc" data-i18n="heroes.warrior_desc">Descrição do guerreiro...</p>
+                        <div class="hero-skill-preview">
+                            <small data-i18n="heroes.label_skill">Habilidade Especial:</small>
+                            <strong data-i18n="heroes.warrior_skill">Lâmina de Fogo</strong>
+                            <span data-i18n="heroes.warrior_effect">Quebra 2 colunas</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-card" id="card-mage" onclick="window.gameInstance.selectHero('mage')">
+                    <div class="card-visual">
+                        <img src="assets/img/card_mage.png" alt="Mage">
+                        <div class="card-glow glow-magic"></div>
+                    </div>
+                    <div class="card-info">
+                        <h3 data-i18n="heroes.mage_name">A Maga</h3>
+                        <div class="card-tags">
+                            <span class="tag-power" data-i18n="heroes.tag_control">✨ Controle</span>
+                            <span class="tag-difficulty" data-i18n="heroes.tag_tactical">⭐ Tático</span>
+                        </div>
+                        <p class="hero-desc" data-i18n="heroes.mage_desc">Descrição da maga...</p>
+                        <div class="hero-skill-preview">
+                            <small data-i18n="heroes.label_skill">Habilidade Especial:</small>
+                            <strong data-i18n="heroes.mage_skill">Luz Divina</strong>
+                            <span data-i18n="heroes.mage_effect">Explosão em área</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="screen-campfire" class="screen hidden campfire-layout">
+            <div class="campfire-overlay">
+                <div class="campfire-content">
+                    <p id="campfire-text" class="campfire-text"></p>
+                    
+                    <button id="btn-start-boss" class="btn-epic">
+                        <span id="campfire-btn-text">Iniciar</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tela de Conquistas -->
+        <div id="screen-achievements" class="screen hidden achievements-layout">
+            <!-- Header Fixo -->
+            <div class="achievements-header">
+                <button id="btn-achievements-back" class="btn-aaa-back pos-relative">
+                    <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+                </button>
+                <h1 class="achievements-title">🏆 Conquistas</h1>
+                <div class="currency-badge-compact">
+                    <span class="crystal-icon">💎</span>
+                    <span class="crystal-value-store">0</span>
+                </div>
+
+                <!-- Barra de Progresso Global -->
+                <div class="achievements-progress-container">
+                    <div class="achievements-progress-bar">
+                        <div class="achievements-progress-fill" id="achievements-progress-fill" style="width: 0%"></div>
+                    </div>
+                    <div class="achievements-progress-text">
+                        <span id="achievements-unlocked">0</span>/<span id="achievements-total">19</span> <span data-i18n="sidebar.achievements">Conquistas</span>
+                    </div>
+                </div>
+
+                <!-- Abas de Filtro -->
+                <div class="achievements-tabs">
+                    <button class="achievements-tab active" data-filter="classic">
+                        <span data-i18n="menu.classic_title">Modo Clássico</span>
+                    </button>
+                    <button class="achievements-tab" data-filter="adventure">
+                        <span data-i18n="menu.adventure_title">Modo Aventura</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Lista Rolável de Conquistas -->
+            <div class="achievements-scroll-area">
+                <div id="achievements-list" class="achievements-list">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ============================================
+             TELA DA LOJA DE MESTRES
+             ============================================ -->
+        <div id="screen-store" class="screen hidden store-layout">
+            <header class="store-header">
+                <button id="btn-store-back" class="btn-aaa-back pos-relative">
+                    <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+                </button>
+                <h2 data-i18n="store.title">💎 Loja de Mestres</h2>
+                <div class="currency-badge-compact">
+                    <span class="crystal-icon">💎</span>
+                    <span class="crystal-value-store">0</span>
+                </div>
+            </header>
+
+            <div class="store-content">
+                <!-- Tabs de Categorias -->
+                <nav class="store-tabs">
+                    <button class="store-tab active" data-category="powerups">
+                        <span class="tab-icon">⚡</span>
+                        <span data-i18n="store.tab_powerups">Power-Ups</span>
+                    </button>
+                    <button class="store-tab" data-category="unlockables">
+                        <span class="tab-icon">🔓</span>
+                        <span data-i18n="store.tab_unlockables">Desbloqueáveis</span>
+                    </button>
+                </nav>
+
+                <!-- Categoria: Power-Ups -->
+                <div class="store-category active" data-category="powerups">
+                    <div class="store-grid">
+                        <!-- Pacote de Magnetos -->
+                        <div class="store-item master-item-card" data-product-id="magnet_pack">
+                            <div class="master-item-card__header">
+                                <h3 class="master-item-card__title" data-i18n="store.magnet_pack_name">Pacote de Magnetos</h3>
+                            </div>
+                            <div class="master-item-card__content">
+                                <div class="master-item-card__icon">🧲</div>
+                                <span class="master-item-card__qty">1x</span>
+                            </div>
+                            <button class="master-item-card__footer btn-buy" type="button" data-product-id="magnet_pack">
+                                <span class="master-item-card__price-icon">💎</span>
+                                <span class="master-item-card__price-value">50</span>
+                            </button>
+                        </div>
+
+                        <!-- Pacote de Rotações -->
+                        <div class="store-item master-item-card" data-product-id="rotate_pack">
+                            <div class="master-item-card__header">
+                                <h3 class="master-item-card__title" data-i18n="store.rotate_pack_name">Pacote de Rotações</h3>
+                            </div>
+                            <div class="master-item-card__content">
+                                <div class="master-item-card__icon">🔄</div>
+                                <span class="master-item-card__qty">1x</span>
+                            </div>
+                            <button class="master-item-card__footer btn-buy" type="button" data-product-id="rotate_pack">
+                                <span class="master-item-card__price-icon">💎</span>
+                                <span class="master-item-card__price-value">50</span>
+                            </button>
+                        </div>
+
+                        <!-- Pacote de Trocas -->
+                        <div class="store-item master-item-card" data-product-id="swap_pack">
+                            <div class="master-item-card__header">
+                                <h3 class="master-item-card__title" data-i18n="store.swap_pack_name">Pacote de Trocas</h3>
+                            </div>
+                            <div class="master-item-card__content">
+                                <div class="master-item-card__icon">🔀</div>
+                                <span class="master-item-card__qty">1x</span>
+                            </div>
+                            <button class="master-item-card__footer btn-buy" type="button" data-product-id="swap_pack">
+                                <span class="master-item-card__price-icon">💎</span>
+                                <span class="master-item-card__price-value">50</span>
+                            </button>
+                        </div>
+
+                        <!-- Pacote Completo (Featured) -->
+                        <div class="store-item master-item-card featured" data-product-id="complete_pack">
+                            <div class="featured-badge">
+                                <span data-i18n="store.badge_featured">POPULAR</span>
+                            </div>
+                            <div class="master-item-card__header">
+                                <h3 class="master-item-card__title" data-i18n="store.complete_pack_name">Pacote Completo</h3>
+                            </div>
+                            <div class="master-item-card__content">
+                                <div class="master-item-card__icon">🎁</div>
+                                <span class="master-item-card__qty">9x</span>
+                            </div>
+                            <button class="master-item-card__footer btn-buy btn-buy-featured" type="button" data-product-id="complete_pack">
+                                <span class="master-item-card__price-icon">💎</span>
+                                <span class="master-item-card__price-value">120</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Categoria: Desbloqueáveis -->
+                <div class="store-category" data-category="unlockables">
+                    <div class="store-grid">
+                        <div class="store-item master-item-card featured" data-unlockable-id="classic_theme_arena" data-theme-id="arena">
+                            <div class="featured-badge">
+                                <span>ATIVO</span>
+                            </div>
+                            <div class="master-item-card__header">
+                                <h3 class="master-item-card__title">Tema Arena Clássica</h3>
+                            </div>
+                            <div class="master-item-card__content">
+                                <div class="master-item-card__icon">🏟️</div>
+                                <span class="master-item-card__qty">Visual</span>
+                            </div>
+                            <button class="master-item-card__footer btn-buy" type="button" data-unlockable-id="classic_theme_arena">
+                                Ativo
+                            </button>
+                        </div>
+
+                        <div class="store-item master-item-card" data-unlockable-id="classic_theme_neon" data-theme-id="neon">
+                            <div class="featured-badge">
+                                <span>NOVO</span>
+                            </div>
+                            <div class="master-item-card__header">
+                                <h3 class="master-item-card__title">Tema Neon Grid</h3>
+                            </div>
+                            <div class="master-item-card__content">
+                                <div class="master-item-card__icon">🟦</div>
+                                <span class="master-item-card__qty">Visual</span>
+                            </div>
+                            <button class="master-item-card__footer btn-buy" type="button" data-unlockable-id="classic_theme_neon">
+                                Usar
+                            </button>
+                        </div>
+
+                        <div class="store-item master-item-card" data-unlockable-id="classic_theme_glass" data-theme-id="glass">
+                            <div class="featured-badge">
+                                <span>NOVO</span>
+                            </div>
+                            <div class="master-item-card__header">
+                                <h3 class="master-item-card__title">Tema Glass Premium</h3>
+                            </div>
+                            <div class="master-item-card__content">
+                                <div class="master-item-card__icon">🧊</div>
+                                <span class="master-item-card__qty">Visual</span>
+                            </div>
+                            <button class="master-item-card__footer btn-buy" type="button" data-unlockable-id="classic_theme_glass">
+                                Usar
+                            </button>
+                        </div>
+
+                        <div class="store-item master-item-card" data-unlockable-id="classic_theme_flat" data-theme-id="flat">
+                            <div class="featured-badge">
+                                <span>NOVO</span>
+                            </div>
+                            <div class="master-item-card__header">
+                                <h3 class="master-item-card__title">Tema Flat Competitivo</h3>
+                            </div>
+                            <div class="master-item-card__content">
+                                <div class="master-item-card__icon">⬛</div>
+                                <span class="master-item-card__qty">Visual</span>
+                            </div>
+                            <button class="master-item-card__footer btn-buy" type="button" data-unlockable-id="classic_theme_flat">
+                                Usar
+                            </button>
+                        </div>
+
+                        <div class="store-item master-item-card" data-unlockable-id="classic_theme_cyber" data-theme-id="cyber">
+                            <div class="featured-badge">
+                                <span>NOVO</span>
+                            </div>
+                            <div class="master-item-card__header">
+                                <h3 class="master-item-card__title">Tema Cyber Neon</h3>
+                            </div>
+                            <div class="master-item-card__content">
+                                <div class="master-item-card__icon">🤖</div>
+                                <span class="master-item-card__qty">Visual</span>
+                            </div>
+                            <button class="master-item-card__footer btn-buy" type="button" data-unlockable-id="classic_theme_cyber">
+                                Usar
+                            </button>
+                        </div>
+
+                        <div class="store-item master-item-card" data-unlockable-id="classic_theme_solar" data-theme-id="solar">
+                            <div class="featured-badge">
+                                <span>NOVO</span>
+                            </div>
+                            <div class="master-item-card__header">
+                                <h3 class="master-item-card__title">Tema Solar Gold</h3>
+                            </div>
+                            <div class="master-item-card__content">
+                                <div class="master-item-card__icon">☀️</div>
+                                <span class="master-item-card__qty">Visual</span>
+                            </div>
+                            <button class="master-item-card__footer btn-buy" type="button" data-unlockable-id="classic_theme_solar">
+                                Usar
+                            </button>
+                        </div>
+
+                        <div class="store-item master-item-card" data-unlockable-id="classic_theme_void" data-theme-id="void">
+                            <div class="featured-badge">
+                                <span>NOVO</span>
+                            </div>
+                            <div class="master-item-card__header">
+                                <h3 class="master-item-card__title">Tema Void Purple</h3>
+                            </div>
+                            <div class="master-item-card__content">
+                                <div class="master-item-card__icon">🟣</div>
+                                <span class="master-item-card__qty">Visual</span>
+                            </div>
+                            <button class="master-item-card__footer btn-buy" type="button" data-unlockable-id="classic_theme_void">
+                                Usar
+                            </button>
+                        </div>
+
+                        <div class="store-item master-item-card" data-unlockable-id="classic_theme_emerald" data-theme-id="emerald">
+                            <div class="featured-badge">
+                                <span>NOVO</span>
+                            </div>
+                            <div class="master-item-card__header">
+                                <h3 class="master-item-card__title">Tema Emerald Tech</h3>
+                            </div>
+                            <div class="master-item-card__content">
+                                <div class="master-item-card__icon">🟢</div>
+                                <span class="master-item-card__qty">Visual</span>
+                            </div>
+                            <button class="master-item-card__footer btn-buy" type="button" data-unlockable-id="classic_theme_emerald">
+                                Usar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="screen-settings" class="screen hidden settings-layout">
+            <header class="settings-header">
+                <button id="btn-settings-back" class="btn-aaa-back pos-relative">
+                    <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+                </button>
+                <h2 data-i18n="settings.title">Configurações</h2>
+                <div style="width: 45px;"></div> </header>
+
+            <div class="settings-content">
+                
+                <div class="settings-group">
+                    <h4 data-i18n="settings.audio_title">ÁUDIO & EFEITOS</h4>
+                    
+                    <div class="setting-row">
+                        <span data-i18n="settings.music">Música</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="toggle-music" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="setting-row">
+                        <span data-i18n="settings.sfx">Efeitos Sonoros</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="toggle-sfx" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="setting-row">
+                        <span data-i18n="settings.haptics">Vibração</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="toggle-haptics" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="setting-row">
+                        <span data-i18n="settings.performance">Performance</span>
+                        <select id="toggle-performance" class="setting-select">
+                            <option value="auto" data-i18n="settings.performance_auto">Automático</option>
+                            <option value="quality" data-i18n="settings.performance_quality">Qualidade</option>
+                            <option value="stable60" data-i18n="settings.performance_stable60">Estável 60 FPS</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="settings-group">
+                    <h4 data-i18n="settings.lang_title">IDIOMA</h4>
+                    <div class="language-selector-large">
+                        <button id="btn-lang-en" class="btn-lang-large">
+                            <span class="flag">🇺🇸</span> English
+                        </button>
+                        <button id="btn-lang-pt" class="btn-lang-large">
+                            <span class="flag">🇧🇷</span> Português
+                        </button>
+                    </div>
+                </div>
+
+                <div class="settings-group">
+                    <h4 data-i18n="settings.data_title">DADOS</h4>
+                    <button id="btn-reset-progress" class="btn-danger" data-i18n="settings.reset_btn">
+                        Apagar Progresso
+                    </button>
+                </div>
+
+                <div class="settings-group">
+                    <h4>DIAGNOSTICO</h4>
+                    <div class="settings-actions-grid">
+                        <button id="btn-diag-open" class="btn-neutral" type="button">Abrir Painel</button>
+                        <button id="btn-diag-copy" class="btn-neutral" type="button">Copiar Relatorio</button>
+                        <button id="btn-diag-clear" class="btn-neutral danger-soft" type="button">Limpar Eventos</button>
+                    </div>
+                    <textarea id="diag-output" class="diag-output hidden" readonly aria-label="Relatorio de diagnostico"></textarea>
+                </div>
+
+                <div class="settings-footer">
+                    <small>Block Lands v1.0.4</small>
+                </div>
+            </div>
+        </div>
+
+        <div id="screen-game" class="screen hidden">
+            
+            <header class="game-header-top" style="position: absolute; top: 0; left: 0; width: 100%; z-index: 20; display: flex; justify-content: space-between; align-items: flex-start; padding: 10px;">
+                <button id="btn-quit-game" class="btn-aaa-back">
+                    <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+                </button>
+
+                <!-- Engrenagem de opções rápidas no jogo (Aventura) -->
+                <div class="game-gear-badge" aria-live="polite">
+                    <button id="game-gear-btn" class="game-gear-btn" aria-haspopup="dialog" aria-expanded="false" aria-label="Opções rápidas">⚙️</button>
+                </div>
+            </header>
+
+                        <div id="blitz-hud" class="blitz-hud" aria-hidden="true">
+                <div id="blitz-title" class="blitz-title" aria-hidden="true"></div>
+                <div class="blitz-timer-track" aria-hidden="true">
+                    <div id="blitz-timer-fill" class="blitz-timer-fill"></div>
+                </div>
+            </div>
+
+<div id="guardian-info-overlay" class="guardian-info-overlay hidden" aria-hidden="true">
+                <div class="guardian-info-card guardian-scroll" role="dialog" aria-modal="true" aria-labelledby="guardian-info-title">
+                    <button id="guardian-info-close" class="guardian-info-close" aria-label="Fechar">✕</button>
+                    <div class="scroll-header">
+                        <div class="scroll-seal">
+                            <img id="guardian-info-seal" src="assets/enemies/guardian/boss.webp" alt="Guardião dos Mundos" class="scroll-seal-img">
+                        </div>
+                        <div class="scroll-title-wrap">
+                            <h3 id="guardian-info-title" class="scroll-title" data-i18n="guardian_info.title">O Guardião dos Mundos</h3>
+                            <p id="guardian-info-subtitle" class="scroll-subtitle" data-i18n="guardian_info.subtitle">Entrada do reino — registre seus primeiros passos</p>
+                        </div>
+                    </div>
+
+                    <div class="scroll-section-title" data-i18n="guardian_info.sections.boss_powers">Poderes do Guardião</div>
+                    <div id="guardian-info-boss-list" class="scroll-list"></div>
+
+                    <div class="scroll-section-title" data-i18n="guardian_info.sections.relics">Relíquias do Tutorial</div>
+                    <div id="guardian-info-items-list" class="scroll-list"></div>
+
+                    <div class="scroll-section-title" data-i18n="guardian_info.sections.heroes">Poderes dos Heróis</div>
+                    <div id="guardian-info-heroes-list" class="scroll-list"></div>
+                </div>
+            </div>
+
+            <div id="classic-score-hero" class="classic-score-hero hidden" aria-live="polite">
+                <div class="classic-score-hero__label">PONTOS</div>
+                <div id="classic-score-hero-value" class="classic-score-hero__value">0</div>
+                <div id="classic-score-hero-best" class="classic-score-hero__best">Recorde: 0</div>
+                <div id="classic-score-hero-delta" class="classic-score-hero__delta" aria-hidden="true"></div>
+            </div>
+
+            <!-- Painel de Estatísticas do Modo Clássico -->
+            <div id="classic-stats" class="classic-stats-panel hidden">
+                <div class="stat-item">
+                    <div class="stat-label">SCORE</div>
+                    <div class="stat-value" id="classic-score">0</div>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <div class="stat-label">LEVEL</div>
+                    <div class="stat-value" id="classic-level">1</div>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <div class="stat-label">BEST</div>
+                    <div class="stat-value" id="classic-best">0</div>
+                </div>
+            </div>
+
+            <!-- Missões do Modo Clássico -->
+            <div id="classic-missions" class="classic-missions-container hidden">
+                <div class="mission-chip" data-mission-index="0">
+                    <span class="mission-text">Missão 1</span>
+                    <span class="mission-progress">0/3</span>
+                </div>
+                <div class="mission-chip" data-mission-index="1">
+                    <span class="mission-text">Missão 2</span>
+                    <span class="mission-progress">0/3</span>
+                </div>
+                <div class="mission-chip" data-mission-index="2">
+                    <span class="mission-text">Missão 3</span>
+                    <span class="mission-progress">0/3</span>
+                </div>
+            </div>
+
+            <div id="goals-area">
+                </div>
+
+            <div class="game-area">
+                <div class="board-wrap">
+                    <div id="game-board">
+                    </div>
+                </div>
+
+                <div id="dock">
+                    </div>
+                
+                <div id="powerups-area">
+                    <button class="btn-powerup" id="pwr-bomb" data-type="bomb">
+                        <div class="pwr-icon">💣</div>
+                        <div class="pwr-count">0/3</div>
+                    </button>
+                    <button class="btn-powerup" id="pwr-rotate" data-type="rotate">
+                        <div class="pwr-icon">🔄</div>
+                        <div class="pwr-count">0/3</div>
+                    </button>
+                    <button class="btn-powerup" id="pwr-swap" data-type="swap">
+                        <div class="pwr-icon">🔀</div>
+                        <div class="pwr-count">0/3</div>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="modal-victory" class="modal hidden">
+            <div class="result-floating-container">
+                
+                <div class="result-header-image">
+                    <img src="assets/images/modal_victory_pt.webp" alt="Vitória Perfeita">
+                </div>
+
+                <div class="result-content">
+                    
+
+                    <div id="victory-rewards-section" class="floating-section hidden">
+                        <h3 class="section-label-shadow" style="color: #fcd34d;" data-i18n="ui.rewards">Recompensas</h3>
+                        <div id="victory-rewards-grid" class="items-grid"></div>
+                    </div>
+
+                    <div id="victory-guardian-rewards" class="floating-section hidden">
+                        <h3 class="section-label-shadow" style="color: #fcd34d;" data-i18n="ui.rewards">Recompensas</h3>
+                        <div class="items-grid">
+                            <div class="result-slot reward">
+                                <div class="slot-icon">💎</div>
+                                <div class="slot-count" id="guardian-reward-crystals">+0</div>
+                            </div>
+                            <div class="result-slot reward">
+                                <div class="slot-icon">⭐</div>
+                                <div class="slot-count" id="guardian-reward-xp">+0 XP</div>
+                            </div>
+                            <div class="result-slot reward" id="guardian-reward-powerup">
+                                <div class="slot-icon" id="guardian-reward-powerup-icon">✨</div>
+                                <div class="slot-count" id="guardian-reward-powerup-text">+1</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="result-buttons-row">
+                    <button id="btn-next-level" class="btn-3d btn-3d-yellow" data-i18n="ui.btn_continue">Continuar</button>
+                    <button id="btn-victory-back" class="btn-3d btn-3d-blue" data-i18n="ui.btn_back">Voltar</button>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="modal-gameover" class="modal hidden">
+            <div class="result-floating-container">
+                
+                <div class="result-header-image">
+                    <img src="assets/images/modal_defeat_pt.webp" alt="Foi Quase">
+                </div>
+
+                <div class="result-content">
+                    <div id="defeat-guardian-rewards" class="floating-section hidden">
+                        <h3 class="section-label-shadow" style="color: #fcd34d;" data-i18n="ui.rewards">Recompensas</h3>
+                        <div class="items-grid">
+                            <div class="result-slot reward">
+                                <div class="slot-icon">💎</div>
+                                <div class="slot-count" id="defeat-reward-crystals">+0</div>
+                            </div>
+                            <div class="result-slot reward">
+                                <div class="slot-icon">⭐</div>
+                                <div class="slot-count" id="defeat-reward-xp">+0 XP</div>
+                            </div>
+                            <div class="result-slot reward" id="defeat-reward-powerup">
+                                <div class="slot-icon" id="defeat-reward-powerup-icon">✨</div>
+                                <div class="slot-count" id="defeat-reward-powerup-text">+1</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="result-buttons-row">
+                    <button id="btn-restart-over" class="btn-3d btn-3d-yellow" data-i18n="ui.btn_restart">Reiniciar</button>
+                    <button id="btn-quit-over" class="btn-3d btn-3d-blue" data-i18n="ui.btn_back">Voltar</button>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="blitz-modal" class="modal hidden">
+            <div class="result-floating-container">
+                <div class="result-header-image">
+                    <img id="blitz-result-image" src="assets/images/modal_victory_pt.webp" alt="Resultado Blitz">
+                </div>
+
+                <div class="result-content">
+                    <div class="floating-section">
+                        <h3 class="section-label-shadow" data-i18n="blitz.result_title">Resultado</h3>
+                        <div class="classic-result-grid">
+                            <div class="classic-result-row">
+                                <span data-i18n="blitz.result_time">Tempo</span>
+                                <strong id="blitz-result-time">00:00</strong>
+                            </div>
+                            <div class="classic-result-row">
+                                <span data-i18n="blitz.result_blocks">Blocos</span>
+                                <strong id="blitz-result-blocks">0/0</strong>
+                            </div>
+                            <div class="classic-result-row">
+                                <span data-i18n="blitz.result_xp">XP ganho</span>
+                                <strong id="blitz-result-xp">0</strong>
+                            </div>
+                            <div class="classic-result-row">
+                                <span data-i18n="blitz.result_lines">Linhas</span>
+                                <strong id="blitz-result-lines">0</strong>
+                            </div>
+                            <div class="classic-result-row">
+                                <span data-i18n="blitz.result_combo">Melhor combo</span>
+                                <strong id="blitz-result-combo">0</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="result-buttons-row">
+                    <button id="btn-blitz-restart" class="btn-3d btn-3d-yellow" data-i18n="ui.btn_restart">Reiniciar</button>
+                    <button id="btn-blitz-back" class="btn-3d btn-3d-blue" data-i18n="ui.btn_back">Voltar</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="gear-settings-overlay" class="gear-settings-overlay hidden" aria-hidden="true">
+            <div class="gear-settings-card" role="dialog" aria-modal="true" aria-labelledby="gear-settings-title">
+                <button id="gear-settings-close" class="gear-settings-close" aria-label="Fechar">✖</button>
+                <h3 id="gear-settings-title" class="gear-settings-title" data-i18n="settings.title">Configurações</h3>
+                <div class="gear-settings-body">
+                    <div class="gear-row">
+                        <span class="gear-row-label"><span class="gear-row-icon">🎵</span><span data-i18n="settings.music">Música</span></span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="gear-toggle-music" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="gear-row">
+                        <span class="gear-row-label"><span class="gear-row-icon">🔊</span><span data-i18n="settings.sfx">Efeitos Sonoros</span></span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="gear-toggle-sfx" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <button id="gear-help-btn" class="gear-help-btn" aria-hidden="true">Info</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="modal-classic-result" class="modal hidden">
+            <div class="result-floating-container">
+                <div class="result-header-image">
+                    <img id="classic-result-image" src="assets/images/modal_result_classic_pt.webp" alt="Resultado Clássico">
+                </div>
+
+                <div class="result-content">
+                    <div class="floating-section">
+                        <h3 class="section-label-shadow" data-i18n="classic.result_title">Resultado</h3>
+                        <div class="classic-result-grid">
+                            <div class="classic-result-row">
+                                <span data-i18n="classic.result_time">Tempo</span>
+                                <strong id="classic-result-time">00:00</strong>
+                            </div>
+                            <div class="classic-result-row" id="classic-result-score-row">
+                                <div class="classic-result-label">
+                                    <span data-i18n="classic.result_score">Pontuação</span>
+                                    <span id="classic-result-record-inline" class="classic-record-inline hidden" data-i18n="classic.result_new_record">Novo recorde!</span>
+                                </div>
+                                <strong id="classic-result-score">0</strong>
+                            </div>
+                            <div class="classic-result-row">
+                                <span data-i18n="classic.result_xp">XP ganho</span>
+                                <strong id="classic-result-xp">0</strong>
+                            </div>
+                            <div class="classic-result-row">
+                                <span data-i18n="classic.result_lines">Linhas</span>
+                                <strong id="classic-result-lines">0</strong>
+                            </div>
+                            <div class="classic-result-row">
+                                <span data-i18n="classic.result_combo">Melhor combo</span>
+                                <strong id="classic-result-combo">0</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="result-buttons-row">
+                    <button id="btn-classic-restart" class="btn-3d btn-3d-yellow" data-i18n="ui.btn_restart">Reiniciar</button>
+                    <button id="btn-classic-back" class="btn-3d btn-3d-blue" data-i18n="ui.btn_back">Voltar</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="effects-layer"></div>
+
+    </div> 
+    
+    <script type="module" src="js/app.js"></script>
+    
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./service-worker.js')
+                    .catch(err => console.log('SW falhou', err));
+            });
+        }
+    </script>
+
+    <!-- Achievement Notification (Top-right) -->
+    <div id="achievement-notification" class="achievement-notification"></div>
+
+</body>
+</html>

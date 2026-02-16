@@ -1,0 +1,159 @@
+/* =========================================
+   EXEMPLOS DE USO DAS CLASSES DE ESTADO
+   ========================================= */
+
+/*
+   Este arquivo contém EXEMPLOS de como usar as classes de estado
+   aplicadas automaticamente ao #app pelo sistema de navegação.
+
+   ⚠️ IMPORTANTE: Este é um arquivo de REFERÊNCIA/DOCUMENTAÇÃO
+   Você pode copiar esses exemplos para os arquivos CSS apropriados:
+   - Estilos de tela → screens/*.css
+   - Estilos de componentes → components/*.css
+   - Estilos globais → base/*.css
+*/
+
+/* =========================================
+   CLASSES DE TELA (apenas UMA ativa por vez)
+   ========================================= */
+
+/* Menu Principal */
+#app.is-screen-home {
+    /* Exemplo: Fundo específico para o menu */
+    /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
+}
+
+/* Modo Clássico */
+#app.is-screen-classic {
+    /* Exemplo: Fundo escuro para o modo clássico */
+    /* background: #0f172a; */
+}
+
+/* Modo Aventura (base - sem mundo específico) */
+#app.is-screen-adventure {
+    /* Exemplo: Fundo base do modo aventura */
+    /* background: #1e293b; */
+}
+
+/* Conquistas */
+#app.is-screen-achievements {
+    /* Exemplo: Fundo para tela de conquistas */
+    /* background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%); */
+}
+
+/* Loja de Mestres (futura) */
+#app.is-screen-masters-store {
+    /* Placeholder para quando a tela for criada */
+}
+
+/* Como Jogar (futura) */
+#app.is-screen-how-to-play {
+    /* Placeholder para quando a tela for criada */
+}
+
+/* Configurações */
+#app.is-screen-settings {
+    /* Exemplo: Fundo para configurações */
+    /* background: #334155; */
+}
+
+/* =========================================
+   CLASSES DE MUNDO (apenas quando is-screen-adventure está ativa)
+   ========================================= */
+
+/* Mundo 0: O Portão (Tutorial) */
+#app.is-screen-adventure.world-guardian {
+    /* Exemplo: Fundo cinza azulado para o tutorial */
+    /* background: linear-gradient(135deg, #475569, #0f172a); */
+}
+
+#app.is-screen-adventure.world-guardian #screen-game {
+    /* Exemplo: Ajustes específicos na tela de jogo */
+}
+
+/* Mundo 1: Terras do Fogo */
+#app.is-screen-adventure.world-fire {
+    /* Exemplo: Fundo vermelho/laranja para terras do fogo */
+    /* background: linear-gradient(135deg, #7f1d1d, #450a0a); */
+}
+
+#app.is-screen-adventure.world-fire .game-board {
+    /* Exemplo: Efeito de brilho de lava no tabuleiro */
+    /* box-shadow: 0 0 30px rgba(239, 68, 68, 0.3); */
+}
+
+/* Mundo 2: Floresta Encantada */
+#app.is-screen-adventure.world-forest {
+    /* Exemplo: Fundo verde para floresta */
+    /* background: linear-gradient(135deg, #14532d, #052e16); */
+}
+
+/* Mundo 3: Montanhas Eternas */
+#app.is-screen-adventure.world-mountain {
+    /* Exemplo: Fundo azul/branco para montanhas */
+    /* background: linear-gradient(135deg, #1e3a8a, #0c4a6e); */
+}
+
+/* Mundo 4: Deserto Dourado */
+#app.is-screen-adventure.world-desert {
+    /* Exemplo: Fundo dourado/amarelo para deserto */
+    /* background: linear-gradient(135deg, #78350f, #451a03); */
+}
+
+/* Mundo 5: Castelo Sombrio */
+#app.is-screen-adventure.world-castle {
+    /* Exemplo: Fundo roxo escuro para castelo */
+    /* background: linear-gradient(135deg, #581c87, #3b0764); */
+}
+
+/* =========================================
+   EXEMPLOS DE ESTILIZAÇÃO POR MUNDO
+   ========================================= */
+
+/* Mudar cor dos botões por mundo */
+#app.world-fire .btn-primary {
+    /* background: linear-gradient(135deg, #ef4444, #dc2626); */
+}
+
+#app.world-forest .btn-primary {
+    /* background: linear-gradient(135deg, #10b981, #059669); */
+}
+
+/* Mudar cor do HUD por mundo */
+#app.world-desert .stats-panel {
+    /* border-color: #fbbf24; */
+    /* background: rgba(251, 191, 36, 0.1); */
+}
+
+/* Efeitos especiais por mundo */
+#app.world-fire .cell.lava {
+    /* animation: pulseLava 2s infinite; */
+}
+
+@keyframes pulseLava {
+    0%, 100% { box-shadow: inset 0 0 10px #ef4444; }
+    50% { box-shadow: inset 0 0 20px #ef4444; }
+}
+
+/* =========================================
+   COMBINAÇÕES AVANÇADAS
+   ========================================= */
+
+/* Mostrar elemento APENAS no modo aventura do mundo do fogo */
+#app.is-screen-adventure.world-fire .fire-warning {
+    /* display: block; */
+}
+
+/* Esconder elemento em todos os modos EXCETO home */
+#app:not(.is-screen-home) .home-only-element {
+    /* display: none; */
+}
+
+/* Estilo diferente para o mesmo componente em telas diferentes */
+#app.is-screen-classic .score-display {
+    /* font-size: 2rem; */
+}
+
+#app.is-screen-adventure .score-display {
+    /* font-size: 1.5rem; */
+}

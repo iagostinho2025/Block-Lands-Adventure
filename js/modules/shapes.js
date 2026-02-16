@@ -1,0 +1,185 @@
+// js/modules/shapes.js
+
+// Definição das matrizes (Desenhos das peças)
+const SHAPE_DEFINITIONS = [
+    { name: 'dot', matrix: [[1]] },
+    { name: 'mini-h', matrix: [[1, 1]] },
+    { name: 'mini-v', matrix: [[1], [1]] },
+    { name: 'square-2x2', matrix: [[1, 1], [1, 1]] },
+    { name: 'square-3x3', matrix: [[1, 1, 1], [1, 1, 1], [1, 1, 1]] },
+    { name: 'line-3h', matrix: [[1, 1, 1]] },
+    { name: 'line-3v', matrix: [[1], [1], [1]] },
+    { name: 'line-4h', matrix: [[1, 1, 1, 1]] },
+    { name: 'line-4v', matrix: [[1], [1], [1], [1]] },
+    { name: 'corner-tl', matrix: [[1, 0], [1, 1]] },
+    { name: 'corner-tr', matrix: [[0, 1], [1, 1]] },
+    { name: 'corner-bl', matrix: [[1, 1], [1, 0]] },
+    { name: 'corner-br', matrix: [[1, 1], [0, 1]] },
+    { name: 'l-0', matrix: [[1, 0], [1, 0], [1, 1]] }, 
+    { name: 'l-90', matrix: [[1, 1, 1], [1, 0, 0]] }, 
+    { name: 'l-180', matrix: [[1, 1], [0, 1], [0, 1]] }, 
+    { name: 'l-270', matrix: [[0, 0, 1], [1, 1, 1]] }, 
+    { name: 'j-0', matrix: [[0, 1], [0, 1], [1, 1]] }, 
+    { name: 'j-90', matrix: [[1, 0, 0], [1, 1, 1]] }, 
+    { name: 'j-180', matrix: [[1, 1], [1, 0], [1, 0]] }, 
+    { name: 'j-270', matrix: [[1, 1, 1], [0, 0, 1]] }, 
+    { name: 't-0', matrix: [[1, 1, 1], [0, 1, 0]] },
+    { name: 't-90', matrix: [[0, 1], [1, 1], [0, 1]] },
+    { name: 't-180', matrix: [[0, 1, 0], [1, 1, 1]] },
+    { name: 't-270', matrix: [[1, 0], [1, 1], [1, 0]] },
+    { name: 's-h', matrix: [[0, 1, 1], [1, 1, 0]] },
+    { name: 's-v', matrix: [[1, 0], [1, 1], [0, 1]] },
+    { name: 'z-h', matrix: [[1, 1, 0], [0, 1, 1]] },
+    { name: 'z-v', matrix: [[0, 1], [1, 1], [1, 0]] },
+];
+
+// Peças de emergência (Sempre cabem em buracos pequenos)
+const SAFE_SHAPES = ['dot', 'mini-h', 'mini-v'];
+
+// TABELA MESTRA DE STATS (Dano e Raridade)
+export const ITEM_STATS = {
+    // MUNDO GUARDIÃO (TUTORIAL)
+    'amulet':     { damage: 1,  weight: 80 },
+    'dagger':     { damage: 3,  weight: 40 },
+    'ancient_key':{ damage: 5,  weight: 10 },
+
+    // MUNDO FOGO (Fases 1-20)
+    'fire':      { damage: 1,  weight: 80 },
+    'heart':     { damage: 3,  weight: 40 },
+    'collision': { damage: 5,  weight: 10 },
+
+    // MUNDO FLORESTA (Fases 21-40)
+    'leaf':      { damage: 1,  weight: 80 },  // Comum - Folhas da floresta
+    'poison':    { damage: 3,  weight: 40 },  // Raro - Veneno
+    'mushroom':  { damage: 5,  weight: 10 },  // Épico - Cogumelos mágicos
+
+    // MUNDO MONTANHA (Fases 41-60)
+    'gold':      { damage: 1,  weight: 80 },  // Comum - Ouro
+    'pickaxe':   { damage: 3,  weight: 40 },  // Raro - Picareta
+    'iron':      { damage: 5,  weight: 10 },  // Épico - Ferro
+
+    // MUNDO DESERTO (Fases 61-80)
+    'bone':      { damage: 1,  weight: 80 },  // Comum - Ossos
+    'sand':      { damage: 3,  weight: 40 },  // Raro - Areia
+    'skull':     { damage: 5,  weight: 10 },  // Épico - Caveira
+
+    // MUNDO CASTELO (Fases 81-100)
+    'magic':     { damage: 1,  weight: 80 },  // Comum - Magia
+    'skull':     { damage: 3,  weight: 40 },  // Raro - Crânio (Reuso)
+    'crystal':   { damage: 5,  weight: 10 },  // Épico - Cristal Negro
+
+    // ITENS BÔNUS
+    'magnet':    { damage: 1,  weight: 15 },
+    'rotate':    { damage: 1,  weight: 15 },
+    'swap':      { damage: 1,  weight: 15 },
+
+    // Fallback
+    'default':   { damage: 1,  weight: 50 }
+};
+
+// Lista Padrão (Casual)
+const DEFAULT_ITEMS = [
+    { key: 'BEE', emoji: '🐝', weight: 4 },
+    { key: 'GHOST', emoji: '👻', weight: 4 },
+    { key: 'COP', emoji: '👮', weight: 4 },
+    { key: 'NORMAL', emoji: null, weight: 15 }
+];
+
+/**
+ * Gera uma peça aleatória.
+ * @param {Array} customItems - Lista de itens permitidos (Aventura) ou null (Casual).
+ * @param {Boolean} useRPGStats - Se deve usar pesos de raridade/dano.
+ * @param {Boolean} forceSimple - (NOVO) Se true, força uma peça pequena (1x1 ou 2x1).
+ * @param {Object} options - Opções adicionais (ex.: { excludeShapes: ['square-3x3'] }).
+ */
+export function getRandomPiece(customItems = null, useRPGStats = false, forceSimple = false, options = {}) {
+    let pool = SHAPE_DEFINITIONS;
+    const excludeShapes = Array.isArray(options.excludeShapes) ? options.excludeShapes : [];
+
+    // 1. Filtro de Emergência (Smart RNG)
+    if (forceSimple) {
+        pool = SHAPE_DEFINITIONS.filter(s => SAFE_SHAPES.includes(s.name));
+    }
+    // 2. Filtro de Debug (Somente Modo Casual e se não for emergência)
+    else if (!customItems) {
+        // No modo clássico normal, mantemos o pool variado, 
+        // mas você pode restringir aqui se quiser testar peças específicas.
+        // Vou manter o pool completo por padrão para o modo clássico,
+        // mas descomente abaixo se quiser peças específicas de teste.
+        /*
+        const DEBUG_SHAPES = [
+            'square-2x2', 'square-3x3',
+            'line-3h', 'line-3v',
+            'line-4h', 'line-4v'
+        ];
+        pool = SHAPE_DEFINITIONS.filter(s => DEBUG_SHAPES.includes(s.name));
+        */
+    }
+
+    // 3. Exclusões direcionadas (ex.: evitar square-3x3 no clássico apertado)
+    if (!forceSimple && excludeShapes.length > 0) {
+        pool = pool.filter(s => !excludeShapes.includes(s.name));
+    }
+
+    // Segurança: garante que sempre haverá um pool válido
+    if (!pool || pool.length === 0) {
+        pool = SHAPE_DEFINITIONS.filter(s => SAFE_SHAPES.includes(s.name));
+    }
+
+    const shapeDef = pool[Math.floor(Math.random() * pool.length)];
+    const matrix = shapeDef.matrix;
+
+    const layout = matrix.map(row => {
+        return row.map(cell => {
+            if (cell === 0) return null;
+
+            if (customItems && customItems.length > 0) {
+                // MODO AVENTURA (Com pesos de RPG se necessário)
+                const chanceOfItem = (typeof options.itemChance === 'number')
+                    ? Math.max(0, Math.min(options.itemChance, 1))
+                    : (useRPGStats ? 0.4 : 0.35);
+
+                if (Math.random() < chanceOfItem) {
+                    const phasePool = customItems.map(key => {
+                        let weight = 50;
+                        if (useRPGStats && ITEM_STATS[key]) {
+                            weight = ITEM_STATS[key].weight;
+                        }
+                        
+                        return { key: key, weight: weight };
+                    });
+                    
+                    const selected = weightedRandomItem(phasePool);
+                    return { type: 'ITEM', key: selected.key };
+                } else {
+                    return { type: 'NORMAL' };
+                }
+            } 
+            else {
+                // MODO CLÁSSICO (Apenas blocos normais)
+                return { type: 'NORMAL' };
+            }
+        });
+    });
+
+    // Gera um colorId único (1-8) para o Modo Clássico
+    const colorId = Math.floor(Math.random() * 8) + 1;
+
+    return {
+        name: shapeDef.name,
+        matrix: matrix,
+        layout: layout,
+        colorId: colorId  // Cada peça tem UMA cor única
+    };
+}
+
+function weightedRandomItem(items) {
+    const totalWeight = items.reduce((sum, item) => sum + item.weight, 0);
+    let random = Math.random() * totalWeight;
+    
+    for (const item of items) {
+        if (random < item.weight) return item;
+        random -= item.weight;
+    }
+    return items[0];
+}

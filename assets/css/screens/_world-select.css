@@ -1,0 +1,393 @@
+/* =========================================
+   11. TEMA MUNDO DE FOGO (CORRIGIDO)
+   ========================================= */
+
+/* --- CORREÇÃO DO ITEM FOGO (Contrastante) --- */
+/* Fundo escuro para o emoji brilhar, com borda laranja forte */
+.type-fire, .cell.filled.type-fire, .block-unit.type-fire {
+    background: linear-gradient(135deg, #7c2d12, #431407) !important; /* Marrom escuro/Brasa */
+    border: 2px solid #fb923c !important; /* Borda Laranja Claro */
+    box-shadow: 0 0 15px rgba(251, 146, 60, 0.6), inset 0 0 10px rgba(0,0,0,0.5) !important;
+    text-shadow: 0 0 10px rgba(255, 165, 0, 0.8); /* Faz o emoji brilhar */
+}
+
+/* Coração (Mantido, estava ok mas ajustei contraste) */
+.type-heart, .cell.filled.type-heart, .block-unit.type-heart {
+    background: linear-gradient(135deg, #db2777, #9d174d) !important;
+    box-shadow: 0 0 15px rgba(236, 72, 153, 0.5) !important;
+    border-color: #fbcfe8 !important;
+}
+
+/* Explosão/Colisão (Azul elétrico) */
+.type-collision, .cell.filled.type-collision, .block-unit.type-collision {
+    background: linear-gradient(135deg, #1e3a8a, #0c4a6e) !important;
+    border: 2px solid #38bdf8 !important;
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.6), inset 0 0 10px rgba(0,0,0,0.5) !important;
+    text-shadow: 0 0 10px rgba(56, 189, 248, 0.8);
+}
+
+/* ========================================= */
+/* MUNDO FLORESTA - Itens */
+
+/* ========================================= */
+/* MUNDO MONTANHA - Itens */
+
+/* ========================================= */
+/* MUNDO DESERTO - Itens */
+
+/* ========================================================================= */
+/* CASTELO SOMBRIO - ITENS */
+
+/* =========================================
+   15. SELEÇÃO DE MUNDOS (WORLD SELECT)
+   ========================================= */
+
+.world-select-container {
+    padding: 20px;
+    padding-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.world-select-title {
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+/* Grid de Cards (2 colunas) */
+.worlds-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Duas colunas */
+    gap: 20px;
+    width: 100%;
+    max-width: 500px;
+}
+
+/* O Card do Mundo */
+.world-card {
+    background: rgba(30, 41, 59, 0.7); /* Fundo escuro semitransparente */
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 24px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    overflow: hidden;
+}
+
+.world-card:active { transform: scale(0.96); }
+
+/* Ícone do Mundo (Fundo com gradiente) */
+.world-icon-container {
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    display: flex; justify-content: center; align-items: center;
+    font-size: 2rem;
+    margin-bottom: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    border: 2px solid rgba(255,255,255,0.2);
+}
+
+.world-name {
+    font-family: 'Poppins';
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 5px;
+}
+
+.world-details {
+    font-size: 0.7rem;
+    color: #94a3b8;
+    line-height: 1.4;
+}
+
+/* Estado: BLOQUEADO */
+.world-locked {
+    opacity: 0.6;
+    filter: grayscale(1); /* Deixa preto e branco */
+    pointer-events: none; /* Não clicável */
+}
+.world-locked .world-icon-container {
+    background: #334155 !important; /* Cinza */
+}
+/* Ícone de cadeado sobreposto */
+.world-locked::after {
+    content: '🔒';
+    position: absolute; top: 10px; right: 10px;
+    font-size: 1rem;
+}
+
+/* =========================================
+   15. SELEÇÃO DE MUNDOS (PREMIUM UI)
+   ========================================= */
+
+/* Container Principal */
+.world-select-layout {
+    display: flex; flex-direction: column;
+    height: 100%;
+    padding: 20px;
+}
+
+/* Cabeçalho com Botão Voltar e Título */
+.world-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 30px;
+    padding: 0 5px;
+}
+
+.btn-header-back {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #fff; font-size: 1.2rem; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s;
+}
+.btn-header-back:active { background: rgba(255,255,255,0.2); }
+
+.world-header-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.3rem; font-weight: 700; color: #fff;
+    text-transform: capitalize;
+}
+
+/* Espaçador invisível para centralizar o título */
+.header-spacer { width: 40px; }
+
+
+/* Grid de Cards */
+.worlds-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 Colunas */
+    gap: 15px;
+    padding-bottom: 40px;
+    overflow-y: auto;
+}
+
+/* Card Individual */
+.world-card {
+    background: rgba(30, 41, 59, 0.6);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+    padding: 20px 15px;
+    display: flex; flex-direction: column; align-items: center; text-align: center;
+    position: relative; cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+}
+.world-card:active { transform: scale(0.96); }
+
+/* Círculo do Boss (Destaque) */
+.world-boss-circle {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    display: flex; justify-content: center; align-items: center;
+    font-size: 2.2rem; /* Boss bem grande */
+    margin-bottom: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    border: 2px solid rgba(255,255,255,0.2);
+    position: relative;
+    z-index: 2;
+}
+
+/* Título e Detalhes */
+.world-card-title {
+    font-family: 'Poppins'; font-size: 0.95rem; font-weight: 700; color: #fff;
+    margin-bottom: 4px; display: flex; align-items: center; gap: 6px;
+    justify-content: center;
+}
+.world-card-info { font-size: 0.75rem; color: #94a3b8; font-weight: 500; }
+.boss-highlight { color: #fbbf24; display: block; margin-top: 2px; }
+
+/* Estado Bloqueado */
+.world-locked { opacity: 0.5; filter: grayscale(1); pointer-events: none; }
+.world-locked .world-boss-circle { background: #334155 !important; }
+.lock-icon {
+    position: absolute; top: 12px; right: 12px;
+    font-size: 1rem; color: #94a3b8;
+}
+
+/* =========================================
+   TEMA DE PARTICULAS: MUNDO DE FOGO (ÉPICO)
+   ========================================= */
+
+.bg-particles-fire {
+    position: relative;
+    /* Gradiente Profundo: Preto -> Vermelho Escuro -> Preto */
+    background: linear-gradient(to bottom, #0f0505 0%, #2a0a0a 40%, #000000 100%) !important;
+    overflow: hidden;
+}
+
+/* Brasas Flutuantes (::before) */
+.bg-particles-fire::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+
+    /* Padrão de partículas em tons de Fogo (#ef4444) e Âmbar (#f59e0b) */
+    background-image:
+        radial-gradient(3px 3px at 20% 30%, rgba(239, 68, 68, 0.5) 2px, transparent 3px),
+        radial-gradient(2px 2px at 40% 70%, rgba(245, 158, 11, 0.4) 1px, transparent 2px),
+        radial-gradient(4px 4px at 60% 40%, rgba(220, 38, 38, 0.3) 3px, transparent 4px),
+        radial-gradient(2px 2px at 75% 80%, rgba(251, 191, 36, 0.4) 1px, transparent 2px),
+        radial-gradient(3px 3px at 85% 20%, rgba(239, 68, 68, 0.3) 2px, transparent 3px);
+
+    background-size: 160px 160px;
+    /* Reutiliza a animação que já criamos na tela de história */
+    animation: floatParticles 20s linear infinite;
+}
+
+/* Aura de Calor (::after) */
+.bg-particles-fire::after {
+    content: '';
+    position: absolute;
+    bottom: -100px; /* Brilho vindo de baixo (como lava) */
+    left: 20%;
+    width: 60%;
+    height: 300px;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(220, 38, 38, 0.15) 0%,
+        rgba(185, 28, 28, 0.05) 40%,
+        transparent 70%
+    );
+    filter: blur(40px);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* =========================================
+   TELA DE SELEÇÃO DE MUNDOS (CORRIGIDO PARA PC E MOBILE)
+   ========================================= */
+
+/* Fundo da página (Lado de fora do jogo no PC) */
+body {
+    background-color: #121212; /* Fundo escuro para destacar o jogo */
+}
+
+/* O Container do Jogo (O "Celular") */
+.world-select-layout {
+    position: relative; /* Mudamos de fixed para relative para centralizar */
+    width: 100%;
+    max-width: 600px; /* TRAVA a largura máxima (O Segredo!) */
+    min-height: 100vh; /* Garante altura total */
+    margin: 0 auto; /* Centraliza no meio do monitor */
+    
+    /* Imagem de Fundo */
+    background-color: #1a1a1a;
+    background-size: cover; /* Cobre apenas os 600px, não o monitor todo */
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-attachment: scroll; /* Scroll normal para mobile */
+    
+    /* Rolagem */
+    overflow-y: auto; 
+    overflow-x: hidden;
+    
+    background-color: #1a1a1a;
+    box-shadow: 0 0 50px rgba(0,0,0,0.5); /* Sombra bonita nas bordas no PC */
+}
+
+/* Área onde as ilhas ficam */
+.worlds-grid {
+    position: relative;
+    width: 100%;
+    height: 1100px; /* Altura fixa para manter o mapa consistente */
+}
+
+/* --- BOTÕES FLUTUANTES (AGORA DENTRO DO "CELULAR") --- */
+/* Container para segurar os botões no topo mesmo rolando */
+.buttons-sticky-header {
+    position: sticky; /* Gruda no topo ao rolar */
+    top: 0;
+    width: 100%;
+    height: 0; /* Altura zero para não empurrar o mapa */
+    z-index: 2010;
+    pointer-events: none; /* Deixa clicar através da área vazia */
+}
+
+.btn-floating-top-left,
+.btn-floating-top-right {
+    pointer-events: auto; /* Reativa o clique no botão */
+    position: absolute; /* Absoluto dentro do header sticky */
+    top: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    color: white;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+}
+
+.btn-floating-top-left { left: 20px; }
+.btn-floating-top-right { right: 20px; }
+
+.btn-floating-top-left:active,
+.btn-floating-top-right:active {
+    transform: scale(0.9);
+    background: rgba(0, 0, 0, 0.6);
+}
+
+/* ILHAS / MUNDOS */
+.world-card-image {
+    width: 140px; 
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+    transition: transform 0.2s;
+}
+
+.world-card-image:active { transform: scale(1.05); }
+
+/* MUNDO BLOQUEADO */
+.world-card-image.locked {
+    opacity: 1; /* Imagem viva */
+    cursor: default;
+}
+
+/* Ícone de Cadeado */
+.lock-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.5rem;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));
+    pointer-events: none;
+}
+
+/* Nome do Mundo */
+.world-label {
+    margin-top: -20px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 5px 15px;
+    border-radius: 15px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #fff;
+    text-shadow: 0 2px 4px black;
+    pointer-events: none;
+    z-index: 5;
+}
+

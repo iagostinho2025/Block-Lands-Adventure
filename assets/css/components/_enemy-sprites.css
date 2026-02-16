@@ -1,0 +1,310 @@
+/* =========================================
+   SISTEMA DE SPRITES DE INIMIGOS
+   Substitui emojis por imagens PNG/WebP
+   ========================================= */
+
+/*
+   FUNCIONAMENTO:
+   - Adiciona classe .boss-sprite no elemento .boss-avatar
+   - Usa background-image em vez de emoji (innerText)
+   - Classes específicas por mundo e tipo de fase
+   - Fallback automático para emoji se imagem não carregar
+*/
+
+/* =========================================
+   1. CONFIGURAÇÃO BASE DO SPRITE
+   ========================================= */
+
+/* Quando boss-avatar tem classe .boss-sprite, usa imagem */
+.boss-avatar.boss-sprite {
+    /* Emoji escondido (mas mantido no HTML como fallback) */
+    font-size: 0 !important;
+    color: transparent !important;
+    text-indent: -9999px;
+    overflow: hidden;
+
+    /* Imagem de fundo centralizada */
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    /* Tamanho mantido pela variável --boss-avatar-size */
+    /* width e height já definidos em _boss-battle.css */
+}
+
+/* Se imagem falhar ao carregar, mostra emoji novamente */
+.boss-avatar.boss-sprite.sprite-error {
+    font-size: 2.8rem !important;
+    color: inherit !important;
+    text-indent: 0;
+    background-image: none !important;
+}
+
+/* =========================================
+   2. SPRITES POR MUNDO - FOGO
+   ========================================= */
+
+/* Elite fase 10 - Fogo */
+#app.world-fire.level-type-elite .boss-avatar.boss-sprite[data-enemy-id="fire_elite_10"] {
+    background-image: url('../../enemies/fire_world/elite_10.webp');
+}
+
+/* Elite fase 15 - Fogo */
+#app.world-fire.level-type-elite .boss-avatar.boss-sprite[data-enemy-id="fire_elite_15"] {
+    background-image: url('../../enemies/fire_world/elite_15.webp');
+}
+
+/* Boss final - Fogo */
+#app.world-fire.level-type-boss .boss-avatar.boss-sprite[data-enemy-id="fire_boss"] {
+    background-image: url('../../enemies/fire_world/boss.webp');
+}
+
+/* =========================================
+   3. SPRITES POR MUNDO - FLORESTA
+   ========================================= */
+
+/* Elite fase 10 - Floresta */
+#app.world-forest.level-type-elite .boss-avatar.boss-sprite[data-enemy-id="forest_elite_10"] {
+    background-image: url('../../enemies/forest_world/elite_10.webp');
+}
+
+/* Elite fase 15 - Floresta */
+#app.world-forest.level-type-elite .boss-avatar.boss-sprite[data-enemy-id="forest_elite_15"] {
+    background-image: url('../../enemies/forest_world/elite_15.webp');
+}
+
+/* Boss final - Floresta */
+#app.world-forest.level-type-boss .boss-avatar.boss-sprite[data-enemy-id="forest_boss"] {
+    background-image: url('../../enemies/forest_world/boss.webp');
+}
+
+/* =========================================
+   4. SPRITES POR MUNDO - MONTANHAS
+   ========================================= */
+
+/* Elite fase 10 - Montanhas */
+#app.world-mountain.level-type-elite .boss-avatar.boss-sprite[data-enemy-id="mountain_elite_10"] {
+    background-image: url('../../enemies/mountain_world/elite_10.webp');
+}
+
+/* Elite fase 15 - Montanhas */
+#app.world-mountain.level-type-elite .boss-avatar.boss-sprite[data-enemy-id="mountain_elite_15"] {
+    background-image: url('../../enemies/mountain_world/elite_15.webp');
+}
+
+/* Boss final - Montanhas */
+#app.world-mountain.level-type-boss .boss-avatar.boss-sprite[data-enemy-id="mountain_boss"] {
+    background-image: url('../../enemies/mountain_world/boss.webp');
+}
+
+/* =========================================
+   5. SPRITES POR MUNDO - DESERTO
+   ========================================= */
+
+/* Elite fase 10 - Deserto */
+#app.world-desert.level-type-elite .boss-avatar.boss-sprite[data-enemy-id="desert_elite_10"] {
+    background-image: url('../../enemies/desert_world/elite_10.webp');
+}
+
+/* Elite fase 15 - Deserto */
+#app.world-desert.level-type-elite .boss-avatar.boss-sprite[data-enemy-id="desert_elite_15"] {
+    background-image: url('../../enemies/desert_world/elite_15.webp');
+}
+
+/* Boss final - Deserto */
+#app.world-desert.level-type-boss .boss-avatar.boss-sprite[data-enemy-id="desert_boss"] {
+    background-image: url('../../enemies/desert_world/boss.webp');
+}
+
+/* =========================================
+   6. SPRITES POR MUNDO - CASTELO
+   ========================================= */
+
+/* Elite fase 10 - Castelo */
+#app.world-castle.level-type-elite .boss-avatar.boss-sprite[data-enemy-id="castle_elite_10"] {
+    background-image: url('../../enemies/castle_world/elite_10.webp');
+}
+
+/* Elite fase 15 - Castelo */
+#app.world-castle.level-type-elite .boss-avatar.boss-sprite[data-enemy-id="castle_elite_15"] {
+    background-image: url('../../enemies/castle_world/elite_15.webp');
+}
+
+/* Boss final - Castelo */
+#app.world-castle.level-type-boss .boss-avatar.boss-sprite[data-enemy-id="castle_boss"] {
+    background-image: url('../../enemies/castle_world/boss.webp');
+}
+
+/* =========================================
+   7. SPRITES POR MUNDO - GUARDIAN (TUTORIAL)
+   ========================================= */
+
+/* Elite fase 10 - Guardian */
+#app.world-guardian.level-type-elite .boss-avatar.boss-sprite[data-enemy-id="guardian_elite_10"] {
+    background-image: url('../../enemies/guardian/elite_10.webp');
+}
+
+/* Elite fase 15 - Guardian */
+#app.world-guardian.level-type-elite .boss-avatar.boss-sprite[data-enemy-id="guardian_elite_15"] {
+    background-image: url('../../enemies/guardian/elite_15.webp');
+}
+
+/* Boss final - Guardian */
+#app.world-guardian.level-type-boss .boss-avatar.boss-sprite[data-enemy-id="guardian_boss"] {
+    background-image: url('../../enemies/guardian/boss.webp');
+}
+
+/* =========================================
+   8. FALLBACK GENÉRICO (PNG)
+   ========================================= */
+
+/* Se WebP não funcionar, tenta PNG */
+@supports not (background-image: url('test.webp')) {
+    /* Fogo */
+    #app.world-fire.level-type-elite .boss-avatar.boss-sprite[data-enemy-id="fire_elite_10"] {
+        background-image: url('../../enemies/fire_world/elite_10.png');
+    }
+    #app.world-fire.level-type-elite .boss-avatar.boss-sprite[data-enemy-id="fire_elite_15"] {
+        background-image: url('../../enemies/fire_world/elite_15.png');
+    }
+    #app.world-fire.level-type-boss .boss-avatar.boss-sprite[data-enemy-id="fire_boss"] {
+        background-image: url('../../enemies/fire_world/boss.png');
+    }
+
+    /* Floresta */
+    #app.world-forest.level-type-elite .boss-avatar.boss-sprite[data-enemy-id="forest_elite_10"] {
+        background-image: url('../../enemies/forest_world/elite_10.png');
+    }
+    #app.world-forest.level-type-elite .boss-avatar.boss-sprite[data-enemy-id="forest_elite_15"] {
+        background-image: url('../../enemies/forest_world/elite_15.png');
+    }
+    #app.world-forest.level-type-boss .boss-avatar.boss-sprite[data-enemy-id="forest_boss"] {
+        background-image: url('../../enemies/forest_world/boss.png');
+    }
+
+    /* Montanhas */
+    #app.world-mountain.level-type-elite .boss-avatar.boss-sprite[data-enemy-id="mountain_elite_10"] {
+        background-image: url('../../enemies/mountain_world/elite_10.png');
+    }
+    #app.world-mountain.level-type-elite .boss-avatar.boss-sprite[data-enemy-id="mountain_elite_15"] {
+        background-image: url('../../enemies/mountain_world/elite_15.png');
+    }
+    #app.world-mountain.level-type-boss .boss-avatar.boss-sprite[data-enemy-id="mountain_boss"] {
+        background-image: url('../../enemies/mountain_world/boss.png');
+    }
+
+    /* Deserto */
+    #app.world-desert.level-type-elite .boss-avatar.boss-sprite[data-enemy-id="desert_elite_10"] {
+        background-image: url('../../enemies/desert_world/elite_10.png');
+    }
+    #app.world-desert.level-type-elite .boss-avatar.boss-sprite[data-enemy-id="desert_elite_15"] {
+        background-image: url('../../enemies/desert_world/elite_15.png');
+    }
+    #app.world-desert.level-type-boss .boss-avatar.boss-sprite[data-enemy-id="desert_boss"] {
+        background-image: url('../../enemies/desert_world/boss.png');
+    }
+
+    /* Castelo */
+    #app.world-castle.level-type-elite .boss-avatar.boss-sprite[data-enemy-id="castle_elite_10"] {
+        background-image: url('../../enemies/castle_world/elite_10.png');
+    }
+    #app.world-castle.level-type-elite .boss-avatar.boss-sprite[data-enemy-id="castle_elite_15"] {
+        background-image: url('../../enemies/castle_world/elite_15.png');
+    }
+    #app.world-castle.level-type-boss .boss-avatar.boss-sprite[data-enemy-id="castle_boss"] {
+        background-image: url('../../enemies/castle_world/boss.png');
+    }
+
+    /* Guardian */
+    #app.world-guardian.level-type-elite .boss-avatar.boss-sprite[data-enemy-id="guardian_elite_10"] {
+        background-image: url('../../enemies/guardian/elite_10.png');
+    }
+    #app.world-guardian.level-type-elite .boss-avatar.boss-sprite[data-enemy-id="guardian_elite_15"] {
+        background-image: url('../../enemies/guardian/elite_15.png');
+    }
+    #app.world-guardian.level-type-boss .boss-avatar.boss-sprite[data-enemy-id="guardian_boss"] {
+        background-image: url('../../enemies/guardian/boss.png');
+    }
+}
+
+/* =========================================
+   9. ANIMAÇÕES (OPCIONAL)
+   ========================================= */
+
+/* Pulso sutil para sprites (apenas em hover) */
+.boss-avatar.boss-sprite:hover {
+    animation: spriteBreath 2s ease-in-out infinite;
+}
+
+@keyframes spriteBreath {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* Animação de dano quando boss é atingido */
+.boss-avatar.boss-sprite.taking-damage {
+    animation: spriteDamage 0.3s ease-out;
+}
+
+@keyframes spriteDamage {
+    0%, 100% {
+        filter: brightness(1);
+    }
+    50% {
+        filter: brightness(1.5) saturate(1.3);
+    }
+}
+
+/* =========================================
+   10. RESPONSIVIDADE
+   ========================================= */
+
+/* Mobile */
+@media (max-width: 400px) {
+    .boss-avatar.boss-sprite {
+        background-size: 90%; /* Sprite ligeiramente menor em mobile */
+    }
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+    .boss-avatar.boss-sprite {
+        background-size: contain;
+    }
+}
+
+/* =========================================
+   NOTAS DE USO
+   ========================================= */
+
+/*
+   COMO USAR:
+
+   1. Adicione a classe 'boss-sprite' ao elemento .boss-avatar via JS
+   2. Adicione o atributo data-enemy-id com o ID do inimigo
+   3. Coloque a imagem na pasta correspondente
+
+   EXEMPLO HTML:
+   <div class="boss-avatar boss-sprite" data-enemy-id="fire_elite_10">🐉</div>
+
+   ESTRUTURA DE PASTAS:
+   assets/enemies/
+     fire_world/
+       elite_10.webp (ou .png)
+       elite_15.webp
+       boss.webp
+     forest_world/
+       elite_10.webp
+       elite_15.webp
+       boss.webp
+     ... etc
+
+   FALLBACK:
+   - Se imagem não carregar, emoji original é mostrado
+   - Se WebP não suportado, tenta PNG automaticamente
+   - Se tudo falhar, emoji fica visível como backup
+*/

@@ -1,0 +1,19 @@
+/* =========================================
+   TIPOGRAFIA
+   ========================================= */
+
+/* Fontes principais usadas no projeto:
+   - Inter: fonte sans-serif para textos gerais
+   - Poppins: fonte display para títulos e logos
+   
+   Nota: As fontes são carregadas via CDN ou sistema.
+   Não há @font-face customizadas no CSS original. */
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+.logo,
+h1, h2, h3 {
+    font-family: 'Poppins', sans-serif;
+}

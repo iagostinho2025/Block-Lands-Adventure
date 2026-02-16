@@ -1,0 +1,499 @@
+/* =========================================
+   TEMAS POR MUNDO - SISTEMA DE CLASSES DE ESTADO
+   ========================================= */
+
+/*
+   Este arquivo demonstra como usar as classes de estado do #app
+   para criar temas visuais diferentes por mundo no modo aventura.
+
+   As classes são aplicadas automaticamente pelo sistema de navegação.
+   Você NÃO precisa adicionar/remover essas classes manualmente.
+*/
+
+/* =========================================
+   FUNDOS POR TELA
+   ========================================= */
+
+/* Modo Clássico - Azul Escuro com Gradiente */
+/* Aplica APENAS quando is-screen-classic está ativo (não afeta aventura) */
+#app.is-screen-classic #screen-game {
+    background:
+        radial-gradient(ellipse at 50% 0%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+        linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%) !important;
+}
+
+/* =========================================
+   FUNDOS POR MUNDO E TIPO DE FASE
+   ========================================= */
+
+/*
+   SISTEMA DE PRIORIDADE (Cascata):
+
+   1. Fundo específico do boss (mais específico)
+   2. Fundo específico do elite
+   3. Fundo específico do normal
+   4. Fundo padrão do mundo (fallback)
+
+   TIPOS DE FASE:
+   - level-type-normal: Fases comuns (1-9, 11-14, 16-19)
+   - level-type-elite: Fases elite (10, 15) - Compartilham mesmo fundo
+   - level-type-boss: Boss final (20)
+
+   IMPORTANTE: Se um fundo específico não existir, o CSS
+   usa automaticamente o fundo padrão do mundo (fallback).
+*/
+
+/* Fundo base do modo aventura (antes de selecionar mundo) */
+#app.is-screen-adventure #screen-game {
+    background: var(--bg-app) !important;
+}
+
+/* =========================================
+   MUNDO 0: O PORTÃO (TUTORIAL)
+   ========================================= */
+
+/* Fundo padrão (fallback para todos os tipos) */
+#app.is-screen-adventure.world-guardian #screen-game {
+    background: linear-gradient(135deg, #475569 0%, #0f172a 100%) !important;
+}
+
+/* Fases normais (opcional - usa fallback se não definido) */
+/* #app.is-screen-adventure.world-guardian.level-type-normal #screen-game {
+    background: linear-gradient(135deg, #475569 0%, #0f172a 100%) !important;
+} */
+
+/* Fases elite (opcional - usa fallback se não definido) */
+/* #app.is-screen-adventure.world-guardian.level-type-elite #screen-game {
+    background: linear-gradient(135deg, #64748b 0%, #1e293b 100%) !important;
+} */
+
+/* Boss do Guardião - usa apenas boss.webp */
+#app.is-screen-adventure.world-guardian.level-type-boss #screen-game {
+    background: linear-gradient(135deg, #334155 0%, #020617 100%) !important;
+    background:
+        radial-gradient(ellipse at 50% 0%, rgba(148, 163, 184, 0.3) 0%, transparent 50%),
+        url('../../backgrounds/guardian/boss.webp') center/cover no-repeat,
+        linear-gradient(135deg, #334155 0%, #020617 100%) !important;
+}
+
+/* =========================================
+   MUNDO 1: TERRAS DO FOGO
+   ========================================= */
+
+/* Fundo padrão (fallback) */
+#app.is-screen-adventure.world-fire #screen-game {
+    background:
+        radial-gradient(ellipse at 50% 0%, rgba(239, 68, 68, 0.15) 0%, transparent 50%),
+        linear-gradient(135deg, #7f1d1d 0%, #450a0a 100%) !important;
+}
+
+/* Fases normais (opcional - usar quando tiver asset específico) */
+/* #app.is-screen-adventure.world-fire.level-type-normal #screen-game {
+    background:
+        radial-gradient(ellipse at 50% 0%, rgba(239, 68, 68, 0.15) 0%, transparent 50%),
+        linear-gradient(135deg, #7f1d1d 0%, #450a0a 100%) !important;
+} */
+
+/* Fases elite (fases 10 e 15) - Fundo específico ativo */
+#app.is-screen-adventure.world-fire.level-type-elite #screen-game {
+    background:
+        radial-gradient(ellipse at 50% 0%, rgba(239, 68, 68, 0.25) 0%, transparent 50%),
+        url('../../backgrounds/fire/elite.webp') center/cover no-repeat,
+        linear-gradient(135deg, #991b1b 0%, #7f1d1d 100%) !important;
+}
+
+/* Boss final (fase 20) - Fundo específico ativo */
+#app.is-screen-adventure.world-fire.level-type-boss #screen-game {
+    background:
+        radial-gradient(ellipse at 50% 0%, rgba(239, 68, 68, 0.35) 0%, transparent 50%),
+        url('../../backgrounds/fire/boss.webp') center/cover no-repeat,
+        linear-gradient(135deg, #b91c1c 0%, #991b1b 100%) !important;
+}
+
+/* =========================================
+   MUNDO 2: FLORESTA ENCANTADA
+   ========================================= */
+
+/* Fundo padrão (fallback) */
+#app.is-screen-adventure.world-forest #screen-game {
+    background:
+        radial-gradient(ellipse at 50% 0%, rgba(16, 185, 129, 0.15) 0%, transparent 50%),
+        linear-gradient(135deg, #14532d 0%, #052e16 100%) !important;
+}
+
+/* Fases normais (opcional) */
+/* #app.is-screen-adventure.world-forest.level-type-normal #screen-game {
+    background:
+        radial-gradient(ellipse at 50% 0%, rgba(16, 185, 129, 0.15) 0%, transparent 50%),
+        linear-gradient(135deg, #14532d 0%, #052e16 100%) !important;
+} */
+
+/* Fases elite (fases 30 e 35) - Fundo específico ativo */
+#app.is-screen-adventure.world-forest.level-type-elite #screen-game {
+    background:
+        radial-gradient(ellipse at 50% 0%, rgba(16, 185, 129, 0.25) 0%, transparent 50%),
+        url('../../backgrounds/forest/elite.webp') center/cover no-repeat,
+        linear-gradient(135deg, #166534 0%, #14532d 100%) !important;
+}
+
+/* Boss final (fase 40) - Fundo específico ativo */
+#app.is-screen-adventure.world-forest.level-type-boss #screen-game {
+    background:
+        radial-gradient(ellipse at 50% 0%, rgba(16, 185, 129, 0.35) 0%, transparent 50%),
+        url('../../backgrounds/forest/boss.webp') center/cover no-repeat,
+        linear-gradient(135deg, #15803d 0%, #166534 100%) !important;
+}
+
+/* =========================================
+   MUNDO 3: MONTANHAS ETERNAS
+   ========================================= */
+
+/* Fundo padrão (fallback) */
+#app.is-screen-adventure.world-mountain #screen-game {
+    background:
+        radial-gradient(ellipse at 50% 0%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+        linear-gradient(135deg, #1e3a8a 0%, #0c4a6e 100%) !important;
+}
+
+/* Fases elite (fases 50 e 55) - Fundo específico ativo */
+#app.is-screen-adventure.world-mountain.level-type-elite #screen-game {
+    background:
+        radial-gradient(ellipse at 50% 0%, rgba(59, 130, 246, 0.25) 0%, transparent 50%),
+        url('../../backgrounds/mountain/elite.webp') center/cover no-repeat,
+        linear-gradient(135deg, #1d4ed8 0%, #1e3a8a 100%) !important;
+}
+
+/* Boss final (fase 60) - Fundo específico ativo */
+#app.is-screen-adventure.world-mountain.level-type-boss #screen-game {
+    background:
+        radial-gradient(ellipse at 50% 0%, rgba(59, 130, 246, 0.35) 0%, transparent 50%),
+        url('../../backgrounds/mountain/boss.webp') center/cover no-repeat,
+        linear-gradient(135deg, #2563eb 0%, #1e40af 100%) !important;
+}
+
+/* =========================================
+   MUNDO 4: DESERTO DOURADO
+   ========================================= */
+
+/* Fundo padrão (fallback) */
+#app.is-screen-adventure.world-desert #screen-game {
+    background:
+        radial-gradient(ellipse at 50% 0%, rgba(251, 191, 36, 0.15) 0%, transparent 50%),
+        linear-gradient(135deg, #78350f 0%, #451a03 100%) !important;
+}
+
+/* Fases elite (fases 70 e 75) - Fundo específico ativo */
+#app.is-screen-adventure.world-desert.level-type-elite #screen-game {
+    background:
+        radial-gradient(ellipse at 50% 0%, rgba(251, 191, 36, 0.25) 0%, transparent 50%),
+        url('../../backgrounds/desert/elite.webp') center/cover no-repeat,
+        linear-gradient(135deg, #92400e 0%, #78350f 100%) !important;
+}
+
+/* Boss final (fase 80) - Fundo específico ativo */
+#app.is-screen-adventure.world-desert.level-type-boss #screen-game {
+    background:
+        radial-gradient(ellipse at 50% 0%, rgba(251, 191, 36, 0.35) 0%, transparent 50%),
+        url('../../backgrounds/desert/boss.webp') center/cover no-repeat,
+        linear-gradient(135deg, #b45309 0%, #7c2d12 100%) !important;
+}
+
+/* =========================================
+   MUNDO 5: CASTELO SOMBRIO
+   ========================================= */
+
+/* Fundo padrão (fallback) */
+#app.is-screen-adventure.world-castle #screen-game {
+    background:
+        radial-gradient(ellipse at 50% 0%, rgba(168, 85, 247, 0.15) 0%, transparent 50%),
+        linear-gradient(135deg, #581c87 0%, #3b0764 100%) !important;
+}
+
+/* Fases elite (fases 90 e 95) - Fundo específico ativo */
+#app.is-screen-adventure.world-castle.level-type-elite #screen-game {
+    background:
+        radial-gradient(ellipse at 50% 0%, rgba(168, 85, 247, 0.25) 0%, transparent 50%),
+        url('../../backgrounds/castle/boss.webp') center/cover no-repeat,
+        linear-gradient(135deg, #6b21a8 0%, #581c87 100%) !important;
+}
+
+/* Boss final (fase 100) - Fundo específico ativo */
+#app.is-screen-adventure.world-castle.level-type-boss #screen-game {
+    background:
+        radial-gradient(ellipse at 50% 0%, rgba(168, 85, 247, 0.35) 0%, transparent 50%),
+        url('../../backgrounds/castle/boss.webp') center/cover no-repeat,
+        linear-gradient(135deg, #7c3aed 0%, #4c1d95 100%) !important;
+}
+
+/* =========================================
+   EFEITOS NO TABULEIRO POR MUNDO
+   ========================================= */
+
+/* Base do tabuleiro no modo aventura */
+#app.is-screen-adventure #game-board {
+    background: var(--board-bg, #0f172a);
+    border: 2px solid var(--board-border, rgba(148, 163, 184, 0.35));
+    box-shadow:
+        var(--board-shadow, 0 12px 32px rgba(0,0,0,0.6)),
+        inset 0 0 0 1px rgba(255,255,255,0.05),
+        0 0 26px var(--board-glow, transparent);
+}
+
+#app.is-screen-adventure #game-board .cell {
+    background-color: var(--cell-bg, rgba(148, 163, 184, 0.08));
+    border: 1px solid var(--cell-border, rgba(148, 163, 184, 0.22));
+    box-shadow:
+        inset 0 1px 2px rgba(255,255,255,0.03),
+        inset 0 -2px 4px rgba(0,0,0,0.35);
+}
+
+/* Destaque para Elite e Boss (somente aventura) */
+#app.is-screen-adventure.level-type-elite {
+    --board-glow: var(--board-elite-glow, rgba(255, 255, 255, 0.2));
+}
+
+#app.is-screen-adventure.level-type-boss {
+    --board-glow: var(--board-boss-glow, rgba(255, 255, 255, 0.35));
+}
+
+#app.is-screen-adventure.level-type-boss #game-board {
+    border-color: var(--board-boss-border, var(--board-border, rgba(255, 255, 255, 0.5)));
+}
+
+/* Mundo Guardian (pedra fria) */
+#app.is-screen-adventure.world-guardian {
+    --board-bg:
+        radial-gradient(circle at 20% 20%, rgba(148, 163, 184, 0.08), transparent 55%),
+        linear-gradient(135deg, #0f172a 0%, #111827 100%);
+    --board-border: rgba(148, 163, 184, 0.45);
+    --board-shadow: 0 12px 32px rgba(0,0,0,0.6);
+    --board-elite-glow: rgba(148, 163, 184, 0.3);
+    --board-boss-glow: rgba(226, 232, 240, 0.45);
+    --board-boss-border: rgba(226, 232, 240, 0.8);
+    --cell-bg: rgba(148, 163, 184, 0.07);
+    --cell-border: rgba(148, 163, 184, 0.2);
+}
+
+/* Mundo Fire (lava viva) */
+#app.is-screen-adventure.world-fire {
+    --board-bg:
+        radial-gradient(circle at 80% 20%, rgba(239, 68, 68, 0.15), transparent 55%),
+        linear-gradient(135deg, #1a0b0b 0%, #2a0f0f 100%);
+    --board-border: rgba(239, 68, 68, 0.6);
+    --board-shadow: 0 14px 34px rgba(0,0,0,0.6);
+    --board-elite-glow: rgba(239, 68, 68, 0.4);
+    --board-boss-glow: rgba(248, 113, 113, 0.55);
+    --board-boss-border: rgba(248, 113, 113, 0.9);
+    --cell-bg: rgba(239, 68, 68, 0.08);
+    --cell-border: rgba(239, 68, 68, 0.24);
+}
+
+/* Mundo Forest (musgo e magia) */
+#app.is-screen-adventure.world-forest {
+    --board-bg:
+        radial-gradient(circle at 15% 80%, rgba(16, 185, 129, 0.16), transparent 60%),
+        linear-gradient(135deg, #0b1a12 0%, #0f2418 100%);
+    --board-border: rgba(34, 197, 94, 0.55);
+    --board-shadow: 0 14px 34px rgba(0,0,0,0.6);
+    --board-elite-glow: rgba(16, 185, 129, 0.38);
+    --board-boss-glow: rgba(110, 231, 183, 0.5);
+    --board-boss-border: rgba(110, 231, 183, 0.85);
+    --cell-bg: rgba(34, 197, 94, 0.08);
+    --cell-border: rgba(34, 197, 94, 0.24);
+}
+
+/* Mundo Mountain (gelo e vento) */
+#app.is-screen-adventure.world-mountain {
+    --board-bg:
+        radial-gradient(circle at 70% 30%, rgba(59, 130, 246, 0.16), transparent 58%),
+        linear-gradient(135deg, #0b1224 0%, #0d1b33 100%);
+    --board-border: rgba(96, 165, 250, 0.55);
+    --board-shadow: 0 14px 34px rgba(0,0,0,0.6);
+    --board-elite-glow: rgba(96, 165, 250, 0.35);
+    --board-boss-glow: rgba(147, 197, 253, 0.5);
+    --board-boss-border: rgba(147, 197, 253, 0.85);
+    --cell-bg: rgba(59, 130, 246, 0.08);
+    --cell-border: rgba(59, 130, 246, 0.24);
+}
+
+/* Mundo Desert (areia dourada) */
+#app.is-screen-adventure.world-desert {
+    --board-bg:
+        radial-gradient(circle at 20% 20%, rgba(251, 191, 36, 0.18), transparent 55%),
+        linear-gradient(135deg, #1b1407 0%, #2a1e0b 100%);
+    --board-border: rgba(251, 191, 36, 0.65);
+    --board-shadow: 0 14px 34px rgba(0,0,0,0.6);
+    --board-elite-glow: rgba(251, 191, 36, 0.38);
+    --board-boss-glow: rgba(253, 230, 138, 0.5);
+    --board-boss-border: rgba(253, 230, 138, 0.9);
+    --cell-bg: rgba(251, 191, 36, 0.08);
+    --cell-border: rgba(251, 191, 36, 0.24);
+}
+
+/* Mundo Castle (arcano sombrio) */
+#app.is-screen-adventure.world-castle {
+    --board-bg:
+        radial-gradient(circle at 80% 80%, rgba(168, 85, 247, 0.16), transparent 60%),
+        linear-gradient(135deg, #120a1a 0%, #1b0f2a 100%);
+    --board-border: rgba(168, 85, 247, 0.55);
+    --board-shadow: 0 14px 34px rgba(0,0,0,0.6);
+    --board-elite-glow: rgba(168, 85, 247, 0.38);
+    --board-boss-glow: rgba(216, 180, 254, 0.5);
+    --board-boss-border: rgba(216, 180, 254, 0.85);
+    --cell-bg: rgba(168, 85, 247, 0.08);
+    --cell-border: rgba(168, 85, 247, 0.24);
+}
+
+/* =========================================
+   CORES DE DESTAQUE POR MUNDO (Opcional)
+   ========================================= */
+
+/*
+   Você pode usar CSS custom properties para criar um sistema de cores dinâmico.
+   Exemplo: os botões, textos e destaques mudam de cor baseado no mundo.
+*/
+
+#app.is-screen-adventure.world-fire {
+    --color-accent: #ef4444;
+    --color-accent-light: #fca5a5;
+    --color-accent-dark: #b91c1c;
+}
+
+#app.is-screen-adventure.world-guardian {
+    --color-accent: #94a3b8;
+    --color-accent-light: #e2e8f0;
+    --color-accent-dark: #475569;
+}
+
+#app.is-screen-adventure.world-forest {
+    --color-accent: #10b981;
+    --color-accent-light: #6ee7b7;
+    --color-accent-dark: #059669;
+}
+
+#app.is-screen-adventure.world-mountain {
+    --color-accent: #3b82f6;
+    --color-accent-light: #93c5fd;
+    --color-accent-dark: #1d4ed8;
+}
+
+#app.is-screen-adventure.world-desert {
+    --color-accent: #fbbf24;
+    --color-accent-light: #fde68a;
+    --color-accent-dark: #d97706;
+}
+
+#app.is-screen-adventure.world-castle {
+    --color-accent: #a855f7;
+    --color-accent-light: #d8b4fe;
+    --color-accent-dark: #7e22ce;
+}
+
+/* Aplicar cores de destaque em componentes */
+#app.is-screen-adventure .btn-primary {
+    background: linear-gradient(135deg, var(--color-accent, #3b82f6), var(--color-accent-dark, #1d4ed8));
+}
+
+#app.is-screen-adventure .progress-bar-fill {
+    background: var(--color-accent, #3b82f6);
+}
+
+/* =========================================
+   ANIMAÇÕES ESPECIAIS POR MUNDO (Opcional)
+   ========================================= */
+
+/* Pulsar lava no mundo do fogo */
+#app.is-screen-adventure.world-fire .cell.lava {
+    animation: pulseLava 2s ease-in-out infinite;
+}
+
+@keyframes pulseLava {
+    0%, 100% {
+        box-shadow: inset 0 0 10px #ef4444, 0 0 5px #7f1d1d;
+    }
+    50% {
+        box-shadow: inset 0 0 20px #ef4444, 0 0 15px #ef4444;
+    }
+}
+
+/* Brilho nas montanhas (gelo) */
+#app.is-screen-adventure.world-mountain .cell.ice {
+    animation: shimmerIce 3s ease-in-out infinite;
+}
+
+@keyframes shimmerIce {
+    0%, 100% { filter: brightness(1); }
+    50% { filter: brightness(1.3); }
+}
+
+/* =========================================
+   AJUSTES DE UI POR MUNDO (Opcional)
+   ========================================= */
+
+/* Boss UI com cores temáticas - REMOVIDO: containers transparentes */
+/* #app.world-fire .boss-ui-container {
+    border-color: rgba(239, 68, 68, 0.5);
+    background: rgba(127, 29, 29, 0.3);
+}
+
+#app.world-forest .boss-ui-container {
+    border-color: rgba(16, 185, 129, 0.5);
+    background: rgba(20, 83, 45, 0.3);
+} */
+
+/* Dock com sombra colorida por mundo */
+#app.is-screen-adventure.world-fire .dock-container {
+    filter: drop-shadow(0 -5px 15px rgba(239, 68, 68, 0.2));
+}
+
+#app.is-screen-adventure.world-forest .dock-container {
+    filter: drop-shadow(0 -5px 15px rgba(16, 185, 129, 0.2));
+}
+
+/* =========================================
+   NOTAS DE USO
+   ========================================= */
+
+/*
+   ✅ AS CLASSES SÃO APLICADAS AUTOMATICAMENTE
+   - Você NÃO precisa adicionar JavaScript
+   - Você NÃO precisa modificar HTML
+   - Apenas escreva CSS usando as classes #app.world-* e #app.level-type-*
+
+   ✅ ESTRUTURA DAS CLASSES:
+   - Tela: #app.is-screen-adventure
+   - Mundo: #app.world-fire
+   - Tipo de fase: #app.level-type-normal | #app.level-type-elite | #app.level-type-boss
+   - Combinado: #app.is-screen-adventure.world-fire.level-type-boss
+
+   ✅ SISTEMA DE CASCATA (FALLBACK AUTOMÁTICO):
+   1. CSS mais específico tem prioridade
+   2. Se não houver CSS específico, usa o fallback do mundo
+   3. Exemplo:
+      - Define: #app.world-fire.level-type-boss (específico)
+      - Fallback: #app.world-fire (genérico)
+      - Se não definir o específico, usa o genérico automaticamente
+
+   ✅ TIPOS DE FASE:
+   - level-type-normal: Fases 1-9, 11-14, 16-19 (e bonus)
+   - level-type-elite: Fases 10 e 15 (compartilham mesmo fundo)
+   - level-type-boss: Fase 20 (boss final)
+
+   ✅ QUANDO USAR:
+   - Use #app.world-* para estilizar por mundo
+   - Use #app.level-type-* para estilizar por tipo de fase
+   - Combine os dois para fundos específicos: #app.world-fire.level-type-boss
+
+   ✅ ADICIONAR NOVOS FUNDOS:
+   1. Descomente o bloco CSS correspondente
+   2. Substitua o background pela nova arte
+   3. O fallback do mundo continua funcionando para as outras fases
+
+   ❌ NÃO FAZER:
+   - NÃO adicione/remova essas classes manualmente via JS
+   - NÃO use essas classes para condicionar lógica de jogo
+   - NÃO crie elementos HTML baseados nessas classes (elas são apenas visuais)
+
+   📚 DOCUMENTAÇÃO COMPLETA:
+   - Ver: docs/SISTEMA-DE-CLASSES-DE-ESTADO.md
+*/

@@ -1,0 +1,1085 @@
+/* =========================================
+   TELA DE BATALHA BOSS/ELITE - AJUSTES PREMIUM
+   ========================================= */
+
+/*
+   VARIÁVEIS CSS PARA AJUSTES FINOS
+   Controle preciso de layout sem valores mágicos
+*/
+:root {
+    /* Inset do tabuleiro dentro da moldura */
+    --board-inset: 12px;
+
+    /* Altura do header de boss */
+    --boss-header-height: clamp(72px, 10vh, 96px);
+
+    /* Tamanho do avatar/badge do boss */
+    --boss-avatar-size: 70px;
+
+    /* Safe area para notch/status bar */
+    --safe-area-top: env(safe-area-inset-top, 0px);
+    --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+    --safe-area-left: env(safe-area-inset-left, 0px);
+    --safe-area-right: env(safe-area-inset-right, 0px);
+}
+
+/* =========================================
+   3. BARRA DE VIDA DO BOSS - ELEMENTOS FLUTUANTES
+   ========================================= */
+
+/* Container principal - SEM fundo/borda (imagem tem a moldura) */
+.boss-ui-container {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto clamp(8px, 1.6vh, 12px);
+    height: var(--boss-header-height);
+    max-height: var(--boss-header-height);
+    box-sizing: border-box;
+    z-index: 10;
+
+    /* REMOVIDO: Fundo, bordas, sombras - !important para sobrescrever */
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+
+    /* Apenas layout */
+    padding: clamp(8px, 1.6vh, 12px) clamp(12px, 2.5vw, 16px);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* Special case: Boss Ignis (fase 20) - layout tweak without scrollbars */
+#app.boss-big-ignis .boss-ui-container,
+#app.boss-big-ignis #boss-hp-hud,
+#app.boss-big-elite15 .boss-ui-container,
+#app.boss-big-elite15 #boss-hp-hud,
+#app.boss-big-elite10 .boss-ui-container,
+#app.boss-big-elite10 #boss-hp-hud,
+#app.boss-big-guardian .boss-ui-container,
+#app.boss-big-guardian #boss-hp-hud,
+#app.boss-big-forest-elite30 .boss-ui-container,
+#app.boss-big-forest-elite30 #boss-hp-hud,
+#app.boss-big-forest-elite35 .boss-ui-container,
+#app.boss-big-forest-elite35 #boss-hp-hud,
+#app.boss-big-forest-boss40 .boss-ui-container,
+#app.boss-big-forest-boss40 #boss-hp-hud,
+#app.boss-big-mountain-elite50 .boss-ui-container,
+#app.boss-big-mountain-elite50 #boss-hp-hud,
+#app.boss-big-mountain-elite55 .boss-ui-container,
+#app.boss-big-mountain-elite55 #boss-hp-hud,
+#app.boss-big-mountain-boss60 .boss-ui-container,
+#app.boss-big-mountain-boss60 #boss-hp-hud,
+#app.boss-big-desert-elite70 .boss-ui-container,
+#app.boss-big-desert-elite70 #boss-hp-hud,
+#app.boss-big-desert-elite75 .boss-ui-container,
+#app.boss-big-desert-elite75 #boss-hp-hud,
+#app.boss-big-desert-boss80 .boss-ui-container,
+#app.boss-big-desert-boss80 #boss-hp-hud,
+#app.boss-big-castle-elite90 .boss-ui-container,
+#app.boss-big-castle-elite90 #boss-hp-hud,
+#app.boss-big-castle-elite95 .boss-ui-container,
+#app.boss-big-castle-elite95 #boss-hp-hud,
+#app.boss-big-castle-boss100 .boss-ui-container,
+#app.boss-big-castle-boss100 #boss-hp-hud {
+    transform: translateY(-12px);
+}
+
+/* Overlay layer for Ignis sprite (not constrained by parent overflow) */
+#ignis-sprite-overlay {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 20;
+}
+
+#ignis-sprite-overlay .ignis-sprite {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+#ignis-sprite-overlay .ignis-sprite img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
+    filter: drop-shadow(0 8px 14px rgba(185, 28, 28, 0.6))
+            drop-shadow(0 0 10px rgba(245, 158, 11, 0.5))
+            brightness(1.03);
+}
+
+/* Bring only the boss name above Ignis overlay */
+#app.boss-big-ignis #boss-hp-hud .boss-hp-name,
+#app.boss-big-elite15 #boss-hp-hud .boss-hp-name,
+#app.boss-big-elite10 #boss-hp-hud .boss-hp-name,
+#app.boss-big-guardian #boss-hp-hud .boss-hp-name,
+#app.boss-big-forest-elite30 #boss-hp-hud .boss-hp-name,
+#app.boss-big-forest-elite35 #boss-hp-hud .boss-hp-name,
+#app.boss-big-forest-boss40 #boss-hp-hud .boss-hp-name,
+#app.boss-big-mountain-elite50 #boss-hp-hud .boss-hp-name,
+#app.boss-big-mountain-elite55 #boss-hp-hud .boss-hp-name,
+#app.boss-big-mountain-boss60 #boss-hp-hud .boss-hp-name,
+#app.boss-big-desert-elite70 #boss-hp-hud .boss-hp-name,
+#app.boss-big-desert-elite75 #boss-hp-hud .boss-hp-name,
+#app.boss-big-desert-boss80 #boss-hp-hud .boss-hp-name,
+#app.boss-big-castle-elite90 #boss-hp-hud .boss-hp-name,
+#app.boss-big-castle-elite95 #boss-hp-hud .boss-hp-name,
+#app.boss-big-castle-boss100 #boss-hp-hud .boss-hp-name {
+    position: relative;
+    z-index: 60;
+}
+
+/* Ensure the HUD sits above the Ignis overlay without changing layout */
+#app.boss-big-ignis #boss-hp-hud,
+#app.boss-big-elite15 #boss-hp-hud,
+#app.boss-big-elite10 #boss-hp-hud,
+#app.boss-big-guardian #boss-hp-hud,
+#app.boss-big-forest-elite30 #boss-hp-hud,
+#app.boss-big-forest-elite35 #boss-hp-hud,
+#app.boss-big-forest-boss40 #boss-hp-hud,
+#app.boss-big-mountain-elite50 #boss-hp-hud,
+#app.boss-big-mountain-elite55 #boss-hp-hud,
+#app.boss-big-mountain-boss60 #boss-hp-hud,
+#app.boss-big-desert-elite70 #boss-hp-hud,
+#app.boss-big-desert-elite75 #boss-hp-hud,
+#app.boss-big-desert-boss80 #boss-hp-hud,
+#app.boss-big-castle-elite90 #boss-hp-hud,
+#app.boss-big-castle-elite95 #boss-hp-hud,
+#app.boss-big-castle-boss100 #boss-hp-hud {
+    position: relative;
+    z-index: 30;
+}
+
+/* Boss name overlay (only used in Ignis overlay mode) */
+#ignis-sprite-overlay .ignis-name-overlay {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    font-family: "Uncial Antiqua", "Cinzel", "Poppins", serif;
+    font-size: 1.15rem;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #d1fae5;
+    text-shadow:
+        0 2px 6px rgba(0, 0, 0, 0.75),
+        0 0 10px rgba(34, 211, 238, 0.35),
+        0 0 16px rgba(16, 185, 129, 0.35);
+    pointer-events: none;
+    z-index: 2;
+    white-space: nowrap;
+}
+
+
+#boss-hp-hud {
+    width: min(92vw, 520px);
+    max-width: 100%;
+    margin-inline: auto;
+    margin-bottom: clamp(8px, 1.6vh, 12px);
+    padding-top: env(safe-area-inset-top, 0px);
+    display: none;
+}
+
+/* HUD do boss é apenas visual; não pode capturar toque e bloquear o dock */
+#app.is-screen-adventure #boss-hp-hud,
+#app.is-screen-adventure #boss-hp-hud *,
+#app.is-screen-adventure .boss-ui-container,
+#app.is-screen-adventure .boss-ui-container * {
+    pointer-events: none !important;
+}
+
+.boss-hp-row {
+    display: flex;
+    align-items: center;
+    gap: clamp(10px, 2vw, 14px);
+}
+
+.boss-hp-wrapper {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(6px, 1vh, 8px);
+}
+
+.boss-hp-name {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #fca5a5;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.8),
+        0 0 8px rgba(0, 0, 0, 0.6);
+}
+
+.boss-hp-bar-bg {
+    position: relative;
+    width: 100%;
+    height: 14px;
+    background: rgba(9, 13, 20, 0.6);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.14),
+        inset 0 2px 6px rgba(0, 0, 0, 0.45);
+}
+
+.boss-hp-bar-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    min-width: 2px;
+    background: linear-gradient(
+        to right,
+        #dc2626 0%,
+        #ef4444 50%,
+        #f87171 100%
+    );
+    box-shadow:
+        0 0 12px rgba(239, 68, 68, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* =========================================
+   4. AVATAR DO BOSS - EMOJI PURO (sem círculo/fundo)
+   ========================================= */
+
+.boss-avatar {
+    /* Tamanho controlado por variável */
+    width: var(--boss-avatar-size);
+    height: var(--boss-avatar-size);
+
+    /* Centralização do emoji/imagem */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* Fonte grande para emoji */
+    font-size: 2.8rem;
+    line-height: 1;
+
+    /* REMOVIDO: Fundo, borda, sombra - !important para sobrescrever */
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    filter: none !important;
+
+    /* Para imagens */
+    overflow: visible;
+    flex-shrink: 0;
+}
+
+/* GuardiÃ£o: permite sprite no boss (override do background reset) */
+#app.world-guardian.level-type-boss .boss-avatar.boss-sprite {
+    background-image: url('../../enemies/guardian/boss.webp') !important;
+    background-color: transparent !important;
+    background-repeat: no-repeat;
+    background-position: 50% 60%;
+    background-size: 88%;
+}
+
+@supports not (background-image: url('test.webp')) {
+    #app.world-guardian.level-type-boss .boss-avatar.boss-sprite {
+        background-image: url('../../enemies/guardian/boss.png') !important;
+    }
+}
+
+/* Se for imagem em vez de emoji */
+.boss-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* =========================================
+   5. ESTATÍSTICAS DO BOSS
+   ========================================= */
+
+.boss-stats {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0; /* Previne overflow */
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+/* Nome do boss - SEM fundo */
+.boss-name {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #fca5a5;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+
+    /* Sombra para legibilidade sobre a imagem */
+    text-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.8),
+        0 0 8px rgba(0, 0, 0, 0.6);
+}
+
+/* =========================================
+   6. BARRA DE HP - TRILHO E PREENCHIMENTO (SEM fundo)
+   ========================================= */
+
+/* Container da barra (trilho) - TRANSPARENTE */
+.hp-bar-bg {
+    position: relative;
+    width: 100%;
+    height: 14px;
+    flex: 1;
+    min-width: 0;
+    display: block;
+    opacity: 1;
+
+    background: rgba(9, 13, 20, 0.6) !important;
+
+    /* Bordas suaves mantidas para forma */
+    border-radius: 8px;
+
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.14),
+        inset 0 2px 6px rgba(0, 0, 0, 0.45);
+
+    overflow: hidden;
+}
+
+/* Preenchimento (HP atual) */
+.hp-bar-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    opacity: 1;
+    z-index: 1;
+    display: block;
+    min-width: 2px;
+
+    /* Gradiente vermelho/laranja temático */
+    background: linear-gradient(
+        to right,
+        #dc2626 0%,
+        #ef4444 50%,
+        #f87171 100%
+    );
+
+    /* Transição suave */
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Brilho sutil */
+    box-shadow:
+        0 0 12px rgba(239, 68, 68, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+
+    /* Animação de pulso quando HP baixo */
+    animation: none;
+}
+
+/* Animação quando HP < 30% */
+.hp-bar-fill[style*="width: 1"],
+.hp-bar-fill[style*="width: 2"] {
+    animation: lowHpPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes lowHpPulse {
+    0%, 100% {
+        box-shadow:
+            0 0 12px rgba(239, 68, 68, 0.5),
+            inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+    50% {
+        box-shadow:
+            0 0 20px rgba(239, 68, 68, 0.8),
+            inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    }
+}
+
+/* Texto do HP (sobreposto à barra) */
+.hp-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    text-align: center;
+
+    font-family: "Cinzel", "Poppins", serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #ffffff;
+
+    /* Sombra para legibilidade */
+    text-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.8),
+        0 0 6px rgba(0, 0, 0, 0.5);
+
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* =========================================
+   7. RESPONSIVIDADE - MOBILE E PC
+   ========================================= */
+
+/* Mobile pequeno (< 400px) */
+@media (max-width: 400px) {
+    :root {
+        --board-inset: 8px;
+        --boss-avatar-size: 60px;
+        --boss-header-height: clamp(68px, 9vh, 90px);
+    }
+
+    .boss-ui-container {
+        padding: 12px 14px;
+        gap: 12px;
+    }
+
+    .boss-avatar {
+        font-size: 2.2rem;
+    }
+
+    .boss-name {
+        font-size: 0.85rem;
+    }
+
+    .hp-bar-bg {
+        height: 12px;
+    }
+
+    .hp-text {
+        font-size: 0.7rem;
+    }
+}
+
+/* Tablet e maior (> 768px) */
+@media (min-width: 768px) {
+    :root {
+        --board-inset: 8px;
+        --boss-avatar-size: 94px;
+        --boss-header-height: clamp(80px, 9vh, 104px);
+    }
+
+    .boss-ui-container {
+        padding: 16px 20px;
+        gap: 20px;
+    }
+
+    .boss-avatar {
+        font-size: 3.2rem;
+    }
+
+    .boss-name {
+        font-size: 0.9rem;
+    }
+
+    .hp-bar-bg {
+        height: 16px;
+    }
+
+    .hp-text {
+        font-size: 0.85rem;
+    }
+}
+
+/* Desktop grande (> 1200px) */
+@media (min-width: 1200px) {
+    .boss-ui-container {
+        max-width: 600px;
+    }
+}
+
+/* =========================================
+   8. AJUSTES PARA LANDSCAPE (MOBILE)
+   ========================================= */
+
+@media (max-height: 600px) and (orientation: landscape) {
+    #screen-game {
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+
+    .boss-ui-container {
+        margin-bottom: 6px;
+        padding: 8px 10px;
+    }
+
+    :root {
+        --boss-avatar-size: 55px;
+    }
+
+    .boss-avatar {
+        font-size: 2rem;
+    }
+}
+
+/* =========================================
+   9. ACESSIBILIDADE
+   ========================================= */
+
+/* Prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .hp-bar-fill {
+        transition: none;
+        animation: none !important;
+    }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    .boss-ui-container {
+        border-width: 2px;
+        border-color: rgba(239, 68, 68, 0.5);
+    }
+
+    .boss-avatar {
+        border-width: 3px;
+    }
+
+    .hp-bar-bg {
+        box-shadow:
+            inset 0 0 0 1px rgba(255, 255, 255, 0.3),
+            inset 0 2px 4px rgba(0, 0, 0, 0.5);
+    }
+}
+
+/* =========================================
+   10. TEMAS POR MUNDO (SOBRESCRITAS)
+   ========================================= */
+
+/* Mundo do Fogo - REMOVIDO: containers agora são transparentes */
+/* #app.world-fire .boss-ui-container {
+    border-color: rgba(239, 68, 68, 0.3);
+    background: rgba(127, 29, 29, 0.15);
+}
+
+#app.world-fire .boss-avatar {
+    border-color: rgba(251, 146, 60, 0.7);
+    background: radial-gradient(
+        circle at center,
+        rgba(127, 29, 29, 0.4) 0%,
+        rgba(69, 10, 10, 0.6) 100%
+    );
+} */
+
+/* Floresta - REMOVIDO: containers transparentes */
+/* #app.world-forest .boss-ui-container {
+    border-color: rgba(16, 185, 129, 0.3);
+    background: rgba(20, 83, 45, 0.15);
+}
+
+#app.world-forest .boss-avatar {
+    border-color: rgba(52, 211, 153, 0.7);
+    background: radial-gradient(
+        circle at center,
+        rgba(20, 83, 45, 0.4) 0%,
+        rgba(5, 46, 22, 0.6) 100%
+    );
+} */
+
+#app.world-forest .hp-bar-fill {
+    background: linear-gradient(
+        to right,
+        #059669 0%,
+        #10b981 50%,
+        #34d399 100%
+    );
+    box-shadow:
+        0 0 12px rgba(16, 185, 129, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Montanhas - REMOVIDO: containers transparentes */
+/* #app.world-mountain .boss-ui-container {
+    border-color: rgba(59, 130, 246, 0.3);
+    background: rgba(30, 58, 138, 0.15);
+}
+
+#app.world-mountain .boss-avatar {
+    border-color: rgba(96, 165, 250, 0.7);
+    background: radial-gradient(
+        circle at center,
+        rgba(30, 58, 138, 0.4) 0%,
+        rgba(12, 74, 110, 0.6) 100%
+    );
+} */
+
+#app.world-mountain .hp-bar-fill {
+    background: linear-gradient(
+        to right,
+        #1d4ed8 0%,
+        #3b82f6 50%,
+        #60a5fa 100%
+    );
+    box-shadow:
+        0 0 12px rgba(59, 130, 246, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Deserto - REMOVIDO: containers transparentes */
+/* #app.world-desert .boss-ui-container {
+    border-color: rgba(251, 191, 36, 0.3);
+    background: rgba(120, 53, 15, 0.15);
+}
+
+#app.world-desert .boss-avatar {
+    border-color: rgba(252, 211, 77, 0.7);
+    background: radial-gradient(
+        circle at center,
+        rgba(120, 53, 15, 0.4) 0%,
+        rgba(69, 26, 3, 0.6) 100%
+    );
+} */
+
+#app.world-desert .hp-bar-fill {
+    background: linear-gradient(
+        to right,
+        #d97706 0%,
+        #fbbf24 50%,
+        #fcd34d 100%
+    );
+    box-shadow:
+        0 0 12px rgba(251, 191, 36, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Castelo - REMOVIDO: containers transparentes */
+/* #app.world-castle .boss-ui-container {
+    border-color: rgba(168, 85, 247, 0.3);
+    background: rgba(88, 28, 135, 0.15);
+}
+
+#app.world-castle .boss-avatar {
+    border-color: rgba(192, 132, 252, 0.7);
+    background: radial-gradient(
+        circle at center,
+        rgba(88, 28, 135, 0.4) 0%,
+        rgba(59, 7, 100, 0.6) 100%
+    );
+} */
+
+#app.world-castle .hp-bar-fill {
+    background: linear-gradient(
+        to right,
+        #7e22ce 0%,
+        #a855f7 50%,
+        #c084fc 100%
+    );
+    box-shadow:
+        0 0 12px rgba(168, 85, 247, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* =========================================
+   AJUSTE ESPECIAL - FLORESTA ELITE 10 (FASE 30)
+   Aproxima HUD do dock sem mover tabuleiro
+   ========================================= */
+
+#app.level-forest-elite-10 #boss-hp-hud {
+    transform: translateY(-18px);
+}
+
+#app.level-forest-elite-10 #boss-hp-hud .boss-hp-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+#app.level-forest-elite-10 #boss-hp-hud .boss-hp-wrapper {
+    display: contents;
+}
+
+#app.level-forest-elite-10 #boss-hp-hud .boss-hp-name {
+    font-family: "Cinzel", "Uncial Antiqua", "Poppins", serif;
+    font-size: 1.02rem;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    order: 1;
+    text-align: center;
+    color: #d1fae5;
+    text-shadow:
+        0 2px 6px rgba(0, 0, 0, 0.75),
+        0 0 10px rgba(34, 211, 238, 0.35),
+        0 0 16px rgba(16, 185, 129, 0.35);
+}
+
+#app.level-forest-elite-10 #boss-hp-hud .boss-avatar {
+    order: 2;
+    margin: 0 auto;
+    width: calc(var(--boss-avatar-size) * 1.7);
+    height: calc(var(--boss-avatar-size) * 1.7);
+    transform: translateY(-18px);
+}
+
+#app.level-forest-elite-10 #boss-hp-hud .boss-hp-bar-bg {
+    order: 3;
+    width: min(80vw, 420px);
+    height: 18px;
+    border-radius: 12px;
+    background: rgba(5, 10, 14, 0.7) !important;
+    box-shadow:
+        0 0 0 2px rgba(226, 232, 240, 0.28),
+        inset 0 0 0 2px rgba(2, 6, 23, 0.75),
+        inset 0 2px 6px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    clip-path: none;
+    transform: translateY(-18px);
+}
+
+#app.level-forest-elite-10 #boss-hp-hud .boss-hp-bar-fill {
+    border-radius: 12px;
+    background: linear-gradient(
+        90deg,
+        #dc2626 0%,
+        #ef4444 50%,
+        #f87171 100%
+    );
+    box-shadow:
+        0 0 10px rgba(239, 68, 68, 0.35),
+        inset 0 2px 0 rgba(255, 255, 255, 0.35),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.35);
+    position: relative;
+    overflow: hidden;
+    clip-path: none;
+}
+
+/* Brilho interno (gloss) */
+#app.level-forest-elite-10 #boss-hp-hud .boss-hp-bar-fill::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.35) 0%,
+        rgba(255, 255, 255, 0.1) 40%,
+        rgba(255, 255, 255, 0) 60%
+    );
+    mix-blend-mode: screen;
+    pointer-events: none;
+}
+
+/* Flash ao receber dano */
+#app.level-forest-elite-10 #boss-hp-hud.damage-flash .boss-hp-bar-fill {
+    box-shadow:
+        0 0 18px rgba(248, 113, 113, 0.8),
+        0 0 28px rgba(248, 113, 113, 0.5),
+        inset 0 2px 0 rgba(255, 255, 255, 0.55),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.35);
+}
+
+
+
+
+#app.level-forest-elite-10 #boss-hp-hud .hp-text {
+    text-align: center;
+}
+
+/* Sobe tabuleiro, dock e barras mantendo o layout */
+#app.level-forest-elite-10 #game-board {
+    transform: translateY(-55px);
+}
+
+#app.level-forest-elite-10 #dock,
+#app.level-forest-elite-10 .controls-bar,
+#app.level-forest-elite-10 .hero-powers-container {
+    transform: translateY(-55px);
+}
+
+
+/* Realce sutil do sprite do Lobo Alfa (leve e performático) */
+#app.level-forest-elite-10 .boss-avatar.boss-sprite[data-enemy-id="forest_elite_10"] {
+    filter: drop-shadow(0 6px 12px rgba(6, 95, 70, 0.45))
+            drop-shadow(0 0 6px rgba(52, 211, 153, 0.35))
+            brightness(1.03);
+}
+
+/* =========================================
+   MODELO PADRÃO - ELITE/BOSS (AVENTURA)
+   ========================================= */
+
+#app.is-screen-adventure.level-type-elite #boss-hp-hud,
+#app.is-screen-adventure.level-type-boss #boss-hp-hud {
+    transform: translateY(-18px);
+}
+
+#app.is-screen-adventure.level-type-elite #boss-hp-hud .boss-hp-row,
+#app.is-screen-adventure.level-type-boss #boss-hp-hud .boss-hp-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+#app.is-screen-adventure.level-type-elite #boss-hp-hud .boss-hp-wrapper,
+#app.is-screen-adventure.level-type-boss #boss-hp-hud .boss-hp-wrapper {
+    display: contents;
+}
+
+#app.is-screen-adventure.level-type-elite #boss-hp-hud .boss-hp-name,
+#app.is-screen-adventure.level-type-boss #boss-hp-hud .boss-hp-name {
+    font-family: "Uncial Antiqua", "Cinzel", "Poppins", serif;
+    font-size: 1.15rem;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    order: 1;
+    text-align: center;
+    color: #d1fae5;
+    text-shadow:
+        0 2px 6px rgba(0, 0, 0, 0.75),
+        0 0 10px rgba(34, 211, 238, 0.35),
+        0 0 16px rgba(16, 185, 129, 0.35);
+}
+
+#app.is-screen-adventure.level-type-elite #boss-hp-hud .boss-avatar,
+#app.is-screen-adventure.level-type-boss #boss-hp-hud .boss-avatar {
+    order: 2;
+    margin: 0 auto;
+    width: calc(var(--boss-avatar-size) * 1.7);
+    height: calc(var(--boss-avatar-size) * 1.7);
+    transform: translateY(-18px);
+}
+
+#app.is-screen-adventure.level-type-elite #boss-hp-hud .boss-hp-bar-bg,
+#app.is-screen-adventure.level-type-boss #boss-hp-hud .boss-hp-bar-bg {
+    order: 3;
+    width: min(80vw, 420px);
+    height: 18px;
+    border-radius: 12px;
+    background: rgba(5, 10, 14, 0.7) !important;
+    box-shadow:
+        0 0 0 2px rgba(226, 232, 240, 0.28),
+        inset 0 0 0 2px rgba(2, 6, 23, 0.75),
+        inset 0 2px 6px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    clip-path: none;
+    transform: translateY(-18px);
+}
+
+#app.is-screen-adventure.level-type-elite #boss-hp-hud .boss-hp-bar-fill,
+#app.is-screen-adventure.level-type-boss #boss-hp-hud .boss-hp-bar-fill {
+    border-radius: 12px;
+    background: linear-gradient(
+        90deg,
+        #dc2626 0%,
+        #ef4444 50%,
+        #f87171 100%
+    );
+    box-shadow:
+        0 0 10px rgba(239, 68, 68, 0.35),
+        inset 0 2px 0 rgba(255, 255, 255, 0.35),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.35);
+    position: relative;
+    overflow: hidden;
+    clip-path: none;
+}
+
+#app.is-screen-adventure.level-type-elite #boss-hp-hud .boss-hp-bar-fill::before,
+#app.is-screen-adventure.level-type-boss #boss-hp-hud .boss-hp-bar-fill::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.35) 0%,
+        rgba(255, 255, 255, 0.1) 40%,
+        rgba(255, 255, 255, 0) 60%
+    );
+    mix-blend-mode: screen;
+    pointer-events: none;
+}
+
+#app.is-screen-adventure.level-type-elite #boss-hp-hud.damage-flash .boss-hp-bar-fill,
+#app.is-screen-adventure.level-type-boss #boss-hp-hud.damage-flash .boss-hp-bar-fill {
+    box-shadow:
+        0 0 18px rgba(248, 113, 113, 0.8),
+        0 0 28px rgba(248, 113, 113, 0.5),
+        inset 0 2px 0 rgba(255, 255, 255, 0.55),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.35);
+}
+
+#app.is-screen-adventure.level-type-elite #boss-hp-hud .hp-text,
+#app.is-screen-adventure.level-type-boss #boss-hp-hud .hp-text {
+    text-align: center;
+}
+
+#app.is-screen-adventure.level-type-elite #game-board,
+#app.is-screen-adventure.level-type-boss #game-board {
+    transform: translateY(-55px);
+}
+
+#app.is-screen-adventure.level-type-elite #dock,
+#app.is-screen-adventure.level-type-elite .controls-bar,
+#app.is-screen-adventure.level-type-elite .hero-powers-container,
+#app.is-screen-adventure.level-type-boss #dock,
+#app.is-screen-adventure.level-type-boss .controls-bar,
+#app.is-screen-adventure.level-type-boss .hero-powers-container {
+    transform: translateY(-55px);
+}
+
+/* Em elite/boss, o dock deve ter prioridade de toque sobre camadas vizinhas */
+#app.is-screen-adventure.level-type-elite #dock,
+#app.is-screen-adventure.level-type-boss #dock {
+    position: relative;
+    z-index: 40;
+    pointer-events: auto;
+}
+
+#app.is-screen-adventure.level-type-elite .controls-bar,
+#app.is-screen-adventure.level-type-elite .hero-powers-container,
+#app.is-screen-adventure.level-type-boss .controls-bar,
+#app.is-screen-adventure.level-type-boss .hero-powers-container {
+    position: relative;
+    z-index: 20;
+}
+
+#app.is-screen-adventure.level-type-elite .boss-avatar.boss-sprite,
+#app.is-screen-adventure.level-type-boss .boss-avatar.boss-sprite {
+    filter: drop-shadow(0 8px 14px rgba(185, 28, 28, 0.6))
+            drop-shadow(0 0 10px rgba(245, 158, 11, 0.5))
+            brightness(1.03);
+}
+
+/* Boss Ignis (Fase 20) - sprite maior */
+#app.level-fire-boss-20 #boss-hp-hud .boss-avatar {
+    width: calc(var(--boss-avatar-size) * 5);
+    height: calc(var(--boss-avatar-size) * 5);
+}
+
+#app.level-fire-boss-20 #boss-hp-hud .boss-avatar.boss-sprite {
+    background-size: 180% !important;
+    background-position: 50% 60% !important;
+    background-image: none !important;
+    overflow: visible;
+    position: relative;
+}
+
+#app.level-fire-boss-20 #boss-hp-hud .boss-avatar.boss-sprite::before {
+    content: "";
+    position: absolute;
+    inset: -60%;
+    background-image: var(--boss-sprite-url);
+    background-repeat: no-repeat;
+    background-position: 50% 68%;
+    background-size: 260%;
+    pointer-events: none;
+}
+
+/* Fire Elite 15 (Pyra) - same full sprite strategy as phase 20 */
+#app.level-fire-elite-15 #boss-hp-hud .boss-avatar {
+    width: calc(var(--boss-avatar-size) * 4.4);
+    height: calc(var(--boss-avatar-size) * 4.4);
+}
+
+#app.level-fire-elite-15 #boss-hp-hud .boss-avatar.boss-sprite {
+    background-size: 180% !important;
+    background-position: 50% 60% !important;
+    background-image: none !important;
+    overflow: visible;
+    position: relative;
+}
+
+#app.level-fire-elite-15 #boss-hp-hud .boss-avatar.boss-sprite::before {
+    content: "";
+    position: absolute;
+    inset: -58%;
+    background-image: var(--boss-sprite-url);
+    background-repeat: no-repeat;
+    background-position: 50% 64%;
+    background-size: 238%;
+    pointer-events: none;
+}
+
+/* Fire Elite 10 (Magmor) - same full sprite strategy as phase 15/20 */
+#app.level-fire-elite-10 #boss-hp-hud .boss-avatar {
+    width: calc((var(--boss-avatar-size) * 4.4) - 60px);
+    height: calc((var(--boss-avatar-size) * 4.4) - 60px);
+}
+
+#app.level-fire-elite-10 #boss-hp-hud .boss-avatar.boss-sprite {
+    background-size: 180% !important;
+    background-position: 50% 60% !important;
+    background-image: none !important;
+    overflow: visible;
+    position: relative;
+}
+
+#app.level-fire-elite-10 #boss-hp-hud .boss-avatar.boss-sprite::before {
+    content: "";
+    position: absolute;
+    inset: -50%;
+    background-image: var(--boss-sprite-url);
+    background-repeat: no-repeat;
+    background-position: 50% 64%;
+    background-size: 205%;
+    pointer-events: none;
+}
+
+/* Full sprite background strategy for non-fire elite/boss phases */
+#app.boss-big-guardian #boss-hp-hud .boss-avatar,
+#app.boss-big-forest-elite30 #boss-hp-hud .boss-avatar,
+#app.boss-big-forest-elite35 #boss-hp-hud .boss-avatar,
+#app.boss-big-forest-boss40 #boss-hp-hud .boss-avatar,
+#app.boss-big-mountain-elite50 #boss-hp-hud .boss-avatar,
+#app.boss-big-mountain-elite55 #boss-hp-hud .boss-avatar,
+#app.boss-big-mountain-boss60 #boss-hp-hud .boss-avatar,
+#app.boss-big-desert-elite70 #boss-hp-hud .boss-avatar,
+#app.boss-big-desert-elite75 #boss-hp-hud .boss-avatar,
+#app.boss-big-desert-boss80 #boss-hp-hud .boss-avatar,
+#app.boss-big-castle-elite90 #boss-hp-hud .boss-avatar,
+#app.boss-big-castle-elite95 #boss-hp-hud .boss-avatar,
+#app.boss-big-castle-boss100 #boss-hp-hud .boss-avatar {
+    width: calc(var(--boss-avatar-size) * 4.4);
+    height: calc(var(--boss-avatar-size) * 4.4);
+}
+
+#app.boss-big-guardian #boss-hp-hud .boss-avatar.boss-sprite,
+#app.boss-big-forest-elite30 #boss-hp-hud .boss-avatar.boss-sprite,
+#app.boss-big-forest-elite35 #boss-hp-hud .boss-avatar.boss-sprite,
+#app.boss-big-forest-boss40 #boss-hp-hud .boss-avatar.boss-sprite,
+#app.boss-big-mountain-elite50 #boss-hp-hud .boss-avatar.boss-sprite,
+#app.boss-big-mountain-elite55 #boss-hp-hud .boss-avatar.boss-sprite,
+#app.boss-big-mountain-boss60 #boss-hp-hud .boss-avatar.boss-sprite,
+#app.boss-big-desert-elite70 #boss-hp-hud .boss-avatar.boss-sprite,
+#app.boss-big-desert-elite75 #boss-hp-hud .boss-avatar.boss-sprite,
+#app.boss-big-desert-boss80 #boss-hp-hud .boss-avatar.boss-sprite,
+#app.boss-big-castle-elite90 #boss-hp-hud .boss-avatar.boss-sprite,
+#app.boss-big-castle-elite95 #boss-hp-hud .boss-avatar.boss-sprite,
+#app.boss-big-castle-boss100 #boss-hp-hud .boss-avatar.boss-sprite {
+    background-size: 180% !important;
+    background-position: 50% 60% !important;
+    background-image: none !important;
+    overflow: visible;
+    position: relative;
+}
+
+#app.boss-big-guardian #boss-hp-hud .boss-avatar.boss-sprite::before,
+#app.boss-big-forest-elite30 #boss-hp-hud .boss-avatar.boss-sprite::before,
+#app.boss-big-forest-elite35 #boss-hp-hud .boss-avatar.boss-sprite::before,
+#app.boss-big-forest-boss40 #boss-hp-hud .boss-avatar.boss-sprite::before,
+#app.boss-big-mountain-elite50 #boss-hp-hud .boss-avatar.boss-sprite::before,
+#app.boss-big-mountain-elite55 #boss-hp-hud .boss-avatar.boss-sprite::before,
+#app.boss-big-mountain-boss60 #boss-hp-hud .boss-avatar.boss-sprite::before,
+#app.boss-big-desert-elite70 #boss-hp-hud .boss-avatar.boss-sprite::before,
+#app.boss-big-desert-elite75 #boss-hp-hud .boss-avatar.boss-sprite::before,
+#app.boss-big-desert-boss80 #boss-hp-hud .boss-avatar.boss-sprite::before,
+#app.boss-big-castle-elite90 #boss-hp-hud .boss-avatar.boss-sprite::before,
+#app.boss-big-castle-elite95 #boss-hp-hud .boss-avatar.boss-sprite::before,
+#app.boss-big-castle-boss100 #boss-hp-hud .boss-avatar.boss-sprite::before {
+    content: "";
+    position: absolute;
+    inset: -56%;
+    background-image: var(--boss-sprite-url);
+    background-repeat: no-repeat;
+    background-position: 50% 64%;
+    background-size: 230%;
+    pointer-events: none;
+}
+
+
