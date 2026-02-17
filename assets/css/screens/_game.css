@@ -469,10 +469,69 @@ body.theme-fire #app.is-screen-adventure .block-unit.type-normal {
 }
 
 /* =========================================================================
-   MUNDO GUARDIÃO (TUTORIAL)
+   MUNDO FOGO
    ========================================================================= */
 
-/* Amuleto (Místico azul claro) */
+/* Fogo (item comum) */
+.type-fire, .cell.filled.type-fire, .block-unit.type-fire {
+    background:
+        url('../../enemies/fire_world/item_fire.webp') center / 78% no-repeat,
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,0.08), transparent 55%),
+        linear-gradient(135deg, #7c2d12, #431407) !important;
+    border: 2px solid rgba(251, 146, 60, 0.7) !important;
+    box-shadow: 0 2px 8px rgba(2, 6, 23, 0.6), inset 0 0 10px rgba(0,0,0,0.55) !important;
+    text-shadow: none;
+}
+
+/* Coracao de fogo (item raro) */
+.type-heart, .cell.filled.type-heart, .block-unit.type-heart {
+    background:
+        url('../../enemies/fire_world/item_heart.webp') center / 78% no-repeat,
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,0.08), transparent 55%),
+        linear-gradient(135deg, #7f1d1d, #9d174d) !important;
+    border: 2px solid rgba(251, 191, 202, 0.75) !important;
+    box-shadow: 0 2px 8px rgba(2, 6, 23, 0.6), inset 0 0 10px rgba(0,0,0,0.55) !important;
+    text-shadow: none;
+}
+
+/* Colisao (item epico) */
+.type-collision, .cell.filled.type-collision, .block-unit.type-collision {
+    background:
+        url('../../enemies/fire_world/item_collision.webp') center / 78% no-repeat,
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,0.08), transparent 55%),
+        linear-gradient(135deg, #1e3a8a, #0c4a6e) !important;
+    border: 2px solid rgba(125, 211, 252, 0.75) !important;
+    box-shadow: 0 2px 8px rgba(2, 6, 23, 0.6), inset 0 0 10px rgba(0,0,0,0.55) !important;
+    text-shadow: none;
+}
+
+/* Obstaculo carvao */
+.type-coal, .cell.filled.type-coal, .block-unit.type-coal {
+    background:
+        url('../../enemies/fire_world/obstacle_coal.webp') center / 78% no-repeat,
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,0.08), transparent 55%),
+        linear-gradient(135deg, #111827, #334155) !important;
+    border: 2px solid rgba(148, 163, 184, 0.6) !important;
+    box-shadow: 0 2px 8px rgba(2, 6, 23, 0.6), inset 0 0 10px rgba(0,0,0,0.55) !important;
+    text-shadow: none;
+}
+
+/* Obstaculo pedra */
+.type-stone, .cell.filled.type-stone, .block-unit.type-stone {
+    background:
+        url('../../enemies/fire_world/obstacle_stone.webp') center / 78% no-repeat,
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,0.08), transparent 55%),
+        linear-gradient(135deg, #374151, #1f2937) !important;
+    border: 2px solid rgba(148, 163, 184, 0.6) !important;
+    box-shadow: 0 2px 8px rgba(2, 6, 23, 0.6), inset 0 0 10px rgba(0,0,0,0.55) !important;
+    text-shadow: none;
+}
+
+/* =========================================================================
+   MUNDO GUARDIAO (TUTORIAL)
+   ========================================================================= */
+
+/* Amuleto */
 .type-amulet, .cell.filled.type-amulet, .block-unit.type-amulet {
     background:
         url('../../enemies/guardian/item_amulet.webp') center / 78% no-repeat,
@@ -483,7 +542,7 @@ body.theme-fire #app.is-screen-adventure .block-unit.type-normal {
     text-shadow: 0 0 4px rgba(191, 219, 254, 0.5);
 }
 
-/* Adaga (Aço azulado) */
+/* Adaga */
 .type-dagger, .cell.filled.type-dagger, .block-unit.type-dagger {
     background:
         url('../../enemies/guardian/item_dagger.webp') center / 78% no-repeat,
@@ -494,7 +553,7 @@ body.theme-fire #app.is-screen-adventure .block-unit.type-normal {
     text-shadow: 0 0 4px rgba(226, 232, 240, 0.5);
 }
 
-/* Chave Antiga (Dourado) */
+/* Chave antiga */
 .type-ancient_key, .cell.filled.type-ancient_key, .block-unit.type-ancient_key {
     background:
         url('../../enemies/guardian/item_ancient_key.webp') center / 78% no-repeat,
@@ -505,7 +564,7 @@ body.theme-fire #app.is-screen-adventure .block-unit.type-normal {
     text-shadow: 0 0 4px rgba(254, 240, 138, 0.5);
 }
 
-/* Portal Ancestral (Obstáculo místico) */
+/* Portal ancestral */
 .type-ancestral_portal, .cell.filled.type-ancestral_portal, .block-unit.type-ancestral_portal {
     background:
         url('../../enemies/guardian/obstacle_ancestral_portal.webp') center / 78% no-repeat,
@@ -516,7 +575,6 @@ body.theme-fire #app.is-screen-adventure .block-unit.type-normal {
 }
 
 /* --- BLOCOS DE LAVA (FUNDO) --- */
-/* Mantido igual, apenas garantindo z-index baixo */
 .cell.lava {
     background: linear-gradient(135deg, #450a0a, #7f1d1d) !important;
     border: none !important;
@@ -6300,3 +6358,4 @@ body {
 #app .game-header-top > * {
     pointer-events: auto;
 }
+

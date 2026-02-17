@@ -89,6 +89,20 @@ const EMOJI_MAP = {
     'void': '\u{26AB}'
 };
 
+const ITEM_SPRITE_PATHS = {
+    // Tutorial guardian
+    amulet: 'assets/enemies/guardian/item_amulet.webp',
+    dagger: 'assets/enemies/guardian/item_dagger.webp',
+    ancient_key: 'assets/enemies/guardian/item_ancient_key.webp',
+    ancestral_portal: 'assets/enemies/guardian/obstacle_ancestral_portal.webp',
+    // Fire world
+    fire: 'assets/enemies/fire_world/item_fire.webp',
+    heart: 'assets/enemies/fire_world/item_heart.webp',
+    collision: 'assets/enemies/fire_world/item_collision.webp',
+    coal: 'assets/enemies/fire_world/obstacle_coal.webp',
+    stone: 'assets/enemies/fire_world/obstacle_stone.webp'
+};
+
 const INFO_CARD_HEROES = [
     { icon: '\u{1F9DD}\u{200D}\u{2642}\u{FE0F}', titleKey: 'guardian_info.heroes.thalion_title', descKey: 'guardian_info.heroes.thalion_desc' },
     { icon: '\u{1F43A}', titleKey: 'guardian_info.heroes.nyx_title', descKey: 'guardian_info.heroes.nyx_desc' },
@@ -5087,9 +5101,13 @@ flushSaveGameState() {
         let html = '<div class="goals-container">';
         Object.keys(this.currentGoals).forEach(key => {
             const emoji = EMOJI_MAP[key] || 'â“';
+            const spritePath = this.getItemSpritePathByKey(key);
+            const goalVisual = spritePath
+                ? `<span class="goal-emoji goal-sprite" style="background-image: url('${spritePath}');" aria-hidden="true"></span>`
+                : `<span class="goal-emoji">${emoji}</span>`;
             html += `
                 <div class="goal-item" id="goal-item-${key}">
-                    <div class="goal-circle type-${key}-glow"><span class="goal-emoji">${emoji}</span></div>
+                    <div class="goal-circle type-${key}-glow">${goalVisual}</div>
                     <div class="goal-info"><span class="goal-counter" id="goal-val-${key}">0/${this.currentGoals[key]}</span></div>
                 </div>`;
         });
@@ -5953,14 +5971,12 @@ endGoalsBatch() {
 }
 
 getFlySpritePathByKey(key) {
+  return this.getItemSpritePathByKey(key);
+}
+
+getItemSpritePathByKey(key) {
   const normalized = String(key || '').toLowerCase();
-  const map = {
-    amulet: 'assets/enemies/guardian/item_amulet.webp',
-    dagger: 'assets/enemies/guardian/item_dagger.webp',
-    ancient_key: 'assets/enemies/guardian/item_ancient_key.webp',
-    ancestral_portal: 'assets/enemies/guardian/obstacle_ancestral_portal.webp'
-  };
-  return map[normalized] || '';
+  return ITEM_SPRITE_PATHS[normalized] || '';
 }
 
 _acquireFlyer(emoji, key = '') {
@@ -6400,13 +6416,8 @@ renderCell(div, cellData) {
         if (keyLower.startsWith('letter_')) {
             return keyLower.replace('letter_', '').toUpperCase();
         }
-        // Itens/obstaculos do Guardiao com sprite dedicado no CSS.
-        if (
-            keyLower === 'ancestral_portal' ||
-            keyLower === 'amulet' ||
-            keyLower === 'dagger' ||
-            keyLower === 'ancient_key'
-        ) {
+        // Itens/obstaculos que usam sprite dedicado no CSS.
+        if (this.getItemSpritePathByKey(keyLower)) {
             return '';
         }
         return cellData.emoji || EMOJI_MAP[keyLower] || EMOJI_MAP[cellData.key] || '?';
