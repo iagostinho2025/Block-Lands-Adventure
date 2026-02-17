@@ -6135,7 +6135,7 @@ body {
 .perf-fps-indicator {
     position: absolute;
     bottom: calc(env(safe-area-inset-bottom, 0px) + 8px);
-    right: 10px;
+    left: calc(env(safe-area-inset-left, 0px) + 10px);
     z-index: 80;
     min-width: 92px;
     padding: 4px 8px;
