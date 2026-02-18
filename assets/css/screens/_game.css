@@ -278,40 +278,57 @@
 
 /* Folha (Verde claro/natureza) */
 .type-leaf, .cell.filled.type-leaf, .block-unit.type-leaf {
-    background: linear-gradient(135deg, #166534, #14532d) !important;
+    background:
+        url('../../enemies/forest_world/item_leaf.webp') center / 78% no-repeat,
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,0.08), transparent 55%),
+        linear-gradient(135deg, #166534, #14532d) !important;
     border: 2px solid #4ade80 !important;
-    box-shadow: 0 0 15px rgba(74, 222, 128, 0.5), inset 0 0 10px rgba(0,0,0,0.4) !important;
-    text-shadow: 0 0 8px rgba(134, 239, 172, 0.7);
+    box-shadow: 0 2px 8px rgba(2, 6, 23, 0.6), inset 0 0 10px rgba(0,0,0,0.55) !important;
+    text-shadow: none;
 }
 
 /* Veneno (Roxo escuro/tóxico) */
 .type-poison, .cell.filled.type-poison, .block-unit.type-poison {
-    background: linear-gradient(135deg, #581c87, #3b0764) !important;
+    background:
+        url('../../enemies/forest_world/item_poison.webp') center / 78% no-repeat,
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,0.08), transparent 55%),
+        linear-gradient(135deg, #581c87, #3b0764) !important;
     border: 2px solid #a855f7 !important;
-    box-shadow: 0 0 15px rgba(168, 85, 247, 0.6), inset 0 0 10px rgba(0,0,0,0.5) !important;
-    text-shadow: 0 0 10px rgba(192, 132, 252, 0.8);
+    box-shadow: 0 2px 8px rgba(2, 6, 23, 0.6), inset 0 0 10px rgba(0,0,0,0.55) !important;
+    text-shadow: none;
 }
 
 /* Cogumelo (Vermelho/roxo místico) */
 .type-mushroom, .cell.filled.type-mushroom, .block-unit.type-mushroom {
-    background: linear-gradient(135deg, #7f1d1d, #831843) !important;
+    background:
+        url('../../enemies/forest_world/item_mushroom.webp') center / 78% no-repeat,
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,0.08), transparent 55%),
+        linear-gradient(135deg, #7f1d1d, #831843) !important;
     border: 2px solid #f472b6 !important;
-    box-shadow: 0 0 15px rgba(244, 114, 182, 0.6), inset 0 0 10px rgba(0,0,0,0.5) !important;
-    text-shadow: 0 0 10px rgba(251, 207, 232, 0.8);
+    box-shadow: 0 2px 8px rgba(2, 6, 23, 0.6), inset 0 0 10px rgba(0,0,0,0.55) !important;
+    text-shadow: none;
 }
 
 /* Espinhos (Obstáculo da floresta) */
 .type-thorns, .cell.filled.type-thorns, .block-unit.type-thorns {
-    background: linear-gradient(135deg, #15803d, #166534) !important;
-    border-color: #22c55e !important;
-    box-shadow: inset 0 0 8px rgba(0,0,0,0.6) !important;
+    background:
+        url('../../enemies/forest_world/obstacle_thorns.webp') center / 78% no-repeat,
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,0.08), transparent 55%),
+        linear-gradient(135deg, #15803d, #166534) !important;
+    border: 2px solid #22c55e !important;
+    box-shadow: 0 2px 8px rgba(2, 6, 23, 0.6), inset 0 0 10px rgba(0,0,0,0.55) !important;
+    text-shadow: none;
 }
 
 /* Teia (Obstáculo especial da Aracna) */
 .type-web, .cell.filled.type-web, .block-unit.type-web {
-    background: linear-gradient(135deg, #4c1d95, #6b21a8) !important;
-    border-color: #c084fc !important;
-    box-shadow: inset 0 0 8px rgba(0,0,0,0.6), 0 0 10px rgba(192, 132, 252, 0.4) !important;
+    background:
+        url('../../enemies/forest_world/obstacle_web.webp') center / 78% no-repeat,
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,0.08), transparent 55%),
+        linear-gradient(135deg, #4c1d95, #6b21a8) !important;
+    border: 2px solid #c084fc !important;
+    box-shadow: 0 2px 8px rgba(2, 6, 23, 0.6), inset 0 0 10px rgba(0,0,0,0.55) !important;
+    text-shadow: none;
 }
 
 /* ========================================= */

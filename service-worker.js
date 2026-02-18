@@ -1,5 +1,5 @@
-﻿/* Block Lands: Adventure - Service Worker (atualizado)
-   - Precache tolerante (nÃ£o falha se 1 arquivo der 404)
+/* Block Lands: Adventure - Service Worker (atualizado)
+   - Precache tolerante (não falha se 1 arquivo der 404)
    - Runtime caching por pasta/tipo (ideal pra jogo)
 */
 
@@ -7,7 +7,7 @@ const CACHE_VERSION = 'v115';
 const CACHE_STATIC = `bl-static-${CACHE_VERSION}`;
 const CACHE_RUNTIME = `bl-runtime-${CACHE_VERSION}`;
 
-// App Shell (mÃ­nimo para iniciar offline)
+// App Shell (mínimo para iniciar offline)
 const PRECACHE_URLS = [
   './',
   './index.html',
@@ -20,7 +20,7 @@ const PRECACHE_URLS = [
   './js/app.js',
   './js/game.js',
 
-  // MÃ³dulos (conforme pastas que vocÃª mostrou)
+  // Módulos (conforme pastas que você mostrou)
   './js/modules/audio.js',
   './js/modules/achievements.js',
   './js/modules/enemy-sprites.js',
@@ -38,12 +38,12 @@ const PRECACHE_URLS = [
   './assets/lang/en.json',
   './assets/lang/pt-BR.json',
 
-  // Ãcones do PWA (mantÃ©m os do manifest)
+  // Ícones do PWA (mantém os do manifest)
   './assets/icons/icon-192.png',
   './assets/icons/icon-512.png',
 
-  // Assets crÃ­ticos para â€œprimeiro quadroâ€
-  './assets/img/logo.png',
+  // Assets críticos para “primeiro quadro”
+  './assets/img/logo.webp',
   './assets/img/loading_screen.webp',
   './assets/img/bg_story.webp',
   './assets/img/bg_world_select.webp',
@@ -57,7 +57,7 @@ const PRECACHE_URLS = [
   './assets/images/modal_defeat_pt.webp',
   './assets/images/modal_defeat_en.webp',
 
-  // Sons mÃ­nimos (resto entra via runtime cache)
+  // Sons mínimos (resto entra via runtime cache)
   './assets/sounds/click.mp3',
   './assets/sounds/back.mp3',
   './assets/sounds/castle_boss.ogg',
@@ -70,7 +70,7 @@ self.addEventListener('install', (event) => {
   event.waitUntil((async () => {
     const cache = await caches.open(CACHE_STATIC);
 
-    // Precache tolerante: nÃ£o derruba instalaÃ§Ã£o se algum asset nÃ£o existir
+    // Precache tolerante: não derruba instalação se algum asset não existir
     await Promise.allSettled(
       PRECACHE_URLS.map(async (url) => {
         try {
@@ -106,7 +106,7 @@ self.addEventListener('fetch', (event) => {
 
   if (request.method !== 'GET') return;
 
-  // NavegaÃ§Ã£o (PWA / rotas): network-first + fallback no index
+  // Navegação (PWA / rotas): network-first + fallback no index
   if (request.mode === 'navigate') {
     event.respondWith(navigationHandler(request));
     return;
@@ -117,7 +117,7 @@ self.addEventListener('fetch', (event) => {
   const scopePath = new URL(self.registration.scope).pathname.replace(/\/$/, '');
   const relativePath = path.startsWith(scopePath) ? path.slice(scopePath.length) : path;
 
-  // Imagens e Ã­cones do jogo: Cache First
+  // Imagens e ícones do jogo: Cache First
   if (
     relativePath.startsWith('/assets/img/') ||
     relativePath.startsWith('/assets/images/') ||
@@ -129,7 +129,7 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Sons: Cache First (Ã³timo pra SFX)
+  // Sons: Cache First (ótimo pra SFX)
   if (relativePath.startsWith('/assets/sounds/')) {
     event.respondWith(cacheFirst(request, CACHE_RUNTIME));
     return;
@@ -151,12 +151,12 @@ self.addEventListener('fetch', (event) => {
   event.respondWith(networkFirst(request, CACHE_RUNTIME));
 });
 
-// ---------- EstratÃ©gias ----------
+// ---------- Estratégias ----------
 
 async function navigationHandler(request) {
   try {
     const networkResponse = await fetch(request);
-    // MantÃ©m index atualizado em cache (offline consistente)
+    // Mantém index atualizado em cache (offline consistente)
     const cache = await caches.open(CACHE_STATIC);
     cache.put('./index.html', networkResponse.clone());
     return networkResponse;
