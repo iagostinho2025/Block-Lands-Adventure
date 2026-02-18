@@ -172,7 +172,7 @@ export const BOSS_LOGIC = {
             game.bossState.turnCount++;
 
             if (game.bossState.turnCount % 4 === 0) {
-                transformCells(game, 'leaf', { type: 'OBSTACLE', key: 'thorns', emoji: '🌿' }, '#15803d');
+                transformCells(game, 'leaf', { type: 'OBSTACLE', key: 'claw', emoji: '🐾' }, '#15803d');
             }
         }
     },
@@ -190,12 +190,19 @@ export const BOSS_LOGIC = {
                 transformCells(game, 'leaf', { type: 'OBSTACLE', key: 'thorns', emoji: '🌿' }, '#15803d');
             }
 
-            if (game.bossState.turnCount % 3 === 0) {
-                placeRandomObstacle(game, { type: 'OBSTACLE', key: 'thorns', emoji: '🌿' }, '#16a34a');
+            if (game.bossState.turnCount % 6 === 0) {
+                game.bossState.currentHp = Math.min(game.bossState.maxHp, game.bossState.currentHp + 5);
+                game.updateBossUI();
+                game.triggerScreenFlash('#84cc16');
             }
 
             if (game.bossState.turnCount % 6 === 0) {
-                transformCells(game, 'mushroom', { type: 'OBSTACLE', key: 'web', emoji: '🕸️' }, '#7c3aed');
+                if (game.sealLeftDock) {
+                    const applied = game.sealLeftDock();
+                    if (applied) {
+                        game.triggerScreenFlash('#7c3aed');
+                    }
+                }
             }
         }
     },
@@ -210,7 +217,7 @@ export const BOSS_LOGIC = {
             game.bossState.rootCounter++;
 
             if (game.bossState.rootCounter % 3 === 0) {
-                placeRandomObstacle(game, { type: 'OBSTACLE', key: 'thorns', emoji: '🌿' }, '#16a34a');
+                placeRandomObstacle(game, { type: 'OBSTACLE', key: 'web', emoji: '🕸️' }, '#7c3aed');
             }
 
             if (game.bossState.rootCounter % 5 === 0) {

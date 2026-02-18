@@ -281,8 +281,8 @@
     background:
         url('../../enemies/forest_world/item_leaf.webp') center / 78% no-repeat,
         radial-gradient(circle at 30% 30%, rgba(255,255,255,0.08), transparent 55%),
-        linear-gradient(135deg, #166534, #14532d) !important;
-    border: 2px solid #4ade80 !important;
+        linear-gradient(135deg, #22c55e, #166534) !important;
+    border: 2px solid #bef264 !important;
     box-shadow: 0 2px 8px rgba(2, 6, 23, 0.6), inset 0 0 10px rgba(0,0,0,0.55) !important;
     text-shadow: none;
 }
@@ -292,8 +292,8 @@
     background:
         url('../../enemies/forest_world/item_poison.webp') center / 78% no-repeat,
         radial-gradient(circle at 30% 30%, rgba(255,255,255,0.08), transparent 55%),
-        linear-gradient(135deg, #581c87, #3b0764) !important;
-    border: 2px solid #a855f7 !important;
+        linear-gradient(135deg, #9ca3af, #4b5563) !important;
+    border: 2px solid #92400e !important;
     box-shadow: 0 2px 8px rgba(2, 6, 23, 0.6), inset 0 0 10px rgba(0,0,0,0.55) !important;
     text-shadow: none;
 }
@@ -5085,6 +5085,27 @@ body {
     cursor: pointer;
 }
 
+.game-gear-badge .game-info-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: 800;
+    color: #f8fafc;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(248, 250, 252, 0.22);
+    box-shadow: none;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.game-gear-badge .game-info-btn[aria-hidden="true"] {
+    display: none;
+}
+
 
 .gear-settings-overlay {
     position: fixed;
@@ -5179,22 +5200,6 @@ body {
     border-bottom: none;
 }
 
-.gear-settings-body .gear-help-btn {
-    width: 100%;
-    margin-top: 10px;
-    padding: 8px 10px;
-    background: rgba(241, 230, 200, 0.9);
-    border: 1px solid rgba(120, 98, 72, 0.45);
-    color: #5b3920;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: 600;
-}
-
-.gear-settings-body .gear-help-btn[aria-hidden="true"] {
-    display: none;
-}
-
 #app.is-screen-classic .game-gear-badge,
 #app.is-screen-blitz .game-gear-badge {
     display: none;
@@ -5228,6 +5233,7 @@ body {
     border-radius: 16px;
     padding: 18px 18px 16px;
     position: relative;
+    transform: translateY(-18px);
     color: #3f2a1d;
     background:
         radial-gradient(circle at 20% 10%, rgba(255, 248, 220, 0.6), transparent 40%),
@@ -5254,6 +5260,7 @@ body {
     position: absolute;
     top: 10px;
     right: 10px;
+    z-index: 20;
     width: 30px;
     height: 30px;
     border-radius: 999px;
@@ -5265,20 +5272,53 @@ body {
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    pointer-events: auto;
 }
 
 .scroll-header {
+    position: relative;
+    z-index: 1;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 2px;
     align-items: center;
     text-align: center;
-    margin-bottom: 14px;
+    margin-bottom: 8px;
+    transform: translateY(-18px);
+}
+
+.guardian-info-card[data-info-id="forest_elite_30"] .scroll-header {
+    transform: translateY(-2px);
+}
+
+.guardian-info-card[data-info-id="forest_elite_35"] .scroll-seal {
+    transform: translateY(16px);
+}
+
+.guardian-info-card[data-info-id="forest_boss_40"] .scroll-header {
+    transform: translateY(8px);
+}
+
+.guardian-info-card[data-info-id="forest_boss_40"] .scroll-seal {
+    width: 148px !important;
+    height: 148px !important;
+}
+
+.guardian-info-card[data-info-id="forest_boss_40"] #guardian-info-seal {
+    transform: scale(1.58);
+}
+
+.guardian-info-card[data-info-id="forest_boss_40"] #guardian-info-title {
+    transform: translateY(-13px);
+}
+
+.guardian-info-card[data-info-id="forest_boss_40"] #guardian-info-subtitle {
+    transform: translateY(-12px);
 }
 
 .scroll-seal {
-    width: 76px;
-    height: 76px;
+    width: 94px;
+    height: 94px;
     border-radius: 10px;
     display: inline-flex;
     align-items: center;
@@ -5286,14 +5326,21 @@ body {
     background: transparent;
     border: none;
     box-shadow: none;
-    overflow: hidden;
+    overflow: visible;
+    pointer-events: none;
 }
 
 .scroll-seal-img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     display: block;
+}
+
+#guardian-info-seal {
+    transform: scale(1.28);
+    transform-origin: center;
+    pointer-events: none;
 }
 
 .scroll-kicker {
@@ -5304,7 +5351,7 @@ body {
 }
 
 .scroll-title {
-    margin: 2px 0 2px;
+    margin: 0;
     font-size: 1.1rem;
     font-weight: 700;
     color: #3f2a1d;
@@ -5314,6 +5361,21 @@ body {
     margin: 0;
     font-size: 0.85rem;
     color: rgba(63, 42, 29, 0.7);
+}
+
+.scroll-story-wrap {
+    margin-bottom: 10px;
+}
+
+.scroll-story-text {
+    margin: 0;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: rgba(255, 248, 220, 0.55);
+    border: 1px solid rgba(120, 92, 72, 0.25);
+    font-size: 0.86rem;
+    line-height: 1.45;
+    color: rgba(63, 42, 29, 0.88);
 }
 
 .scroll-section-title {
@@ -5332,9 +5394,9 @@ body {
 
 .scroll-item {
     display: grid;
-    grid-template-columns: 26px 1fr;
+    grid-template-columns: 36px 1fr;
     gap: 10px;
-    align-items: start;
+    align-items: center;
     padding: 8px 10px;
     border-radius: 10px;
     background: rgba(255, 248, 220, 0.55);
@@ -5342,7 +5404,20 @@ body {
 }
 
 .scroll-icon {
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
     font-size: 1.1rem;
+}
+
+.scroll-icon-img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    display: block;
 }
 
 .scroll-item-title {
@@ -5441,6 +5516,24 @@ body {
     box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
     touch-action: none;
     -ms-touch-action: none;
+}
+
+#app.is-screen-adventure .dock-slot.is-sealed-left {
+    border-color: rgba(192, 38, 211, 0.55);
+    background: rgba(76, 29, 149, 0.45);
+    box-shadow:
+        0 0 12px rgba(192, 38, 211, 0.25),
+        inset 0 0 12px rgba(0, 0, 0, 0.5);
+}
+
+#app.is-screen-adventure .dock-slot .dock-seal-icon {
+    width: 72%;
+    height: 72%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    filter: drop-shadow(0 0 10px rgba(192, 38, 211, 0.55));
+    pointer-events: none;
 }
 
 #app.is-screen-adventure .dock-slot.active,
@@ -6376,3 +6469,25 @@ body {
     pointer-events: auto;
 }
 
+
+/* Espinhos de poder (Poder do Fenrir) */
+.type-power_thorns, .cell.filled.type-power_thorns, .block-unit.type-power_thorns {
+    background:
+        url('../../enemies/forest_world/power_thorns.webp') center / 78% no-repeat,
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,0.08), transparent 55%),
+        linear-gradient(135deg, #15803d, #166534) !important;
+    border: 2px solid #22c55e !important;
+    box-shadow: 0 2px 8px rgba(2, 6, 23, 0.6), inset 0 0 10px rgba(0,0,0,0.55) !important;
+    text-shadow: none;
+}
+
+/* Garra (Poder do Fenrir - fase 30) */
+.type-claw, .cell.filled.type-claw, .block-unit.type-claw {
+    background:
+        url('../../enemies/forest_world/item_claw.webp') center / 78% no-repeat,
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,0.08), transparent 55%),
+        linear-gradient(135deg, #c4b5fd, #a78bfa) !important;
+    border: 2px solid #5b21b6 !important;
+    box-shadow: 0 2px 8px rgba(2, 6, 23, 0.6), inset 0 0 10px rgba(0,0,0,0.55) !important;
+    text-shadow: none;
+}

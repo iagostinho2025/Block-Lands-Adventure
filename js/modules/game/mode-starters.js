@@ -3,6 +3,7 @@ export function startClassicMode(game, options = {}) {
 
     game.currentMode = 'classic';
     game.currentLevelConfig = null;
+    if (game.unsealLeftDock) game.unsealLeftDock();
 
     // Recarrega recorde para evitar estado desatualizado
     game.classicState.bestScore = parseInt(localStorage.getItem('classic_best_score') || '0');
@@ -109,6 +110,7 @@ export function startAdventureLevel(game, levelConfig, options = {}) {
 
     game.currentMode = 'adventure';
     game.currentLevelConfig = levelConfig;
+    if (game.unsealLeftDock) game.unsealLeftDock();
     game._bossNameIntroPlayed = false;
     game._bossNameIntroAnimating = false;
     game._bossNameIntroKey = null;
@@ -207,6 +209,7 @@ export function startAdventureLevel(game, levelConfig, options = {}) {
 export function startBlitzMode(game) {
     game.currentMode = 'blitz';
     game.currentLevelConfig = null;
+    if (game.unsealLeftDock) game.unsealLeftDock();
     game._matchRewardsActive = false;
     game._blitzStartTime = Date.now();
     game._blitzMatchXp = 0;

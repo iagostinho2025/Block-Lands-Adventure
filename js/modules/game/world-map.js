@@ -32,16 +32,32 @@ export function openWorldMap(game, worldConfig) {
     }
 
     const currentSave = game.loadProgress();
+    const completedLevels = new Set(
+        (typeof game.getCompletedAdventureLevels === 'function')
+            ? game.getCompletedAdventureLevels()
+            : []
+    );
+    const useDebugUnlock = (typeof game.usesAdventureUnlockDebug === 'function')
+        ? game.usesAdventureUnlockDebug()
+        : false;
 
     const createSvgButton = (levelData) => {
         const pos = levelData.mapPos || { x: 50, y: 50 };
         const levelNum = levelData.id;
         const isFireWorld = worldConfig?.id === 'fire_world';
 
+        const isUnlocked = (typeof game.isAdventureLevelUnlocked === 'function')
+            ? game.isAdventureLevelUnlocked(levelData.id)
+            : (levelData.id <= currentSave);
         let state = 'locked';
-        if (levelData.id < currentSave) state = 'completed';
+        const isCompleted = useDebugUnlock
+            ? completedLevels.has(levelData.id)
+            : (completedLevels.has(levelData.id) || levelData.id < currentSave);
+
+        if (!isUnlocked) state = 'locked';
+        else if (isCompleted) state = 'completed';
         else if (levelData.id === currentSave) state = 'current';
-        else state = 'locked';
+        else state = 'unlocked';
 
         let type = 'normal';
         let emojiIcon = null;

@@ -101,13 +101,13 @@ export function updateWorldClass(game, deps = {}) {
     );
 
     if (game.currentMode !== 'adventure' || !game.currentLevelConfig) {
-        if (runtimeLogs) console.log('[WORLD-CLASS] Não é modo aventura ou sem levelConfig. currentMode:', game.currentMode);
+        if (runtimeLogs) console.log('[WORLD-CLASS] NÃ£o Ã© modo aventura ou sem levelConfig. currentMode:', game.currentMode);
         return;
     }
 
     const currentWorld = WORLDS.find((w) => w.levels.some((l) => l.id === game.currentLevelConfig.id));
     if (!currentWorld) {
-        console.warn('[WORLD-CLASS] Mundo não encontrado para level:', game.currentLevelConfig.id);
+        console.warn('[WORLD-CLASS] Mundo nÃ£o encontrado para level:', game.currentLevelConfig.id);
         return;
     }
 
@@ -207,7 +207,7 @@ export function getInfoCardId(game) {
 }
 
 export function updateInfoHelpIcon(game) {
-    const helpBtn = document.getElementById('gear-help-btn');
+    const helpBtn = document.getElementById('game-info-btn');
     if (!helpBtn) return;
     const shouldShow = !!game.getInfoCardId();
     helpBtn.setAttribute('aria-hidden', shouldShow ? 'false' : 'true');
@@ -219,6 +219,10 @@ export function renderInfoCard(game, infoId, deps = {}) {
 
     const info = infoCardData[infoId];
     if (!info || !game.i18n) return;
+    const overlay = document.getElementById('guardian-info-overlay');
+    const card = overlay?.querySelector('.guardian-info-card');
+    if (overlay) overlay.dataset.infoId = infoId;
+    if (card) card.dataset.infoId = infoId;
 
     const titleEl = document.getElementById('guardian-info-title');
     const subtitleEl = document.getElementById('guardian-info-subtitle');
@@ -238,9 +242,17 @@ export function renderInfoCard(game, infoId, deps = {}) {
         sealImg.src = info.sealImage;
     }
 
+    const renderIcon = (item) => {
+        if (item.iconImage) {
+            const altText = item.iconAlt || '';
+            return `<img class="scroll-icon-img" src="${item.iconImage}" alt="${altText}" loading="lazy" decoding="async">`;
+        }
+        return item.icon || '';
+    };
+
     const makeItem = (item) => `
             <div class="scroll-item">
-                <span class="scroll-icon">${item.icon || ''}</span>
+                <span class="scroll-icon">${renderIcon(item)}</span>
                 <div>
                     <div class="scroll-item-title">${game.i18n.t(item.titleKey)}</div>
                     <div class="scroll-item-desc">${game.i18n.t(item.descKey)}</div>
@@ -253,8 +265,17 @@ export function renderInfoCard(game, infoId, deps = {}) {
     const itemsList = document.getElementById('guardian-info-items-list');
     if (itemsList) itemsList.innerHTML = info.items.map(makeItem).join('');
 
-    const heroesList = document.getElementById('guardian-info-heroes-list');
-    if (heroesList) heroesList.innerHTML = info.heroes.map(makeItem).join('');
+    const storyWrap = document.getElementById('guardian-info-story-wrap');
+    const storyEl = document.getElementById('guardian-info-story');
+    if (storyWrap && storyEl) {
+        if (info.storyKey) {
+            storyEl.textContent = game.i18n.t(info.storyKey);
+            storyWrap.classList.remove('hidden');
+        } else {
+            storyEl.textContent = '';
+            storyWrap.classList.add('hidden');
+        }
+    }
 }
 
 export function openInfoCard(game) {
@@ -270,7 +291,14 @@ export function openInfoCard(game) {
     overlay.inert = false;
     overlay.setAttribute('aria-hidden', 'false');
     const closeBtn = overlay.querySelector('#guardian-info-close');
-    if (closeBtn) closeBtn.focus();
+    if (closeBtn) {
+        closeBtn.onclick = (e) => {
+            e.stopPropagation();
+            if (game.audio) game.audio.playClick();
+            game.closeInfoCard();
+        };
+        closeBtn.focus();
+    }
 }
 
 export function closeInfoCard(game) {

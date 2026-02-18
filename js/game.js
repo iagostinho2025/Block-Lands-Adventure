@@ -186,6 +186,9 @@ import {
     updateControlsVisuals as runUpdateControlsVisuals,
     handleBoardClick as runHandleBoardClick,
     handlePieceClick as runHandlePieceClick,
+    isLeftDockSealed as runIsLeftDockSealed,
+    sealLeftDock as runSealLeftDock,
+    unsealLeftDock as runUnsealLeftDock,
     renderDock as runRenderDock
 } from './modules/game/controls-dock.js';
 import {
@@ -270,6 +273,9 @@ import {
     applySettings as runApplySettings,
     loadProgress as runLoadProgress,
     saveProgress as runSaveProgress,
+    isAdventureLevelUnlocked as runIsAdventureLevelUnlocked,
+    getCompletedAdventureLevels as runGetCompletedAdventureLevels,
+    markAdventureLevelCompleted as runMarkAdventureLevelCompleted,
     initProgressionUI as runInitProgressionUI,
     updateProgressionUI as runUpdateProgressionUI,
     awardXP as runAwardXP,
@@ -281,7 +287,7 @@ import './modules/enemy-sprites.js';
 const DEBUG_BOSS_HUD = false;
 const DEBUG_LAYOUT_GEOMETRY = false;
 const DEBUG_DOCK_GEOMETRY = false;
-const DEBUG_UNLOCK_ALL_ADVENTURE = false;
+const DEBUG_UNLOCK_ALL_ADVENTURE = true;
 const DEBUG_UNLOCK_ALL_ADVENTURE_LEVEL = 999;
 const PERF_DEBUG = false;
 const RUNTIME_LOGS = false;
@@ -334,6 +340,8 @@ const EMOJI_MAP = {
     'poison': '\u{2620}\u{FE0F}',
     'mushroom': '\u{1F344}',
     'thorns': '\u{1F33F}',
+    'power_thorns': '\u{1F33F}',
+    'claw': '\u{1F43E}',
     'web': '\u{1F578}\u{FE0F}',
 
     // Mundo Montanha
@@ -374,6 +382,8 @@ const ITEM_SPRITE_PATHS = {
     poison: 'assets/enemies/forest_world/item_poison.webp',
     mushroom: 'assets/enemies/forest_world/item_mushroom.webp',
     thorns: 'assets/enemies/forest_world/obstacle_thorns.webp',
+    power_thorns: 'assets/enemies/forest_world/power_thorns.webp',
+    claw: 'assets/enemies/forest_world/item_claw.webp',
     web: 'assets/enemies/forest_world/obstacle_web.webp'
 };
 
@@ -456,12 +466,13 @@ const INFO_CARD_DATA = {
         sealAltKey: 'forest_info.elite30.title',
         titleKey: 'forest_info.elite30.title',
         subtitleKey: 'forest_info.elite30.subtitle',
+        storyKey: 'forest_info.elite30.story',
         bossPowers: [
-            { icon: '\u{1F33F}', titleKey: 'forest_info.elite30.boss.thorns_title', descKey: 'forest_info.elite30.boss.thorns_desc' }
+            { iconImage: 'assets/enemies/forest_world/item_claw.webp', iconAlt: 'Garras Selvagens', titleKey: 'forest_info.elite30.boss.thorns_title', descKey: 'forest_info.elite30.boss.thorns_desc' }
         ],
         items: [
-            { icon: '\u{1F343}', titleKey: 'forest_info.items.leaf_title', descKey: 'forest_info.items.leaf_desc' },
-            { icon: '\u{2620}\u{FE0F}', titleKey: 'forest_info.items.poison_title', descKey: 'forest_info.items.poison_desc' }
+            { iconImage: 'assets/enemies/forest_world/item_leaf.webp', iconAlt: 'Adaga magica', titleKey: 'forest_info.items.leaf_title', descKey: 'forest_info.items.leaf_desc' },
+            { iconImage: 'assets/enemies/forest_world/item_poison.webp', iconAlt: 'Clava de Sylvaris', titleKey: 'forest_info.items.poison_title', descKey: 'forest_info.items.poison_desc' }
         ],
         heroes: INFO_CARD_HEROES
     },
@@ -471,14 +482,15 @@ const INFO_CARD_DATA = {
         sealAltKey: 'forest_info.elite35.title',
         titleKey: 'forest_info.elite35.title',
         subtitleKey: 'forest_info.elite35.subtitle',
+        storyKey: 'forest_info.elite35.story',
         bossPowers: [
-            { icon: '\u{1F33F}', titleKey: 'forest_info.elite35.boss.roots_title', descKey: 'forest_info.elite35.boss.roots_desc' },
+            { iconImage: 'assets/enemies/forest_world/obstacle_web.webp', iconAlt: 'Teias Paralizantes', titleKey: 'forest_info.elite35.boss.roots_title', descKey: 'forest_info.elite35.boss.roots_desc' },
             { icon: '\u{1FA79}', titleKey: 'forest_info.elite35.boss.regen_title', descKey: 'forest_info.elite35.boss.regen_desc' }
         ],
         items: [
-            { icon: '\u{1F343}', titleKey: 'forest_info.items.leaf_title', descKey: 'forest_info.items.leaf_desc' },
-            { icon: '\u{2620}\u{FE0F}', titleKey: 'forest_info.items.poison_title', descKey: 'forest_info.items.poison_desc' },
-            { icon: '\u{1F344}', titleKey: 'forest_info.items.mushroom_title', descKey: 'forest_info.items.mushroom_desc' }
+            { iconImage: 'assets/enemies/forest_world/item_leaf.webp', iconAlt: 'Adaga magica', titleKey: 'forest_info.items.leaf_title', descKey: 'forest_info.items.leaf_desc' },
+            { iconImage: 'assets/enemies/forest_world/item_poison.webp', iconAlt: 'Clava de Sylvaris', titleKey: 'forest_info.items.poison_title', descKey: 'forest_info.items.poison_desc' },
+            { iconImage: 'assets/enemies/forest_world/item_mushroom.webp', iconAlt: 'Espinho Mortal', titleKey: 'forest_info.items.mushroom_title', descKey: 'forest_info.items.mushroom_desc' }
         ],
         heroes: INFO_CARD_HEROES
     },
@@ -488,15 +500,16 @@ const INFO_CARD_DATA = {
         sealAltKey: 'forest_info.boss40.title',
         titleKey: 'forest_info.boss40.title',
         subtitleKey: 'forest_info.boss40.subtitle',
+        storyKey: 'forest_info.boss40.story',
         bossPowers: [
-            { icon: '\u{1F33F}', titleKey: 'forest_info.boss40.boss.thorns_title', descKey: 'forest_info.boss40.boss.thorns_desc' },
-            { icon: '\u{1F33F}', titleKey: 'forest_info.boss40.boss.roots_title', descKey: 'forest_info.boss40.boss.roots_desc' },
-            { icon: '\u{1F578}\u{FE0F}', titleKey: 'forest_info.boss40.boss.web_title', descKey: 'forest_info.boss40.boss.web_desc' }
+            { iconImage: 'assets/enemies/forest_world/obstacle_thorns.webp', iconAlt: 'Arvores Antigas', titleKey: 'forest_info.boss40.boss.thorns_title', descKey: 'forest_info.boss40.boss.thorns_desc' },
+            { icon: '\u{1FA79}', titleKey: 'forest_info.boss40.boss.roots_title', descKey: 'forest_info.boss40.boss.roots_desc' },
+            { iconImage: 'assets/enemies/forest_world/power_thorns.webp', iconAlt: 'Selo Espinhoso', titleKey: 'forest_info.boss40.boss.web_title', descKey: 'forest_info.boss40.boss.web_desc' }
         ],
         items: [
-            { icon: '\u{1F343}', titleKey: 'forest_info.items.leaf_title', descKey: 'forest_info.items.leaf_desc' },
-            { icon: '\u{2620}\u{FE0F}', titleKey: 'forest_info.items.poison_title', descKey: 'forest_info.items.poison_desc' },
-            { icon: '\u{1F344}', titleKey: 'forest_info.items.mushroom_title', descKey: 'forest_info.items.mushroom_desc' }
+            { iconImage: 'assets/enemies/forest_world/item_leaf.webp', iconAlt: 'Adaga magica', titleKey: 'forest_info.items.leaf_title', descKey: 'forest_info.items.leaf_desc' },
+            { iconImage: 'assets/enemies/forest_world/item_poison.webp', iconAlt: 'Clava de Sylvaris', titleKey: 'forest_info.items.poison_title', descKey: 'forest_info.items.poison_desc' },
+            { iconImage: 'assets/enemies/forest_world/item_mushroom.webp', iconAlt: 'Espinho Mortal', titleKey: 'forest_info.items.mushroom_title', descKey: 'forest_info.items.mushroom_desc' }
         ],
         heroes: INFO_CARD_HEROES
     },
@@ -1119,14 +1132,29 @@ flushSaveGameState() {
     }
 
     loadProgress() {
-        return runLoadProgress(this, {
-            debugUnlockAllAdventure: DEBUG_UNLOCK_ALL_ADVENTURE,
-            debugUnlockAllAdventureLevel: DEBUG_UNLOCK_ALL_ADVENTURE_LEVEL
-        });
+        return runLoadProgress(this);
     }
 
     saveProgress(levelId) {
         runSaveProgress(this, levelId);
+    }
+
+    isAdventureLevelUnlocked(levelId) {
+        return runIsAdventureLevelUnlocked(this, levelId, {
+            debugUnlockAllAdventure: DEBUG_UNLOCK_ALL_ADVENTURE
+        });
+    }
+
+    usesAdventureUnlockDebug() {
+        return DEBUG_UNLOCK_ALL_ADVENTURE === true;
+    }
+
+    getCompletedAdventureLevels() {
+        return runGetCompletedAdventureLevels(this);
+    }
+
+    markAdventureLevelCompleted(levelId) {
+        runMarkAdventureLevelCompleted(this, levelId);
     }
 
     // ============================================
@@ -1385,6 +1413,18 @@ flushSaveGameState() {
 
     handlePieceClick(index) {
         runHandlePieceClick(this, index);
+    }
+
+    isLeftDockSealed() {
+        return runIsLeftDockSealed(this);
+    }
+
+    sealLeftDock() {
+        return runSealLeftDock(this);
+    }
+
+    unsealLeftDock() {
+        return runUnsealLeftDock(this);
     }
 
     

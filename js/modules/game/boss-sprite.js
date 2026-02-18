@@ -55,6 +55,7 @@ export function applyBossSprite(game, avatarElement) {
     const world = worldMatch ? worldMatch[1] : 'guardian';
     const fileName = spriteId.replace(`${world}_`, '');
     const folder = world === 'guardian' ? 'guardian' : `${world}_world`;
+
     const pathWebP = `assets/enemies/${folder}/${fileName}.webp`;
     const pathPng = `assets/enemies/${folder}/${fileName}.png`;
 

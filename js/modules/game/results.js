@@ -144,6 +144,10 @@ export function gameWon(game, collectedGoals = {}, earnedRewards = [], deps = {}
     }
 
     if (game.currentMode === 'adventure') {
+        if (game.currentLevelConfig && typeof game.markAdventureLevelCompleted === 'function') {
+            game.markAdventureLevelCompleted(game.currentLevelConfig.id);
+        }
+
         game.awardXP(xpRewards.levelComplete || 0, 'Conclusao de fase');
 
         if (game.bossState.active && game.currentLevelConfig?.boss) {
@@ -205,7 +209,7 @@ export function gameWon(game, collectedGoals = {}, earnedRewards = [], deps = {}
         if (guardianPowerupSlot) {
             const drop = game.rollAdventurePowerupReward();
             if (drop) {
-                const icon = emojiMap[drop.type] || '✨';
+                const icon = emojiMap[drop.type] || '\u2728';
                 if (guardianPowerupIcon) guardianPowerupIcon.textContent = icon;
                 if (drop.isFull) {
                     guardianPowerupSlot.classList.add('reward-locked');

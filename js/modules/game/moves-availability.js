@@ -58,6 +58,7 @@ export function checkMovesAvailable(game) {
 
     const pieces = [];
     for (let i = 0; i < hand.length; i++) {
+        if (i === 0 && game.isLeftDockSealed && game.isLeftDockSealed()) continue;
         const p = hand[i];
         if (p) pieces.push(p);
     }

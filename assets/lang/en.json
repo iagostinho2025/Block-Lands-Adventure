@@ -1,178 +1,175 @@
 {
-    "app": {
-        "title": "Block Lands: Adventure",
-        "version": "Block Lands: Adventure v1.0.4"
+	"app": {
+		"title": "Block Lands: Adventure",
+		"version": "Block Lands: Adventure v1.0.4"
 	},
-    "settings": {
-        "title": "Settings",
-        "audio_title": "AUDIO & EFFECTS",
-        "music": "Music",
-        "sfx": "Sound Effects",
-        "haptics": "Haptic Feedback",
-        "performance": "Performance",
-        "performance_auto": "Auto",
-        "performance_quality": "Quality",
-        "performance_stable60": "Stable 60 FPS",
-        "lang_title": "LANGUAGE",
-        "data_title": "DATA",
-        "reset_btn": "Reset Progress",
-        "reset_confirm": "Are you sure? This will wipe all progress!",
-        "version": "Version"	
-    },
-    "loading": {
-        "connecting": "Connecting to servers...",
-        "polishing": "Polishing swords...",
-        "mapping": "Drawing maps...",
-        "summoning": "Summoning bosses...",
-        "finalizing": "Finalizing...",
-        "start_msg": "Starting journey..."
-    },
-    "sidebar": {
-        "greeting": "Welcome",
-        "level_prefix": "Level",
-        "achievements": "Achievements",
-        "store": "Master's Shop",
-        "how_to_play": "How to Play",
-        "settings": "Settings",
-        "language": "Language",
-        "terms": "Terms & Privacy"
-    },
-    "menu": {
-        "modes_title": "GAME MODES",
-        "classic_title": "Classic Mode",
-        "classic_desc": "No time limit, just relax.",
-        "adventure_title": "Adventure Mode",
-        "adventure_desc": "Defeat bosses and advance.",
-        "blitz_title": "Blitz Mode",
-        "blitz_desc": "Race against time!",
-        "tag_new": "New",
-        "blitz_coming_soon": "Blitz Mode: Coming Soon! ⚡"
-    },
-    "story_slides": {
-        "1": "My name is Thalion. I am an elf from the forest.",
-        "2": "Tonight, everything changed. The Dark Wizard attacked our village.",
-        "3": "My family... my friends... all taken by the dark smoke.",
-        "4": "Nyx and I tried to fight, but we are too young.",
-        "5": "We need a Champion to reach the Dark Castle.",
-        "6": "You... carry the power we need. Which path will you choose?"
-    },
-    "story_guardian_gate_opening": "The Guardian of Worlds has fallen, and the Gate opens with an ancient roar.\n\nA distant flame lights the horizon: the Land of Fire calls for the first trial.",
-    "story_fire_ignis_aftermath": "The Fire Titan has fallen and the volcano's flames have subsided. From the ashes, a trail of embers reveals an ancient path.\n\nBut the heat was only the first trial... In the distance, the Black Forest stirs — and something within watches every step.",
-    "story_forest_aracna_aftermath": "Arachna's webs have unraveled and silence has claimed the Black Forest. Between ancient roots, a cold gleam appears: the path to the Eternal Mountains.\n\nBut the mist keeps secrets... and something heavier stirs in the stone.",
-    "story_mountain_golem_aftermath": "With the Golem King defeated, the mountains fall silent. The stone yields, revealing an ancient buried passage.\n\nAhead, the wind carries sand and laments — the Desert of Death awaits.",
-    "story_desert_grok_aftermath": "The dust settles and Warlord Grok lies among the dunes. Between bones and ruins, a shadowed gate opens.\n\nThe Dark Castle rises on the horizon, and the air grows heavy with omen.",
-    "story_castle_dark_wizard_aftermath": "The Dark Wizard has fallen. The shadows recede and the castle finally grows quiet.\n\nBut peace is fragile... and the tale of Block Lands is only beginning.",
-    "worlds": {
-        "map_title": "World Map",
-        "tutorial": "The Gate",
-        "fire": "Land of Fire",
-        "forest": "Black Forest",
-        "mountain": "Iron Mountain",
-        "desert": "Desert of Death",
-        "castle": "Dark Castle",
-        "locked_msg": "WORLD LOCKED"
-    },
-    "bosses": {
-        "guardian": "Guardian",
-        "ignis": "Ignis",
-        "magmor": "Magmor",
-        "pyra": "Infernal Phoenix",
-        "wolf_alpha": "Alpha Wolf",
-        "ent_ancient": "Ancient Ent",
-        "aracna": "Arachna",
-        "troll": "Troll",
-        "giant": "Giant",
-        "golem_king": "Golem King",
-        "mummy": "Mummy",
-        "scorpion": "Scorpion",
-        "warlord_grok": "Warlord Grok",
-        "gargoyle": "Gargoyle",
-        "knight": "Shadow Knight",
-        "dark_wizard": "Dark Wizard",
-        "defeated": "DEFEATED"
-    },
-    "game": {
-        "hero_thalion_ready": "THALION READY!",
-        "hero_nyx_ready": "NYX READY!",
-        "hero_player_ready": "SWORD READY!",
-        "aim_single": "AIM: SINGLE TARGET",
-        "aim_thalion": "AIM: 1 BLOCKS",
-        "aim_nyx": "AIM: 3 BLOCKS",
-        "aim_player": "AIM: DOUBLE SLASH",
-        "magnet_select": "SELECT A BLOCK",
-        "magnet_dest": "CHOOSE DESTINATION",
+	"settings": {
+		"title": "Settings",
+		"audio_title": "AUDIO & EFFECTS",
+		"music": "Music",
+		"sfx": "Sound Effects",
+		"haptics": "Haptic Feedback",
+		"performance": "Performance",
+		"performance_auto": "Auto",
+		"performance_quality": "Quality",
+		"performance_stable60": "Stable 60 FPS",
+		"lang_title": "LANGUAGE",
+		"data_title": "DATA",
+		"reset_btn": "Reset Progress",
+		"reset_confirm": "Are you sure? This will wipe all progress!",
+		"version": "Version"
+	},
+	"loading": {
+		"connecting": "Connecting to servers...",
+		"polishing": "Polishing swords...",
+		"mapping": "Drawing maps...",
+		"summoning": "Summoning bosses...",
+		"finalizing": "Finalizing...",
+		"start_msg": "Starting journey..."
+	},
+	"sidebar": {
+		"greeting": "Welcome",
+		"level_prefix": "Level",
+		"achievements": "Achievements",
+		"store": "Master's Shop",
+		"how_to_play": "How to Play",
+		"settings": "Settings",
+		"language": "Language",
+		"terms": "Terms & Privacy"
+	},
+	"menu": {
+		"modes_title": "GAME MODES",
+		"classic_title": "Classic Mode",
+		"classic_desc": "No time limit, just relax.",
+		"adventure_title": "Adventure Mode",
+		"adventure_desc": "Defeat bosses and advance.",
+		"blitz_title": "Blitz Mode",
+		"blitz_desc": "Race against time!",
+		"tag_new": "New",
+		"blitz_coming_soon": "Blitz Mode: Coming Soon!"
+	},
+	"story_slides": {
+		"1": "My name is Thalion. I am an elf from the forest.",
+		"2": "Tonight, everything changed. The Dark Wizard attacked our village.",
+		"3": "My family... my friends... all taken by the dark smoke.",
+		"4": "Nyx and I tried to fight, but we are too young.",
+		"5": "We need a Champion to reach the Dark Castle.",
+		"6": "You... carry the power we need. Which path will you choose?"
+	},
+	"story_guardian_gate_opening": "The Guardian of Worlds has fallen, and the Gate opens with an ancient roar.\n\nA distant flame lights the horizon: the Land of Fire calls for the first trial.",
+	"story_fire_ignis_aftermath": "The Fire Titan has fallen and the volcano's flames have subsided. From the ashes, a trail of embers reveals an ancient path.\n\nBut the heat was only the first trial... In the distance, the Black Forest stirs - and something within watches every step.",
+	"story_forest_aracna_aftermath": "Arachna's webs have unraveled and silence has claimed the Black Forest. Between ancient roots, a cold gleam appears: the path to the Eternal Mountains.\n\nBut the mist keeps secrets... and something heavier stirs in the stone.",
+	"story_mountain_golem_aftermath": "With the Golem King defeated, the mountains fall silent. The stone yields, revealing an ancient buried passage.\n\nAhead, the wind carries sand and laments - the Desert of Death awaits.",
+	"story_desert_grok_aftermath": "The dust settles and Warlord Grok lies among the dunes. Between bones and ruins, a shadowed gate opens.\n\nThe Dark Castle rises on the horizon, and the air grows heavy with omen.",
+	"story_castle_dark_wizard_aftermath": "The Dark Wizard has fallen. The shadows recede and the castle finally grows quiet.\n\nBut peace is fragile... and the tale of Block Lands is only beginning.",
+	"worlds": {
+		"map_title": "World Map",
+		"tutorial": "The Gate",
+		"fire": "Land of Fire",
+		"forest": "Black Forest",
+		"mountain": "Iron Mountain",
+		"desert": "Desert of Death",
+		"castle": "Dark Castle",
+		"locked_msg": "WORLD LOCKED"
+	},
+	"bosses": {
+		"guardian": "Guardian",
+		"ignis": "Ignis",
+		"magmor": "Magmor",
+		"pyra": "Infernal Phoenix",
+		"wolf_alpha": "Alpha Wolf",
+		"ent_ancient": "Ancient Ent",
+		"aracna": "Arachna",
+		"troll": "Troll",
+		"giant": "Giant",
+		"golem_king": "Golem King",
+		"mummy": "Mummy",
+		"scorpion": "Scorpion",
+		"warlord_grok": "Warlord Grok",
+		"gargoyle": "Gargoyle",
+		"knight": "Shadow Knight",
+		"dark_wizard": "Dark Wizard",
+		"defeated": "DEFEATED"
+	},
+	"game": {
+		"hero_thalion_ready": "THALION READY!",
+		"hero_nyx_ready": "NYX READY!",
+		"hero_player_ready": "SWORD READY!",
+		"aim_single": "AIM: SINGLE TARGET",
+		"aim_thalion": "AIM: 1 BLOCKS",
+		"aim_nyx": "AIM: 3 BLOCKS",
+		"aim_player": "AIM: DOUBLE SLASH",
+		"magnet_select": "SELECT A BLOCK",
+		"magnet_dest": "CHOOSE DESTINATION",
 		"hero_mage_ready": "MAGE READY!",
-        "aim_mage": "AIM: DIVINE LIGHT"
-    },
-    "ui": {
-        "victory": "Victory!",
-        "game_over": "Game Over",
-        "objectives": "Goals",
-        "progress": "Progress",
-        "rewards": "Rewards",
-        "score": "Score:",
-        "btn_continue": "Continue",
-        "btn_back": "Back",
-        "btn_restart": "Restart",
-        "btn_menu": "Menu",
-        "combo": "COMBO"
-    },
-    "feedback": {
-        "good": "GOOD!",
-        "great": "GREAT!",
-        "excellent": "EXCELLENT!",
-        "perfect": "PERFECT!",
-        "wow": "WOW!",
-        "holycow": "HOLY COW!!",
-        "unreal": "UNREAL!!!"
-    },
-    "hero_select": {
-        "title": "Choose Your Champion",
-        "subtitle": "Who will lead the charge against the shadows?"
-    },
-    "heroes": {
-        "warrior_name": "The Warrior",
-        "warrior_desc": "Wielder of a sword enchanted with ancient fire. He performs two sequential strikes, hitting the target column and the next one.",
-        "warrior_skill": "Flame Blade",
-        "warrior_effect": "Double Vertical Slash (6 Blocks)",
-        "mage_name": "The Mage",
-        "mage_desc": "Guardian of ancient light. She summons magic that purifies a wide area, hitting the center and sides.",
-        "mage_skill": "Divine Light",
-        "mage_effect": "Rectangular Area (3x2)",
-        "label_skill": "Special Ability:",
-        "tag_damage": "⚔️ Raw Damage",
-        "tag_easy": "⭐ Easy",
-        "tag_control": "✨ Control",
-        "tag_tactical": "⭐ Tactical"
-    },
-    "story_nav": {
-        "skip": "Skip",
-        "next": "Continue"
-    },
+		"aim_mage": "AIM: DIVINE LIGHT"
+	},
+	"ui": {
+		"victory": "Victory!",
+		"game_over": "Game Over",
+		"objectives": "Goals",
+		"progress": "Progress",
+		"rewards": "Rewards",
+		"score": "Score:",
+		"btn_continue": "Continue",
+		"btn_back": "Back",
+		"btn_restart": "Restart",
+		"btn_menu": "Menu",
+		"combo": "COMBO"
+	},
+	"feedback": {
+		"good": "GOOD!",
+		"great": "GREAT!",
+		"excellent": "EXCELLENT!",
+		"perfect": "PERFECT!",
+		"wow": "WOW!",
+		"holycow": "HOLY COW!!",
+		"unreal": "UNREAL!!!"
+	},
+	"hero_select": {
+		"title": "Choose Your Champion",
+		"subtitle": "Who will lead the charge against the shadows?"
+	},
+	"heroes": {
+		"warrior_name": "The Warrior",
+		"warrior_desc": "Wielder of a sword enchanted with ancient fire. He performs two sequential strikes, hitting the target column and the next one.",
+		"warrior_skill": "Flame Blade",
+		"warrior_effect": "Double Vertical Slash (6 Blocks)",
+		"mage_name": "The Mage",
+		"mage_desc": "Guardian of ancient light. She summons magic that purifies a wide area, hitting the center and sides.",
+		"mage_skill": "Divine Light",
+		"mage_effect": "Rectangular Area (3x2)",
+		"label_skill": "Special Ability:",
+		"tag_damage": "Raw Damage",
+		"tag_easy": "Easy",
+		"tag_control": "Control",
+		"tag_tactical": "Tactical"
+	},
+	"story_nav": {
+		"skip": "Skip",
+		"next": "Continue"
+	},
 	"hero_loading": {
-        "warrior_1": "Equipping armor...",
-        "warrior_2": "Sharpening blade...",
-        "mage_1": "Opening grimoire...",
-        "mage_2": "Channeling mana...",
-        "common": "Entering the Gate..."
-    },
+		"warrior_1": "Equipping armor...",
+		"warrior_2": "Sharpening blade...",
+		"mage_1": "Opening grimoire...",
+		"mage_2": "Channeling mana...",
+		"common": "Entering the Gate..."
+	},
 	"campfire": {
-        "text": "The campfire crackles under the moonlight. The path to the Dark Castle is sealed by ancient magic.\n\nTo proceed, you must prove your worth by defeating the **Guardian of the Worlds**.",
-        "btn_start": "🔥 Face the Guardian"
-    },
+		"text": "The campfire crackles under the moonlight. The path to the Dark Castle is sealed by ancient magic.\n\nTo proceed, you must prove your worth by defeating the **Guardian of the Worlds**.",
+		"btn_start": "Face the Guardian"
+	},
 	"classic": {
-        "title": "Classic Mode",
-        "score": "Score",
-        "level": "Level",
-        "best": "Best",
-        "lines": "Lines",
-        "combo": "COMBO",
-        "feedback_good": "GOOD!",
-        "feedback_great": "GREAT!",
-        "feedback_excellent": "EXCELLENT!",
-        "feedback_perfect": "PERFECT!",
-        "feedback_unreal": "UNREAL!!!"
-    },
+		"best": "Best",
+		"result_title": "Result",
+		"result_time": "Time",
+		"result_score": "Score",
+		"result_xp": "XP earned",
+		"result_lines": "Lines",
+		"result_combo": "Best combo",
+		"result_new_record": "New record!"
+	},
 	"missions": {
 		"clear_2x": "Clear 2 lines at once (2x)",
 		"combo_3x": "Make combo 3x",
@@ -307,10 +304,11 @@
 	},
 	"guardian_info": {
 		"title": "Guardian of Worlds",
-		"subtitle": "The realm's threshold — record your first steps",
+		"subtitle": "The realm's threshold - record your first steps",
 		"sections": {
 			"boss_powers": "Boss Powers",
 			"relics": "World Items",
+			"story": "Story",
 			"heroes": "Hero Powers"
 		},
 		"boss": {
@@ -321,11 +319,11 @@
 		},
 		"items": {
 			"amulet_title": "Amulet",
-			"amulet_desc": "Common — deals 1 damage to the boss.",
+			"amulet_desc": "Common - deals 1 damage to the boss.",
 			"dagger_title": "Dagger",
-			"dagger_desc": "Rare — deals 3 damage to the boss.",
+			"dagger_desc": "Rare - deals 3 damage to the boss.",
 			"key_title": "Ancient Key",
-			"key_desc": "Epic — deals 5 damage to the boss."
+			"key_desc": "Epic - deals 5 damage to the boss."
 		},
 		"heroes": {
 			"thalion_title": "Thalion",
@@ -341,7 +339,7 @@
 	"fire_info": {
 		"elite10": {
 			"title": "Magmor the Relentless",
-			"subtitle": "Fire Elite — Level 10",
+			"subtitle": "Fire Elite - Level 10",
 			"boss": {
 				"coal_title": "Living Coal",
 				"coal_desc": "Every 5 turns, creates Coal in a safe empty cell."
@@ -349,7 +347,7 @@
 		},
 		"elite15": {
 			"title": "Infernal Phoenix",
-			"subtitle": "Fire Elite — Level 15",
+			"subtitle": "Fire Elite - Level 15",
 			"boss": {
 				"regen_title": "Rebirth",
 				"regen_desc": "If 3 turns pass without damage, regenerates 2 HP."
@@ -357,7 +355,7 @@
 		},
 		"boss20": {
 			"title": "Ignis, Lord of Flames",
-			"subtitle": "Fire Boss — Level 20",
+			"subtitle": "Fire Boss - Level 20",
 			"boss": {
 				"coal_title": "Living Coal",
 				"coal_desc": "Every 5 turns, creates Coal in a safe empty cell.",
@@ -369,57 +367,60 @@
 		},
 		"items": {
 			"fire_title": "Fire",
-			"fire_desc": "Common — deals 1 damage to the boss.",
+			"fire_desc": "Common - deals 1 damage to the boss.",
 			"heart_title": "Blazing Heart",
-			"heart_desc": "Rare — deals 3 damage to the boss.",
+			"heart_desc": "Rare - deals 3 damage to the boss.",
 			"collision_title": "Collision",
-			"collision_desc": "Epic — deals 5 damage to the boss."
+			"collision_desc": "Epic - deals 5 damage to the boss."
 		}
 	},
 	"forest_info": {
 		"elite30": {
-			"title": "Alpha Wolf",
-			"subtitle": "Forest Elite — Level 30",
+			"title": "Fenrir, the Wild Guardian",
+			"subtitle": "Forest Elite - Level 30",
+			"story": "Fenrir was born as guardian of the ancient trails of the Black Forest. When Sylvaris' corruption reached the roots, his protective instinct turned to fury. Now he hunts intruders and turns leaves into living claws to block all advance. Defeating him is the first step to freeing the forest.",
 			"boss": {
-				"thorns_title": "Predatory Thorns",
+				"thorns_title": "Wild Claws",
 				"thorns_desc": "Every 4 turns, turns Leaves into Thorns."
 			}
 		},
 		"elite35": {
-			"title": "Ancient Ent",
-			"subtitle": "Forest Elite — Level 35",
+			"title": "Arachna, Mother of Webs",
+			"subtitle": "Forest Elite - Level 35",
+			"story": "Arachna lurks in the depths of the Black Forest.\nPatient. Silent. Relentless.\nHer webs do not only trap \u2014 they consume.\nEvery step in her territory is a sentence.",
 			"boss": {
-				"roots_title": "Living Roots",
-				"roots_desc": "Every 3 turns, creates Thorns in a safe empty cell.",
+				"roots_title": "Paralyzing Webs",
+				"roots_desc": "Every 3 turns, creates webs in an empty cell to make moves harder.",
 				"regen_title": "Ancient Sap",
 				"regen_desc": "Every 5 turns, regenerates 3 HP."
 			}
 		},
 		"boss40": {
-			"title": "Arachna, Mother of Webs",
-			"subtitle": "Forest Boss — Level 40",
+			"title": "Sylvaris, Heart of the Black Forest",
+			"subtitle": "Forest Boss - Level 40",
+			"story": "Sylvaris rises as the very essence of the Black Forest.\nAncient. Colossal. Unstoppable.\nIts roots suffocate, crush, and consume without distinction.\nOnly the strongest survive its presence.",
 			"boss": {
-				"thorns_title": "Predatory Thorns",
-				"thorns_desc": "Every 4 turns, turns Leaves into Thorns.",
-				"roots_title": "Living Roots",
-				"roots_desc": "Every 3 turns, creates Thorns in a safe empty cell.",
-				"web_title": "Venomous Web",
-				"web_desc": "Every 6 turns, turns Mushrooms into Web."
+				"thorns_title": "Ancient Trees",
+				"thorns_desc": "Every 4 turns, turns daggers into trees, blocking this item's damage.",
+				"roots_title": "Ancestral Regeneration",
+				"roots_desc": "Every 6 turns, regenerates +5 HP.",
+				"web_title": "Supreme Seal",
+				"web_desc": "Every 6 turns, seals the left dock and only releases it after you clear a line."
 			}
 		},
 		"items": {
 			"leaf_title": "Leaf",
-			"leaf_desc": "Common — deals 1 damage to the boss.",
+			"leaf_desc": "Common - deals 1 damage to the boss.",
 			"poison_title": "Poison",
-			"poison_desc": "Rare — deals 3 damage to the boss.",
-			"mushroom_title": "Mushroom",
-			"mushroom_desc": "Epic — deals 5 damage to the boss."
+			"poison_desc": "Rare - deals 3 damage to the boss.",
+			"mushroom_title": "Mortal Thorn",
+			"mushroom_desc": "Epic - deals 5 damage to the boss."
 		}
 	},
 	"mountain_info": {
 		"elite50": {
 			"title": "Troll",
-			"subtitle": "Mountain Elite — Level 50",
+			"subtitle": "Mountain Elite - Level 50",
 			"boss": {
 				"rocks_title": "Living Rocks",
 				"rocks_desc": "Every 5 turns, creates Rocks in a safe empty cell."
@@ -427,7 +428,7 @@
 		},
 		"elite55": {
 			"title": "Giant",
-			"subtitle": "Mountain Elite — Level 55",
+			"subtitle": "Mountain Elite - Level 55",
 			"boss": {
 				"crush_title": "Crush Pickaxes",
 				"crush_desc": "Every 4 turns, turns Pickaxes into Rocks.",
@@ -437,7 +438,7 @@
 		},
 		"boss60": {
 			"title": "Golem King",
-			"subtitle": "Mountain Boss — Level 60",
+			"subtitle": "Mountain Boss - Level 60",
 			"boss": {
 				"rocks_title": "Living Rocks",
 				"rocks_desc": "Every 5 turns, creates Rocks in a safe empty cell.",
@@ -449,17 +450,17 @@
 		},
 		"items": {
 			"gold_title": "Gold",
-			"gold_desc": "Common — deals 1 damage to the boss.",
+			"gold_desc": "Common - deals 1 damage to the boss.",
 			"pickaxe_title": "Pickaxe",
-			"pickaxe_desc": "Rare — deals 3 damage to the boss.",
+			"pickaxe_desc": "Rare - deals 3 damage to the boss.",
 			"iron_title": "Iron",
-			"iron_desc": "Epic — deals 5 damage to the boss."
+			"iron_desc": "Epic - deals 5 damage to the boss."
 		}
 	},
 	"desert_info": {
 		"elite70": {
 			"title": "Mummy",
-			"subtitle": "Desert Elite — Level 70",
+			"subtitle": "Desert Elite - Level 70",
 			"boss": {
 				"quicksand_title": "Quicksand",
 				"quicksand_desc": "Every 6 turns, turns Bones into Quicksand."
@@ -467,7 +468,7 @@
 		},
 		"elite75": {
 			"title": "Scorpion",
-			"subtitle": "Desert Elite — Level 75",
+			"subtitle": "Desert Elite - Level 75",
 			"boss": {
 				"sand_poison_title": "Sand Venom",
 				"sand_poison_desc": "Every 4 turns, turns Sand into Quicksand.",
@@ -477,7 +478,7 @@
 		},
 		"boss80": {
 			"title": "Warlord Grok",
-			"subtitle": "Desert Boss — Level 80",
+			"subtitle": "Desert Boss - Level 80",
 			"boss": {
 				"bone_quicksand_title": "Quicksand",
 				"bone_quicksand_desc": "Every 6 turns, turns Bones into Quicksand.",
@@ -489,17 +490,17 @@
 		},
 		"items": {
 			"bone_title": "Bone",
-			"bone_desc": "Common — deals 1 damage to the boss.",
+			"bone_desc": "Common - deals 1 damage to the boss.",
 			"sand_title": "Sand",
-			"sand_desc": "Rare — deals 3 damage to the boss.",
+			"sand_desc": "Rare - deals 3 damage to the boss.",
 			"skull_title": "Skull",
-			"skull_desc": "Epic — deals 5 damage to the boss."
+			"skull_desc": "Epic - deals 5 damage to the boss."
 		}
 	},
 	"castle_info": {
 		"elite90": {
 			"title": "Gargoyle",
-			"subtitle": "Castle Elite — Level 90",
+			"subtitle": "Castle Elite - Level 90",
 			"boss": {
 				"magic_shadow_title": "Creeping Shadows",
 				"magic_shadow_desc": "Every 5 turns, turns Magic into Shadows.",
@@ -509,7 +510,7 @@
 		},
 		"elite95": {
 			"title": "Shadow Knight",
-			"subtitle": "Castle Elite — Level 95",
+			"subtitle": "Castle Elite - Level 95",
 			"boss": {
 				"magic_shadow_title": "Creeping Shadows",
 				"magic_shadow_desc": "Every 5 turns, turns Magic into Shadows.",
@@ -519,7 +520,7 @@
 		},
 		"boss100": {
 			"title": "Dark Wizard",
-			"subtitle": "Castle Boss — Level 100",
+			"subtitle": "Castle Boss - Level 100",
 			"boss": {
 				"magic_shadow_title": "Creeping Shadows",
 				"magic_shadow_desc": "Every 5 turns, turns Magic into Shadows.",
@@ -533,24 +534,13 @@
 		},
 		"items": {
 			"magic_title": "Magic",
-			"magic_desc": "Common — deals 1 damage to the boss.",
+			"magic_desc": "Common - deals 1 damage to the boss.",
 			"skull_title": "Skull",
-			"skull_desc": "Rare — deals 3 damage to the boss.",
+			"skull_desc": "Rare - deals 3 damage to the boss.",
 			"crystal_title": "Crystal",
-			"crystal_desc": "Epic — deals 5 damage to the boss."
+			"crystal_desc": "Epic - deals 5 damage to the boss."
 		}
 	},
-	"classic": {
-		"best": "Best",
-		"result_title": "Result",
-		"result_time": "Time",
-		"result_score": "Score",
-		"result_xp": "XP earned",
-		"result_lines": "Lines",
-		"result_combo": "Best combo",
-		"result_new_record": "New record!"
-	}
-	,
 	"blitz": {
 		"result_title": "Result",
 		"result_time": "Time",

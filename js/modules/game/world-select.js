@@ -72,7 +72,10 @@ export function showWorldSelect(game) {
         worldItem.style.zIndex = '10';
 
         let firstLevelId = world.levels[0].id;
-        const isLocked = currentSave < firstLevelId;
+        const unlockedByMethod = (typeof game.isAdventureLevelUnlocked === 'function')
+            ? game.isAdventureLevelUnlocked(firstLevelId)
+            : (currentSave >= firstLevelId);
+        const isLocked = !unlockedByMethod;
 
         if (world.id === 'tutorial_world' && currentSave === 0) {
             const hand = document.createElement('div');

@@ -33,7 +33,9 @@ export function runFlyAnimation(game, r, c, key, emoji, onImpact = null) {
             targetEl = document.getElementById('boss-hp-avatar') || document.getElementById('boss-target');
         }
     } else {
-        targetEl = document.getElementById(`goal-item-${key}`);
+        targetEl =
+            document.querySelector(`#goal-item-${key} .goal-circle`) ||
+            document.getElementById(`goal-item-${key}`);
     }
     if (!targetEl) {
         if (typeof onImpact === 'function') onImpact();
@@ -160,6 +162,10 @@ export function getBossImpactTarget(game, targetEl) {
     if (game.bossState?.active && game.getFireBossOverlayConfig() && game._ignisOverlayImgEl) {
         return game._ignisOverlayImgEl;
     }
+    if (targetEl && targetEl.id && targetEl.id.startsWith('goal-item-')) {
+        const circle = targetEl.querySelector('.goal-circle');
+        if (circle) return circle;
+    }
     return targetEl;
 }
 
@@ -169,6 +175,61 @@ export function triggerPop(game, el) {
 
     const prevTimer = game._popTimers.get(el);
     if (prevTimer) clearTimeout(prevTimer);
+
+    const goalItem = el.classList.contains('goal-item') ? el : el.closest?.('.goal-item');
+    const goalCircle = el.classList.contains('goal-circle')
+        ? el
+        : (goalItem ? goalItem.querySelector('.goal-circle') : null);
+    const goalSprite = goalCircle
+        ? goalCircle.querySelector('.goal-emoji.goal-sprite')
+        : null;
+
+    if (goalCircle) {
+        game.restartCssAnimationClass(goalCircle, 'goal-hit-pop');
+        game.restartCssAnimationClass(goalCircle, 'hit-pop');
+        if (goalSprite) game.restartCssAnimationClass(goalSprite, 'goal-sprite-hit-pop');
+        if (goalItem) game.restartCssAnimationClass(goalItem, 'goal-item-hit-pop');
+        // Fallback robusto: anima direto no elemento (não depende de CSS animation estar ativa).
+        if (typeof goalCircle.animate === 'function') {
+            goalCircle.animate(
+                [
+                    { transform: 'scale(1)', filter: 'brightness(1)' },
+                    { transform: 'scale(1.16)', filter: 'brightness(1.35)' },
+                    { transform: 'scale(1)', filter: 'brightness(1)' }
+                ],
+                { duration: 320, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' }
+            );
+        }
+        if (goalSprite && typeof goalSprite.animate === 'function') {
+            goalSprite.animate(
+                [
+                    { transform: 'scale(1)', filter: 'brightness(1)' },
+                    { transform: 'scale(1.32)', filter: 'brightness(1.7)' },
+                    { transform: 'scale(1)', filter: 'brightness(1)' }
+                ],
+                { duration: 360, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' }
+            );
+        }
+        if (goalItem && typeof goalItem.animate === 'function') {
+            goalItem.animate(
+                [
+                    { transform: 'translateY(0)' },
+                    { transform: 'translateY(-2px)' },
+                    { transform: 'translateY(0)' }
+                ],
+                { duration: 280, easing: 'ease-out' }
+            );
+        }
+
+        const timer = setTimeout(() => {
+            goalCircle.classList.remove('goal-hit-pop', 'hit-pop');
+            if (goalSprite) goalSprite.classList.remove('goal-sprite-hit-pop');
+            if (goalItem) goalItem.classList.remove('goal-item-hit-pop');
+            game._popTimers.delete(el);
+        }, 460);
+        game._popTimers.set(el, timer);
+        return;
+    }
 
     game.restartCssAnimationClass(el, 'hit-pop');
 

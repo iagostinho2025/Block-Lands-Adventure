@@ -150,6 +150,10 @@ export function checkLines(game, dropX, dropY, deps = {}) {
     game.endGoalsBatch();
 
     if (linesCleared > 0) {
+        if (game.currentMode === 'adventure' && game.unsealLeftDock && game.isLeftDockSealed && game.isLeftDockSealed()) {
+            game.unsealLeftDock();
+        }
+
         game.renderGrid();
 
         const lineXp = linesCleared * xpRewards.lineClear;

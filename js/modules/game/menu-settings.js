@@ -77,20 +77,13 @@ export function setupMenuEvents(game) {
     };
 
     const bindGuardianInfo = () => {
-        const helpBtn = document.getElementById('gear-help-btn');
+        const helpBtn = document.getElementById('game-info-btn');
         if (helpBtn) {
             const newHelp = helpBtn.cloneNode(true);
             helpBtn.parentNode.replaceChild(newHelp, helpBtn);
             newHelp.addEventListener('click', (e) => {
                 e.stopPropagation();
                 if (game.audio) game.audio.playClick();
-                const gearOverlay = document.getElementById('gear-settings-overlay');
-                const gearBtn = document.getElementById('game-gear-btn');
-                if (gearOverlay) {
-                    gearOverlay.classList.add('hidden');
-                    gearOverlay.setAttribute('aria-hidden', 'true');
-                }
-                if (gearBtn) gearBtn.setAttribute('aria-expanded', 'false');
                 game.openInfoCard();
             });
         }

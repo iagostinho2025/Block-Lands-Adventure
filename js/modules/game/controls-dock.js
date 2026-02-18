@@ -233,6 +233,27 @@ export function handlePieceClick(game, index) {
     }
 }
 
+export function isLeftDockSealed(game) {
+    return !!(game._bossDockSeal && game._bossDockSeal.left);
+}
+
+export function sealLeftDock(game) {
+    if (!game._bossDockSeal) game._bossDockSeal = { left: false };
+    if (game._bossDockSeal.left) return false;
+    game._bossDockSeal.left = true;
+    game._movesAvailabilityCache = null;
+    game.renderDock();
+    return true;
+}
+
+export function unsealLeftDock(game) {
+    if (!game._bossDockSeal || !game._bossDockSeal.left) return false;
+    game._bossDockSeal.left = false;
+    game._movesAvailabilityCache = null;
+    game.renderDock();
+    return true;
+}
+
 export function renderDock(game) {
     if (game._renderDockLocked) {
         game._renderDockPending = true;
@@ -276,25 +297,34 @@ export function renderDock(game) {
         const slot = game._dockSlots[index];
         const piece = game.currentHand[index] || null;
         const layoutRef = piece ? (piece.layout || piece.matrix || null) : null;
+        const sealed = index === 0 && game.isLeftDockSealed && game.isLeftDockSealed();
         const prev = game._dockSlotState ? game._dockSlotState[index] : null;
 
         if (
             prev &&
             prev.pieceRef === piece &&
             prev.layoutRef === layoutRef &&
+            prev.sealed === sealed &&
             slot.firstChild
         ) {
             continue;
         }
 
         if (slot.firstChild) slot.innerHTML = '';
+        slot.classList.toggle('is-sealed-left', sealed);
 
-        if (piece) {
+        if (sealed) {
+            const seal = document.createElement('div');
+            seal.className = 'dock-seal-icon';
+            const spritePath = game.getItemSpritePathByKey('power_thorns') || 'assets/enemies/forest_world/power_thorns.webp';
+            seal.style.backgroundImage = `url('${spritePath}')`;
+            slot.appendChild(seal);
+        } else if (piece) {
             game.createDraggablePiece(piece, index, slot);
         }
 
         if (game._dockSlotState) {
-            game._dockSlotState[index] = { pieceRef: piece, layoutRef };
+            game._dockSlotState[index] = { pieceRef: piece, layoutRef, sealed };
         }
     }
 }

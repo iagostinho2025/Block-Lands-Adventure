@@ -38,7 +38,8 @@ export function loadProgress(game, deps = {}) {
     } = deps;
 
     const saved = localStorage.getItem('blocklands_progress_main');
-    const progress = saved ? parseInt(saved) : 0;
+    const parsed = saved ? parseInt(saved, 10) : 0;
+    const progress = Number.isFinite(parsed) ? parsed : 0;
 
     if (debugUnlockAllAdventure) {
         return Math.max(progress, debugUnlockAllAdventureLevel);
@@ -48,10 +49,46 @@ export function loadProgress(game, deps = {}) {
 }
 
 export function saveProgress(game, levelId) {
-    const currentSaved = game.loadProgress();
+    const raw = localStorage.getItem('blocklands_progress_main');
+    const parsed = raw ? parseInt(raw, 10) : 0;
+    const currentSaved = Number.isFinite(parsed) ? parsed : 0;
     if (levelId > currentSaved) {
         localStorage.setItem('blocklands_progress_main', levelId);
     }
+}
+
+export function isAdventureLevelUnlocked(game, levelId, deps = {}) {
+    const { debugUnlockAllAdventure = false } = deps;
+    if (debugUnlockAllAdventure) return true;
+    const currentProgress = game.loadProgress();
+    return levelId <= currentProgress;
+}
+
+export function getCompletedAdventureLevels(game) {
+    const raw = localStorage.getItem('blocklands_completed_levels');
+    if (!raw) return [];
+
+    try {
+        const parsed = JSON.parse(raw);
+        if (!Array.isArray(parsed)) return [];
+        const normalized = parsed
+            .map((v) => parseInt(v, 10))
+            .filter((v) => Number.isFinite(v));
+        return Array.from(new Set(normalized));
+    } catch (_) {
+        return [];
+    }
+}
+
+export function markAdventureLevelCompleted(game, levelId) {
+    const level = parseInt(levelId, 10);
+    if (!Number.isFinite(level)) return;
+
+    const current = getCompletedAdventureLevels(game);
+    if (current.includes(level)) return;
+
+    current.push(level);
+    localStorage.setItem('blocklands_completed_levels', JSON.stringify(current));
 }
 
 export function initProgressionUI(game) {
