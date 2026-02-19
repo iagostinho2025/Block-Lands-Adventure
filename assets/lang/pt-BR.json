@@ -424,6 +424,7 @@
 		"elite50": {
 			"title": "Troll",
 			"subtitle": "Elite da Montanha \u2014 N\u00edvel 50",
+			"story": "Brakkar \u00e9 a f\u00faria bruta da Montanha de Ferro.\nUma criatura de for\u00e7a brutal e destrui\u00e7\u00e3o sem controle.\nSuas investidas quebram pedra, a\u00e7o e ossos com a mesma facilidade.\nEnfrent\u00e1-lo \u00e9 sobreviver ao pr\u00f3prio colapso da montanha.",
 			"boss": {
 				"rocks_title": "Rochas Vivas",
 				"rocks_desc": "A cada 5 jogadas, cria Rochas em c\u00e9lula vazia segura."
@@ -432,6 +433,7 @@
 		"elite55": {
 			"title": "Gigante",
 			"subtitle": "Elite da Montanha \u2014 N\u00edvel 55",
+			"story": "Kolgar ergue-se acima das Montanhas Eternas como um colosso vivo.\nLento, por\u00e9m inevit\u00e1vel.\nCada passo faz a terra estremecer, lembrando que sua for\u00e7a n\u00e3o pode ser contida.\nDiante de Kolgar, at\u00e9 a montanha cede.",
 			"boss": {
 				"crush_title": "Esmagar Picaretas",
 				"crush_desc": "A cada 4 turnos, transforma Picaretas em Rochas.",
@@ -442,6 +444,7 @@
 		"boss60": {
 			"title": "Golem Rei",
 			"subtitle": "Boss da Montanha \u2014 N\u00edvel 60",
+			"story": "Dravok reina como o soberano imut\u00e1vel da Montanha de Ferro.\nUma entidade de pedra viva e for\u00e7a incompar\u00e1vel.\nSob sua vontade, rochas surgem, esmagam e aprisionam sem esfor\u00e7o.\nDesafi\u00e1-lo \u00e9 desafiar a pr\u00f3pria montanha.",
 			"boss": {
 				"rocks_title": "Rochas Vivas",
 				"rocks_desc": "A cada 5 jogadas, cria Rochas em c\u00e9lula vazia segura.",
@@ -452,11 +455,11 @@
 			}
 		},
 		"items": {
-			"gold_title": "Ouro",
+			"gold_title": "L\u00e2mina Talhada",
 			"gold_desc": "Comum \u2014 causa 1 de dano ao boss.",
-			"pickaxe_title": "Picareta",
+			"pickaxe_title": "Martelo das Runas",
 			"pickaxe_desc": "Raro \u2014 causa 3 de dano ao boss.",
-			"iron_title": "Ferro",
+			"iron_title": "Machado de Aetherium",
 			"iron_desc": "\u00c9pico \u2014 causa 5 de dano ao boss."
 		}
 	},

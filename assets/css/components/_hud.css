@@ -187,6 +187,24 @@
     background: linear-gradient(135deg, #15803d, #166534) !important;
 }
 
+#app.world-mountain.level-type-normal .type-gold-glow {
+    border-color: #D1D5DB;
+    box-shadow: 0 0 15px rgba(209, 213, 219, 0.22);
+    background: linear-gradient(135deg, #6B7280, #6B7280) !important;
+}
+
+#app.world-mountain.level-type-normal .type-pickaxe-glow {
+    border-color: #06B6D4;
+    box-shadow: 0 0 15px rgba(6, 182, 212, 0.2);
+    background: linear-gradient(135deg, #DB2777, #DB2777) !important;
+}
+
+#app.world-mountain.level-type-normal .type-iron-glow {
+    border-color: #78350F;
+    box-shadow: 0 0 15px rgba(120, 53, 15, 0.22);
+    background: linear-gradient(135deg, #F59E0B, #F59E0B) !important;
+}
+
 
 /* Informações (Texto embaixo) */
 .goal-info {

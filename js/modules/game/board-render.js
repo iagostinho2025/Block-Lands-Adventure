@@ -43,6 +43,8 @@ export function renderCell(game, div, cellData) {
         if (prevKey === 'E' && div.className === 'cell' && div.textContent === '') return;
         div.className = 'cell';
         if (div.textContent) div.textContent = '';
+        div.classList.remove('has-item-sprite');
+        div.style.removeProperty('--item-sprite');
         div._rk = 'E';
         return;
     }
@@ -52,6 +54,8 @@ export function renderCell(game, div, cellData) {
         if (prevKey !== key || div.className !== 'cell lava' || div.textContent !== '\u{1F30B}') {
             div.className = 'cell lava';
             div.textContent = '\u{1F30B}';
+            div.classList.remove('has-item-sprite');
+            div.style.removeProperty('--item-sprite');
             div._rk = key;
         }
         return;
@@ -62,8 +66,10 @@ export function renderCell(game, div, cellData) {
     const hasKey = !!keyLower;
 
     let emoji = '';
+    let spritePath = '';
     if (type === 'ITEM' || type === 'OBSTACLE') {
         emoji = game.getItemGlyph(cellData);
+        spritePath = game.getItemSpritePathByKey(keyLower) || '';
     }
 
     const useClassicColor =
@@ -72,7 +78,7 @@ export function renderCell(game, div, cellData) {
         cellData.colorId;
 
     const colorId = useClassicColor ? cellData.colorId : 0;
-    const nextKey = `F|${type}|${keyLower}|${emoji}|${colorId}`;
+    const nextKey = `F|${type}|${keyLower}|${emoji}|${spritePath}|${colorId}`;
     if (prevKey === nextKey) return;
 
     div.className = 'cell filled';
@@ -85,6 +91,15 @@ export function renderCell(game, div, cellData) {
 
     if (colorId) {
         div.classList.add(`classic-color-${colorId}`);
+    }
+
+    if (spritePath) {
+        const cssSpritePath = spritePath.startsWith('/') ? spritePath : `/${spritePath}`;
+        div.classList.add('has-item-sprite');
+        div.style.setProperty('--item-sprite', `url('${cssSpritePath}')`);
+    } else {
+        div.classList.remove('has-item-sprite');
+        div.style.removeProperty('--item-sprite');
     }
 
     if (emoji) div.textContent = emoji;

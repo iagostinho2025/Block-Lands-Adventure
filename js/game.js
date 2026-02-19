@@ -384,7 +384,25 @@ const ITEM_SPRITE_PATHS = {
     thorns: 'assets/enemies/forest_world/obstacle_thorns.webp',
     power_thorns: 'assets/enemies/forest_world/power_thorns.webp',
     claw: 'assets/enemies/forest_world/item_claw.webp',
-    web: 'assets/enemies/forest_world/obstacle_web.webp'
+    web: 'assets/enemies/forest_world/obstacle_web.webp',
+    // Mountain world (fallback default)
+    gold: 'assets/enemies/mountain_world/item_collect_common.webp',
+    pickaxe: 'assets/enemies/mountain_world/item_collect_rare.webp',
+    iron: 'assets/enemies/mountain_world/item_collect_epic.webp',
+    rocks: 'assets/enemies/mountain_world/item_obstaculo.webp',
+    debris: 'assets/enemies/mountain_world/item_obstaculo.webp'
+};
+
+const MOUNTAIN_COLLECT_SPRITES = {
+    gold: 'assets/enemies/mountain_world/item_collect_common.webp',
+    pickaxe: 'assets/enemies/mountain_world/item_collect_rare.webp',
+    iron: 'assets/enemies/mountain_world/item_collect_epic.webp'
+};
+
+const MOUNTAIN_DAMAGE_SPRITES = {
+    gold: 'assets/enemies/mountain_world/item_damage_common.webp',
+    pickaxe: 'assets/enemies/mountain_world/item_damage_rare.webp',
+    iron: 'assets/enemies/mountain_world/item_damage_epic.webp'
 };
 
 const INFO_CARD_HEROES = [
@@ -519,12 +537,13 @@ const INFO_CARD_DATA = {
         sealAltKey: 'mountain_info.elite50.title',
         titleKey: 'mountain_info.elite50.title',
         subtitleKey: 'mountain_info.elite50.subtitle',
+        storyKey: 'mountain_info.elite50.story',
         bossPowers: [
             { icon: '\u{1FAA8}', titleKey: 'mountain_info.elite50.boss.rocks_title', descKey: 'mountain_info.elite50.boss.rocks_desc' }
         ],
         items: [
-            { icon: '\u{1F4B0}', titleKey: 'mountain_info.items.gold_title', descKey: 'mountain_info.items.gold_desc' },
-            { icon: '\u{26CF}\u{FE0F}', titleKey: 'mountain_info.items.pickaxe_title', descKey: 'mountain_info.items.pickaxe_desc' }
+            { iconImage: 'assets/enemies/mountain_world/item_damage_common.webp', iconAlt: 'Item comum de dano', titleKey: 'mountain_info.items.gold_title', descKey: 'mountain_info.items.gold_desc' },
+            { iconImage: 'assets/enemies/mountain_world/item_damage_rare.webp', iconAlt: 'Item raro de dano', titleKey: 'mountain_info.items.pickaxe_title', descKey: 'mountain_info.items.pickaxe_desc' }
         ],
         heroes: INFO_CARD_HEROES
     },
@@ -534,14 +553,15 @@ const INFO_CARD_DATA = {
         sealAltKey: 'mountain_info.elite55.title',
         titleKey: 'mountain_info.elite55.title',
         subtitleKey: 'mountain_info.elite55.subtitle',
+        storyKey: 'mountain_info.elite55.story',
         bossPowers: [
             { icon: '\u{1FAA8}', titleKey: 'mountain_info.elite55.boss.crush_title', descKey: 'mountain_info.elite55.boss.crush_desc' },
             { icon: '\u{1F6E1}\u{FE0F}', titleKey: 'mountain_info.elite55.boss.armor_title', descKey: 'mountain_info.elite55.boss.armor_desc' }
         ],
         items: [
-            { icon: '\u{1F4B0}', titleKey: 'mountain_info.items.gold_title', descKey: 'mountain_info.items.gold_desc' },
-            { icon: '\u{26CF}\u{FE0F}', titleKey: 'mountain_info.items.pickaxe_title', descKey: 'mountain_info.items.pickaxe_desc' },
-            { icon: '\u{2699}\u{FE0F}', titleKey: 'mountain_info.items.iron_title', descKey: 'mountain_info.items.iron_desc' }
+            { iconImage: 'assets/enemies/mountain_world/item_damage_common.webp', iconAlt: 'Item comum de dano', titleKey: 'mountain_info.items.gold_title', descKey: 'mountain_info.items.gold_desc' },
+            { iconImage: 'assets/enemies/mountain_world/item_damage_rare.webp', iconAlt: 'Item raro de dano', titleKey: 'mountain_info.items.pickaxe_title', descKey: 'mountain_info.items.pickaxe_desc' },
+            { iconImage: 'assets/enemies/mountain_world/item_damage_epic.webp', iconAlt: 'Item épico de dano', titleKey: 'mountain_info.items.iron_title', descKey: 'mountain_info.items.iron_desc' }
         ],
         heroes: INFO_CARD_HEROES
     },
@@ -551,15 +571,16 @@ const INFO_CARD_DATA = {
         sealAltKey: 'mountain_info.boss60.title',
         titleKey: 'mountain_info.boss60.title',
         subtitleKey: 'mountain_info.boss60.subtitle',
+        storyKey: 'mountain_info.boss60.story',
         bossPowers: [
             { icon: '\u{1FAA8}', titleKey: 'mountain_info.boss60.boss.rocks_title', descKey: 'mountain_info.boss60.boss.rocks_desc' },
             { icon: '\u{1FAA8}', titleKey: 'mountain_info.boss60.boss.crush_title', descKey: 'mountain_info.boss60.boss.crush_desc' },
             { icon: '\u{1F4A5}', titleKey: 'mountain_info.boss60.boss.quake_title', descKey: 'mountain_info.boss60.boss.quake_desc' }
         ],
         items: [
-            { icon: '\u{1F4B0}', titleKey: 'mountain_info.items.gold_title', descKey: 'mountain_info.items.gold_desc' },
-            { icon: '\u{26CF}\u{FE0F}', titleKey: 'mountain_info.items.pickaxe_title', descKey: 'mountain_info.items.pickaxe_desc' },
-            { icon: '\u{2699}\u{FE0F}', titleKey: 'mountain_info.items.iron_title', descKey: 'mountain_info.items.iron_desc' }
+            { iconImage: 'assets/enemies/mountain_world/item_damage_common.webp', iconAlt: 'Item comum de dano', titleKey: 'mountain_info.items.gold_title', descKey: 'mountain_info.items.gold_desc' },
+            { iconImage: 'assets/enemies/mountain_world/item_damage_rare.webp', iconAlt: 'Item raro de dano', titleKey: 'mountain_info.items.pickaxe_title', descKey: 'mountain_info.items.pickaxe_desc' },
+            { iconImage: 'assets/enemies/mountain_world/item_damage_epic.webp', iconAlt: 'Item épico de dano', titleKey: 'mountain_info.items.iron_title', descKey: 'mountain_info.items.iron_desc' }
         ],
         heroes: INFO_CARD_HEROES
     },
@@ -1715,6 +1736,15 @@ getFlySpritePathByKey(key) {
     }
 
 getItemSpritePathByKey(key) {
+        const normalized = String(key || '').toLowerCase();
+        if (normalized === 'gold' || normalized === 'pickaxe' || normalized === 'iron') {
+            const world = this.getCurrentWorldConfig();
+            const levelType = this.currentLevelConfig?.type || 'normal';
+            if (this.currentMode === 'adventure' && world?.id === 'mountain_world') {
+                const mountainMap = levelType === 'normal' ? MOUNTAIN_COLLECT_SPRITES : MOUNTAIN_DAMAGE_SPRITES;
+                return mountainMap[normalized] || '';
+            }
+        }
         return runGetItemSpritePathByKey(this, key, { spritePaths: ITEM_SPRITE_PATHS });
     }
 

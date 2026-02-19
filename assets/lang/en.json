@@ -421,6 +421,7 @@
 		"elite50": {
 			"title": "Troll",
 			"subtitle": "Mountain Elite - Level 50",
+			"story": "Brakkar is the raw fury of Iron Mountain.\nA creature of brutal strength and uncontrolled destruction.\nHis charges shatter stone, steel, and bone with the same ease.\nFacing him means surviving the mountain's own collapse.",
 			"boss": {
 				"rocks_title": "Living Rocks",
 				"rocks_desc": "Every 5 turns, creates Rocks in a safe empty cell."
@@ -429,6 +430,7 @@
 		"elite55": {
 			"title": "Giant",
 			"subtitle": "Mountain Elite - Level 55",
+			"story": "Kolgar rises above the Eternal Mountains like a living colossus.\nSlow, yet inevitable.\nEach step makes the earth tremble, reminding all that his strength cannot be contained.\nBefore Kolgar, even the mountain yields.",
 			"boss": {
 				"crush_title": "Crush Pickaxes",
 				"crush_desc": "Every 4 turns, turns Pickaxes into Rocks.",
@@ -439,6 +441,7 @@
 		"boss60": {
 			"title": "Golem King",
 			"subtitle": "Mountain Boss - Level 60",
+			"story": "Dravok reigns as the unyielding sovereign of Iron Mountain.\nAn entity of living stone and unmatched strength.\nUnder his will, rocks rise, crush, and imprison without effort.\nTo challenge him is to challenge the mountain itself.",
 			"boss": {
 				"rocks_title": "Living Rocks",
 				"rocks_desc": "Every 5 turns, creates Rocks in a safe empty cell.",

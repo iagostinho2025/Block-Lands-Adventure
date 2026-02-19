@@ -335,38 +335,156 @@
 
 /* Ouro (Amarelo dourado) */
 .type-gold, .cell.filled.type-gold, .block-unit.type-gold {
-    background: linear-gradient(135deg, #ca8a04, #854d0e) !important;
+    background:
+        var(--item-sprite) center / 78% no-repeat,
+        linear-gradient(135deg, #ca8a04, #854d0e) !important;
     border: 2px solid #fbbf24 !important;
     box-shadow: 0 0 15px rgba(251, 191, 36, 0.6), inset 0 0 10px rgba(0,0,0,0.4) !important;
-    text-shadow: 0 0 10px rgba(253, 224, 71, 0.9);
+    text-shadow: none;
+}
+
+#app.world-mountain.level-type-normal .type-gold,
+#app.world-mountain.level-type-normal .cell.filled.type-gold,
+#app.world-mountain.level-type-normal .block-unit.type-gold {
+    background:
+        var(--item-sprite) center / 78% no-repeat,
+        linear-gradient(135deg, #6B7280, #6B7280) !important;
+    border: 2px solid #D1D5DB !important;
+    box-shadow: 0 0 15px rgba(156, 163, 175, 0.45), inset 0 0 10px rgba(0,0,0,0.25) !important;
+}
+
+#app.world-mountain.level-type-normal .type-pickaxe,
+#app.world-mountain.level-type-normal .cell.filled.type-pickaxe,
+#app.world-mountain.level-type-normal .block-unit.type-pickaxe {
+    background:
+        var(--item-sprite) center / 78% no-repeat,
+        linear-gradient(135deg, #DB2777, #DB2777) !important;
+    border: 2px solid #06B6D4 !important;
+    box-shadow: 0 0 15px rgba(30, 58, 138, 0.45), inset 0 0 10px rgba(0,0,0,0.28) !important;
+}
+
+#app.world-mountain.level-type-normal .type-iron,
+#app.world-mountain.level-type-normal .cell.filled.type-iron,
+#app.world-mountain.level-type-normal .block-unit.type-iron {
+    background:
+        var(--item-sprite) center / 78% no-repeat,
+        linear-gradient(135deg, #F59E0B, #F59E0B) !important;
+    border: 2px solid #92400E !important;
+    box-shadow: 0 0 15px rgba(146, 64, 14, 0.45), inset 0 0 10px rgba(0,0,0,0.28) !important;
+}
+
+.dragging-active.drag-context-mountain-normal .block-unit.type-gold {
+    background:
+        var(--item-sprite) center / 78% no-repeat,
+        linear-gradient(135deg, #6B7280, #6B7280) !important;
+    border: 2px solid #D1D5DB !important;
+}
+
+.dragging-active.drag-context-mountain-normal .block-unit.type-pickaxe {
+    background:
+        var(--item-sprite) center / 78% no-repeat,
+        linear-gradient(135deg, #DB2777, #DB2777) !important;
+    border: 2px solid #06B6D4 !important;
+}
+
+.dragging-active.drag-context-mountain-normal .block-unit.type-iron {
+    background:
+        var(--item-sprite) center / 78% no-repeat,
+        linear-gradient(135deg, #F59E0B, #F59E0B) !important;
+    border: 2px solid #78350F !important;
+}
+
+#app.world-mountain.level-type-elite .type-iron,
+#app.world-mountain.level-type-elite .cell.filled.type-iron,
+#app.world-mountain.level-type-elite .block-unit.type-iron,
+#app.world-mountain.level-type-boss .type-iron,
+#app.world-mountain.level-type-boss .cell.filled.type-iron,
+#app.world-mountain.level-type-boss .block-unit.type-iron {
+    background:
+        var(--item-sprite) center / 78% no-repeat,
+        linear-gradient(135deg, #2C0A0A, #2C0A0A) !important;
+    border: 2px solid #F59E0B !important;
+}
+
+.dragging-active.drag-context-mountain-combat .block-unit.type-iron {
+    background:
+        var(--item-sprite) center / 78% no-repeat,
+        linear-gradient(135deg, #2C0A0A, #2C0A0A) !important;
+    border: 2px solid #F59E0B !important;
+}
+
+#app.world-mountain.level-type-elite .type-gold,
+#app.world-mountain.level-type-elite .cell.filled.type-gold,
+#app.world-mountain.level-type-elite .block-unit.type-gold,
+#app.world-mountain.level-type-boss .type-gold,
+#app.world-mountain.level-type-boss .cell.filled.type-gold,
+#app.world-mountain.level-type-boss .block-unit.type-gold {
+    background:
+        var(--item-sprite) center / 78% no-repeat,
+        linear-gradient(135deg, #B91C1C, #B91C1C) !important;
+    border: 2px solid #FCA5A5 !important;
+}
+
+.dragging-active.drag-context-mountain-combat .block-unit.type-gold {
+    background:
+        var(--item-sprite) center / 78% no-repeat,
+        linear-gradient(135deg, #B91C1C, #B91C1C) !important;
+    border: 2px solid #FCA5A5 !important;
+}
+
+#app.world-mountain.level-type-elite .type-pickaxe,
+#app.world-mountain.level-type-elite .cell.filled.type-pickaxe,
+#app.world-mountain.level-type-elite .block-unit.type-pickaxe,
+#app.world-mountain.level-type-boss .type-pickaxe,
+#app.world-mountain.level-type-boss .cell.filled.type-pickaxe,
+#app.world-mountain.level-type-boss .block-unit.type-pickaxe {
+    background:
+        var(--item-sprite) center / 78% no-repeat,
+        linear-gradient(135deg, #7C3AED, #7C3AED) !important;
+    border: 2px solid #C4B5FD !important;
+}
+
+.dragging-active.drag-context-mountain-combat .block-unit.type-pickaxe {
+    background:
+        var(--item-sprite) center / 78% no-repeat,
+        linear-gradient(135deg, #7C3AED, #7C3AED) !important;
+    border: 2px solid #C4B5FD !important;
 }
 
 /* Picareta (Cinza metálico com destaque azul) */
 .type-pickaxe, .cell.filled.type-pickaxe, .block-unit.type-pickaxe {
-    background: linear-gradient(135deg, #475569, #334155) !important;
+    background:
+        var(--item-sprite) center / 78% no-repeat,
+        linear-gradient(135deg, #475569, #334155) !important;
     border: 2px solid #94a3b8 !important;
     box-shadow: 0 0 15px rgba(148, 163, 184, 0.5), inset 0 0 10px rgba(0,0,0,0.5) !important;
-    text-shadow: 0 0 8px rgba(203, 213, 225, 0.7);
+    text-shadow: none;
 }
 
 /* Ferro (Cinza escuro/ferro fundido) */
 .type-iron, .cell.filled.type-iron, .block-unit.type-iron {
-    background: linear-gradient(135deg, #1f2937, #111827) !important;
+    background:
+        var(--item-sprite) center / 78% no-repeat,
+        linear-gradient(135deg, #1f2937, #111827) !important;
     border: 2px solid #6b7280 !important;
     box-shadow: 0 0 15px rgba(107, 114, 128, 0.6), inset 0 0 10px rgba(0,0,0,0.6) !important;
-    text-shadow: 0 0 10px rgba(156, 163, 175, 0.8);
+    text-shadow: none;
 }
 
 /* Rochas (Obstáculo da montanha) */
 .type-rocks, .cell.filled.type-rocks, .block-unit.type-rocks {
-    background: linear-gradient(135deg, #57534e, #44403c) !important;
+    background:
+        var(--item-sprite) center / 78% no-repeat,
+        linear-gradient(135deg, #57534e, #44403c) !important;
     border-color: #78716c !important;
     box-shadow: inset 0 0 8px rgba(0,0,0,0.6) !important;
 }
 
 /* Escombros (Obstáculo especial do Golem) */
 .type-debris, .cell.filled.type-debris, .block-unit.type-debris {
-    background: linear-gradient(135deg, #7c2d12, #991b1b) !important;
+    background:
+        var(--item-sprite) center / 78% no-repeat,
+        linear-gradient(135deg, #7c2d12, #991b1b) !important;
     border-color: #dc2626 !important;
     box-shadow: inset 0 0 8px rgba(0,0,0,0.6), 0 0 10px rgba(220, 38, 38, 0.4) !important;
 }
@@ -6491,3 +6609,5 @@ body {
     box-shadow: 0 2px 8px rgba(2, 6, 23, 0.6), inset 0 0 10px rgba(0,0,0,0.55) !important;
     text-shadow: none;
 }
+
+

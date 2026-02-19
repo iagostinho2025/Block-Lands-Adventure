@@ -42,6 +42,8 @@ export function createDraggablePiece(game, piece, index, parentContainer) {
             block.className = '';
             block.innerText = '';
             block.style.visibility = '';
+            block.classList.remove('has-item-sprite');
+            block.style.removeProperty('--item-sprite');
 
             if (cellData) {
                 block.classList.add('block-unit');
@@ -53,6 +55,12 @@ export function createDraggablePiece(game, piece, index, parentContainer) {
                 }
 
                 if (typeof cellData === 'object' && cellData.type === 'ITEM') {
+                    const spritePath = game.getItemSpritePathByKey(cellData.key);
+                    if (spritePath) {
+                        const cssSpritePath = spritePath.startsWith('/') ? spritePath : `/${spritePath}`;
+                        block.classList.add('has-item-sprite');
+                        block.style.setProperty('--item-sprite', `url('${cssSpritePath}')`);
+                    }
                     const emoji = game.getItemGlyph(cellData);
                     block.innerText = emoji;
                 }
@@ -210,6 +218,12 @@ export function attachDragEvents(game, el, piece, deps = {}) {
 
         clone = el.cloneNode(true);
         clone.classList.add('dragging-active');
+        const currentWorld = (typeof game.getCurrentWorldConfig === 'function') ? game.getCurrentWorldConfig() : null;
+        if (game.currentMode === 'adventure' && currentWorld?.id === 'mountain_world') {
+            const levelType = game.currentLevelConfig?.type || 'normal';
+            if (levelType === 'normal') clone.classList.add('drag-context-mountain-normal');
+            else clone.classList.add('drag-context-mountain-combat');
+        }
         clone.style.display = 'grid';
 
         const cols = activePiece.matrix[0].length;
