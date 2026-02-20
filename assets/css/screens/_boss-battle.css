@@ -3,8 +3,8 @@
    ========================================= */
 
 /*
-   VARIÁVEIS CSS PARA AJUSTES FINOS
-   Controle preciso de layout sem valores mágicos
+   VARIAVEIS CSS PARA AJUSTES FINOS
+   Controle preciso de layout sem valores magicos
 */
 :root {
     /* Inset do tabuleiro dentro da moldura */
@@ -182,7 +182,7 @@
     display: none;
 }
 
-/* HUD do boss é apenas visual; não pode capturar toque e bloquear o dock */
+/* HUD do boss e apenas visual; nao pode capturar toque e bloquear o dock */
 #app.is-screen-adventure #boss-hp-hud,
 #app.is-screen-adventure #boss-hp-hud *,
 #app.is-screen-adventure .boss-ui-container,
@@ -246,15 +246,15 @@
 }
 
 /* =========================================
-   4. AVATAR DO BOSS - EMOJI PURO (sem círculo/fundo)
+   4. AVATAR DO BOSS - EMOJI PURO (sem circulo/fundo)
    ========================================= */
 
 .boss-avatar {
-    /* Tamanho controlado por variável */
+    /* Tamanho controlado por variavel */
     width: var(--boss-avatar-size);
     height: var(--boss-avatar-size);
 
-    /* Centralização do emoji/imagem */
+    /* Centralizacao do emoji/imagem */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -274,7 +274,7 @@
     flex-shrink: 0;
 }
 
-/* GuardiÃ£o: permite sprite no boss (override do background reset) */
+/* Guardiao: permite sprite no boss (override do background reset) */
 #app.world-guardian.level-type-boss .boss-avatar.boss-sprite {
     background-image: url('../../enemies/guardian/boss.webp') !important;
     background-color: transparent !important;
@@ -297,7 +297,7 @@
 }
 
 /* =========================================
-   5. ESTATÍSTICAS DO BOSS
+   5. ESTATISTICAS DO BOSS
    ========================================= */
 
 .boss-stats {
@@ -362,7 +362,7 @@
     display: block;
     min-width: 2px;
 
-    /* Gradiente vermelho/laranja temático */
+    /* Gradiente vermelho/laranja tematico */
     background: linear-gradient(
         to right,
         #dc2626 0%,
@@ -370,7 +370,7 @@
         #f87171 100%
     );
 
-    /* Transição suave */
+    /* Transicao suave */
     transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
     /* Brilho sutil */
@@ -378,11 +378,11 @@
         0 0 12px rgba(239, 68, 68, 0.5),
         inset 0 1px 0 rgba(255, 255, 255, 0.2);
 
-    /* Animação de pulso quando HP baixo */
+    /* animacao de pulso quando HP baixo */
     animation: none;
 }
 
-/* Animação quando HP < 30% */
+/* animacao quando HP < 30% */
 .hp-bar-fill[style*="width: 1"],
 .hp-bar-fill[style*="width: 2"] {
     animation: lowHpPulse 1.5s ease-in-out infinite;
@@ -401,7 +401,7 @@
     }
 }
 
-/* Texto do HP (sobreposto à barra) */
+/* Texto do HP (sobreposto a barra) */
 .hp-text {
     position: absolute;
     top: 50%;
@@ -553,7 +553,7 @@
    10. TEMAS POR MUNDO (SOBRESCRITAS)
    ========================================= */
 
-/* Mundo do Fogo - REMOVIDO: containers agora são transparentes */
+/* Mundo do Fogo - REMOVIDO: containers agora sao transparentes */
 /* #app.world-fire .boss-ui-container {
     border-color: rgba(239, 68, 68, 0.3);
     background: rgba(127, 29, 29, 0.15);
@@ -793,7 +793,7 @@
 }
 
 
-/* Realce sutil do sprite do Lobo Alfa (leve e performático) */
+/* Realce sutil do sprite do Lobo Alfa (leve e performatico) */
 #app.level-forest-elite-10 .boss-avatar.boss-sprite[data-enemy-id="forest_elite_10"] {
     filter: drop-shadow(0 6px 12px rgba(6, 95, 70, 0.45))
             drop-shadow(0 0 6px rgba(52, 211, 153, 0.35))
@@ -801,7 +801,7 @@
 }
 
 /* =========================================
-   MODELO PADRÃO - ELITE/BOSS (AVENTURA)
+   MODELO PADRAO - ELITE/BOSS (AVENTURA)
    ========================================= */
 
 #app.is-screen-adventure.level-type-elite #boss-hp-hud,
@@ -1081,5 +1081,10 @@
     background-size: 230%;
     pointer-events: none;
 }
+
+
+
+
+
 
 

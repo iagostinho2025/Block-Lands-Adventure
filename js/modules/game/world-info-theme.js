@@ -233,11 +233,21 @@ export function renderInfoCard(game, infoId, deps = {}) {
     if (sealImg && info.sealImage) {
         if (info.sealAltKey) sealImg.alt = game.i18n.t(info.sealAltKey);
         sealImg.dataset.fallbackSrc = info.sealFallback || '';
+        const requestId = String((game._infoSealRequestSeq = (game._infoSealRequestSeq || 0) + 1));
+        sealImg.dataset.requestId = requestId;
+        sealImg.style.visibility = 'hidden';
         sealImg.onerror = () => {
+            if (sealImg.dataset.requestId !== requestId) return;
             const fallback = sealImg.dataset.fallbackSrc;
             if (fallback && sealImg.src.indexOf(fallback) === -1) {
                 sealImg.src = fallback;
+                return;
             }
+            sealImg.style.visibility = '';
+        };
+        sealImg.onload = () => {
+            if (sealImg.dataset.requestId !== requestId) return;
+            sealImg.style.visibility = '';
         };
         sealImg.src = info.sealImage;
     }

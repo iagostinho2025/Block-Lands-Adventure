@@ -61,13 +61,46 @@ export function preloadDeferredAssets(game, scope = 'background_all') {
             'assets/img/story_mountain_golem_aftermath.webp',
             'assets/img/story_desert_grok_aftermath.webp',
             'assets/img/story_castle_dark_wizard_aftermath.webp'
+        ],
+        adventure_boss_assets: [
+            // Enemy sprites used in boss/elite HUD + info cards
+            'assets/enemies/guardian/boss.webp',
+            'assets/enemies/fire_world/elite_10.webp',
+            'assets/enemies/fire_world/elite_15.webp',
+            'assets/enemies/fire_world/boss.webp',
+            'assets/enemies/forest_world/elite_10.webp',
+            'assets/enemies/forest_world/elite_15.webp',
+            'assets/enemies/forest_world/boss.webp',
+            'assets/enemies/mountain_world/elite_10.webp',
+            'assets/enemies/mountain_world/elite_15.webp',
+            'assets/enemies/mountain_world/boss.webp',
+            'assets/enemies/desert_world/elite_10.webp',
+            'assets/enemies/desert_world/elite_15.webp',
+            'assets/enemies/desert_world/boss.webp',
+            'assets/enemies/castle_world/elite_10.webp',
+            'assets/enemies/castle_world/elite_15.webp',
+            'assets/enemies/castle_world/boss.webp',
+
+            // World arts shown around elite/boss context
+            'assets/backgrounds/guardian/boss.webp',
+            'assets/backgrounds/fire/elite.webp',
+            'assets/backgrounds/fire/boss.webp',
+            'assets/backgrounds/forest/elite.webp',
+            'assets/backgrounds/forest/boss.webp',
+            'assets/backgrounds/mountain/elite.webp',
+            'assets/backgrounds/mountain/boss.webp',
+            'assets/backgrounds/desert/elite.webp',
+            'assets/backgrounds/desert/boss.webp',
+            'assets/backgrounds/castle/elite.webp',
+            'assets/backgrounds/castle/boss.webp'
         ]
     };
 
     const all = [
         ...groups.world_select,
         ...groups.story_intro,
-        ...groups.story_after
+        ...groups.story_after,
+        ...groups.adventure_boss_assets
     ];
     const targets = scope === 'background_all' ? all : (groups[scope] || []);
     if (targets.length === 0) return;

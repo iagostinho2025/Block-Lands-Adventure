@@ -4,7 +4,7 @@ import { AudioSystem } from './modules/audio.js';
 import { PowersSystem } from './modules/powers.js';
 import { WORLDS } from './modules/data/levels.js';
 import { BOSS_LOGIC } from './modules/logic/bosses.js';
-import { I18nSystem } from './modules/i18n.js'; // ADICIONADO: Importação do sistema de idiomas
+import { I18nSystem } from './modules/i18n.js'; // ADICIONADO: Importacao do sistema de idiomas
 import { AchievementSystem } from './modules/achievements.js';
 import { PlayerProgression, getRomanNumeral } from './modules/progression.js';
 import { BlitzModeController } from './modules/modes/blitz-mode.js';
@@ -561,7 +561,7 @@ const INFO_CARD_DATA = {
         items: [
             { iconImage: 'assets/enemies/mountain_world/item_damage_common.webp', iconAlt: 'Item comum de dano', titleKey: 'mountain_info.items.gold_title', descKey: 'mountain_info.items.gold_desc' },
             { iconImage: 'assets/enemies/mountain_world/item_damage_rare.webp', iconAlt: 'Item raro de dano', titleKey: 'mountain_info.items.pickaxe_title', descKey: 'mountain_info.items.pickaxe_desc' },
-            { iconImage: 'assets/enemies/mountain_world/item_damage_epic.webp', iconAlt: 'Item épico de dano', titleKey: 'mountain_info.items.iron_title', descKey: 'mountain_info.items.iron_desc' }
+            { iconImage: 'assets/enemies/mountain_world/item_damage_epic.webp', iconAlt: 'Item epico de dano', titleKey: 'mountain_info.items.iron_title', descKey: 'mountain_info.items.iron_desc' }
         ],
         heroes: INFO_CARD_HEROES
     },
@@ -580,7 +580,7 @@ const INFO_CARD_DATA = {
         items: [
             { iconImage: 'assets/enemies/mountain_world/item_damage_common.webp', iconAlt: 'Item comum de dano', titleKey: 'mountain_info.items.gold_title', descKey: 'mountain_info.items.gold_desc' },
             { iconImage: 'assets/enemies/mountain_world/item_damage_rare.webp', iconAlt: 'Item raro de dano', titleKey: 'mountain_info.items.pickaxe_title', descKey: 'mountain_info.items.pickaxe_desc' },
-            { iconImage: 'assets/enemies/mountain_world/item_damage_epic.webp', iconAlt: 'Item épico de dano', titleKey: 'mountain_info.items.iron_title', descKey: 'mountain_info.items.iron_desc' }
+            { iconImage: 'assets/enemies/mountain_world/item_damage_epic.webp', iconAlt: 'Item epico de dano', titleKey: 'mountain_info.items.iron_title', descKey: 'mountain_info.items.iron_desc' }
         ],
         heroes: INFO_CARD_HEROES
     },
@@ -699,7 +699,7 @@ const STORE_PRODUCTS = {
         nameKey: 'store.magnet_pack_name',
         descKey: 'store.magnet_pack_desc',
         descKeyModal: 'store.magnet_pack_desc_modal',
-        icon: '\u{1F9F2}',
+        icon: '\u{1F4CE}',
         type: 'powerup',
         powerupType: 'magnet',
         quantity: 1,
@@ -791,7 +791,7 @@ export class Game {
         this.screenAchievements = document.getElementById('screen-achievements');
         this.screenStore = document.getElementById('screen-store'); 
         
-        // Configurações Padrão
+        // Configuracoes Padrao
         this.settings = {
             music: true,
             sfx: true,
@@ -800,7 +800,7 @@ export class Game {
         };
         this.loadSettings(); 
         
-        // --- NOVO: Carrega a classe do jogador (se já escolheu) ---
+        // --- NOVO: Carrega a classe do jogador (se ja escolheu) ---
         this.playerClass = localStorage.getItem('blocklands_player_class') || null; 
 
         this.boardEl = document.getElementById('game-board');
@@ -818,7 +818,7 @@ export class Game {
         this.currentHand = [];
         this.bossState = { active: false, maxHp: 0, currentHp: 0, attackRate: 3, movesWithoutDamage: 0 };
 
-        // Estado do Modo Clássico
+        // Estado do modo classico
         this.classicState = {
             score: 0,
             level: 1,
@@ -826,7 +826,7 @@ export class Game {
             bestScore: parseInt(localStorage.getItem('classic_best_score') || '0'),
             comboStreak: 0,
             comboTimer: null,
-            recordBeaten: false, // Flag para controlar se já mostrou mensagem de recorde
+            recordBeaten: false, // Flag para controlar se ja mostrou mensagem de recorde
             visualV1: true, // Feature flag para efeitos visuais premium (true = ativado)
             missions: [],
             missionsBestStreak: parseInt(localStorage.getItem('classic_missions_best_streak') || '0'),
@@ -836,7 +836,7 @@ export class Game {
             missionRewardEndTime: null
         };
 
-        // Tema visual do modo clássico (liberado para troca livre)
+        // Tema visual do modo classico (liberado para troca livre)
         this.classicTheme = localStorage.getItem(CLASSIC_THEME_STORAGE_KEY) || CLASSIC_DEFAULT_THEME;
 
         this.currentGoals = {}; 
@@ -858,7 +858,7 @@ export class Game {
         this.progressionEls = null;
         this.lastRankIndex = null;
 
-        // Power-Ups (inicializado vazio, será carregado do localStorage)
+        // Power-Ups (inicializado vazio, sera carregado do localStorage)
         this.powerUps = { magnet: 0, rotate: 0, swap: 0 };
         this.interactionMode = null; 
         
@@ -889,11 +889,10 @@ export class Game {
         this._storeTabsBound = false;
         this._settingsLogicBound = false;
 
-        // Estatísticas para economia
+        // Estatisticas para economia
         this.dailyStats = this.loadDailyStats();
-        this.classicState.lastScoreMilestone = 0; // Controla cristais por pontuação
-
-        // Controle da História
+        this.classicState.lastScoreMilestone = 0; // Controla cristais por pontuacao
+        // Controle da Historia
         this.storyStep = 0; // Para controlar os slides
 
         this.setupMenuEvents();
@@ -902,7 +901,7 @@ export class Game {
 
         this.initProgressionUI();
 
-        // Cache de métricas do tabuleiro (para evitar layout reads frequentes no drag)
+        // Cache de metricas do tabuleiro (para evitar layout reads frequentes no drag)
         this._boardMetrics = null;
         this._boardMetricsDirty = true;
         window.addEventListener('resize', () => {
@@ -928,7 +927,7 @@ export class Game {
         this._matchRewards = { crystals: 0, xp: 0 };
         this._matchRewardsActive = false;
 
-        // Resultado do modo clássico
+        // Resultado do modo classico
         this._classicStartTime = 0;
         this._classicMatchXp = 0;
         this._classicXpActive = false;
@@ -1020,7 +1019,7 @@ export class Game {
         runRestartCssAnimationClass(this, el, className);
     }
 	
-    // --- PERSISTÊNCIA DE ESTADO (SAVE GAME) ---
+    // --- PERSISTENCIA DE ESTADO (SAVE GAME) ---
 
     saveGameState() {
         persistSaveGameState(this);
@@ -1096,7 +1095,7 @@ flushSaveGameState() {
 		runApplyGuardianBossSprite(this, avatarElement);
 	}
 
-	// --- NOVO SISTEMA DE HISTÓRIA E SELEÇÃO ---
+	// --- NOVO SISTEMA DE HISTORIA E SELECAO ---
 
 	showCampfireScene() {
         runShowCampfireScene(this);
@@ -1183,14 +1182,14 @@ flushSaveGameState() {
     // ============================================
 
     /**
-     * Carrega estatísticas diárias para controle de primeira vitória do dia
+     * Carrega estatisticas diarias para controle de primeira vitoria do dia
      */
     loadDailyStats() {
         return runLoadDailyStats(this);
     }
 
     /**
-     * Salva estatísticas diárias
+     * Salva estatisticas diarias
      */
     saveDailyStats(stats) {
         runSaveDailyStats(this, stats);
@@ -1212,7 +1211,7 @@ flushSaveGameState() {
      * Adiciona cristais ao saldo do jogador
      * @param {number} amount - Quantidade de cristais a adicionar
      * @param {string} reason - Motivo do ganho (para log/analytics)
-     * @param {boolean} animated - Se deve mostrar animação
+     * @param {boolean} animated - Se deve mostrar animacao
      */
     addCrystals(amount, reason = 'unknown', animated = true) {
         runAddCrystals(this, amount, reason, animated, { runtimeLogs: RUNTIME_LOGS });
@@ -1220,7 +1219,7 @@ flushSaveGameState() {
 
     /**
      * Atualiza o display de cristais na UI (menu + tela de jogo)
-     * @param {number|null} fromValue - Valor inicial para animação (null = sem animação)
+     * @param {number|null} fromValue - Valor inicial para animacao (null = sem animacao)
      */
     updateCrystalDisplay(fromValue = null) {
         runUpdateCrystalDisplay(this, fromValue);
@@ -1255,8 +1254,8 @@ flushSaveGameState() {
     }
 
     /**
-     * Mostra notificação visual de ganho de cristais
-     * DESABILITADO: Notificações popup causam conflito com fluxo do jogo
+     * Mostra notificacao visual de ganho de cristais
+     * DESABILITADO: Notificacoes popup causam conflito com fluxo do jogo
      */
     showCrystalNotification(amount, reason) {
         runShowCrystalNotification(this, amount, reason, { runtimeLogs: RUNTIME_LOGS });
@@ -1270,42 +1269,42 @@ flushSaveGameState() {
     }
 
     /**
-     * Verifica e recompensa cristais por primeira vitória do dia
+     * Verifica e recompensa cristais por primeira vitoria do dia
      */
     checkFirstWinOfDay() {
         return runCheckFirstWinOfDay(this);
     }
 
     /**
-     * Processa recompensas de cristais por completar nível (Modo Aventura)
+     * Processa recompensas de cristais por completar nivel (Modo Aventura)
      */
     rewardAdventureLevel(stars) {
         runRewardAdventureLevel(this, stars);
     }
 
     /**
-     * Processa recompensas de cristais por pontuação (Modo Clássico)
+     * Processa recompensas de cristais por pontuacao (modo classico)
      */
     checkClassicScoreRewards() {
         runCheckClassicScoreRewards(this);
     }
 
     /**
-     * Processa recompensas por novo recorde (Modo Clássico)
+     * Processa recompensas por novo recorde (modo classico)
      */
     rewardNewRecord() {
         runRewardNewRecord(this);
     }
 
     /**
-     * Processa recompensas por completar missão (Modo Clássico)
+     * Processa recompensas por completar missao (modo classico)
      */
     rewardMissionComplete() {
         runRewardMissionComplete(this);
     }
 
     /**
-     * Processa recompensas por completar todas as 3 missões (Modo Clássico)
+     * Processa recompensas por completar todas as 3 missoes (Modo Classico)
      */
     rewardAllMissionsComplete() {
         runRewardAllMissionsComplete(this);
@@ -1375,7 +1374,7 @@ flushSaveGameState() {
         runSavePowerUps(this);
     }
 	
-	// --- SEQUÊNCIA VISUAL INTELIGENTE ---
+	// --- SEQUENCIA VISUAL INTELIGENTE ---
     startLoadingSequence() {
         runStartLoadingSequence(this);
     }
@@ -1384,7 +1383,7 @@ flushSaveGameState() {
         runSetupMenuEvents(this);
     }
 
-    // --- NOVO: L?gica da tela de configura??es ---
+    // --- NOVO: Logica da tela de configuracoes ---
     setupSettingsLogic() {
         runSetupSettingsLogic(this);
     }
@@ -1397,12 +1396,12 @@ flushSaveGameState() {
         return runCopyDiagnosticsReport(this, report);
     }
 
-    // --- NOVO: Verifica se o jogador já viu a intro ---
+    // --- NOVO: Verifica se o jogador ja viu a intro ---
     checkAdventureIntro() {
         runCheckAdventureIntro(this);
     }
 
-    // --- NOVO: Exibe a tela de história ---
+    // --- NOVO: Exibe a tela de historia ---
     playStory(options = {}) {
         runPlayStory(this, options);
     }
@@ -1464,7 +1463,7 @@ flushSaveGameState() {
     }
 
     // ========================================
-    // TEMAS DO MODO CLÁSSICO
+    // TEMAS DO modo classico
     // ========================================
     updateClassicThemeClass() {
         runUpdateClassicThemeClass(this, {
@@ -1690,7 +1689,7 @@ flushSaveGameState() {
     }
 
 	
-    // --- LÓGICA DE UI DOS HERÓIS ---
+    // --- LOGICA DE UI DOS HEROIS ---
 
     renderHeroUI() {
         runRenderHeroUI(this);
@@ -1719,9 +1718,9 @@ flushSaveGameState() {
     }
 
 
-    // --- EFEITO VISUAL: Partículas ---
+    // --- EFEITO VISUAL: Particulas ---
     spawnExplosion(rect, colorClass) {
-        // Delega a explosão para o sistema de efeitos (que usa Object Pooling)
+        // Delega a explosao para o sistema de efeitos (que usa Object Pooling)
         if (this.effects) {
             this.effects.spawnExplosion(rect, colorClass);
         }
@@ -1898,7 +1897,7 @@ renderCell(div, cellData) {
 
 
     
-    // --- PREVISÃO DE LINHAS (EFEITO DOURADO) ---
+    // --- PREVISAO DE LINHAS (EFEITO DOURADO) ---
 
     // 1. Simula a jogada e retorna quais linhas/colunas seriam limpas
     predictClears(r, c, piece) {
@@ -1906,7 +1905,7 @@ renderCell(div, cellData) {
     }
 
 
-    // 2. Cria barras contínuas sobre as linhas/colunas detectadas
+    // 2. Cria barras continuas sobre as linhas/colunas detectadas
     drawPredictionHighlights({ rows, cols }) {
         runDrawPredictionHighlights(this, { rows, cols });
     }
@@ -2084,6 +2083,10 @@ clearGhostPreview() {
     }
 
 }
+
+
+
+
 
 
 

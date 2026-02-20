@@ -41,6 +41,64 @@ export function openWorldMap(game, worldConfig) {
         ? game.usesAdventureUnlockDebug()
         : false;
 
+    const queuePriorityBossPreload = () => {
+        if (!worldConfig || typeof game.preloadImageList !== 'function') return;
+
+        const bossLevels = (worldConfig.levels || [])
+            .filter((level) => level && level.type === 'boss')
+            .sort((a, b) => a.id - b.id);
+        if (bossLevels.length === 0) return;
+
+        const worldId = worldConfig.id || '';
+        const worldShortMap = {
+            tutorial_world: 'guardian',
+            fire_world: 'fire',
+            forest_world: 'forest',
+            mountain_world: 'mountain',
+            desert_world: 'desert',
+            castle_world: 'castle'
+        };
+        const worldShort = worldShortMap[worldId];
+        if (!worldShort) return;
+
+        const firstLockedOrCurrent = bossLevels.findIndex((level) => level.id >= currentSave);
+        const nextIdx = firstLockedOrCurrent === -1
+            ? Math.max(0, bossLevels.length - 1)
+            : firstLockedOrCurrent;
+        const selected = bossLevels.slice(nextIdx, nextIdx + 2);
+        if (selected.length === 0) selected.push(bossLevels[bossLevels.length - 1]);
+
+        const assetSet = new Set();
+        for (let i = 0; i < selected.length; i++) {
+            const level = selected[i];
+
+            if (worldId === 'tutorial_world') {
+                assetSet.add('assets/enemies/guardian/boss.webp');
+                assetSet.add('assets/backgrounds/guardian/boss.webp');
+                continue;
+            }
+
+            const levelIndex = bossLevels.findIndex((entry) => entry.id === level.id);
+            let spriteFile = 'boss';
+            if (levelIndex === 0) spriteFile = 'elite_10';
+            else if (levelIndex === 1) spriteFile = 'elite_15';
+
+            assetSet.add(`assets/enemies/${worldShort}_world/${spriteFile}.webp`);
+            assetSet.add(`assets/backgrounds/${worldShort}/${spriteFile === 'boss' ? 'boss' : 'elite'}.webp`);
+        }
+
+        const assets = Array.from(assetSet);
+        if (assets.length === 0) return;
+
+        const run = () => { game.preloadImageList(assets); };
+        if (typeof requestIdleCallback === 'function') {
+            requestIdleCallback(run, { timeout: 1200 });
+        } else {
+            setTimeout(run, 80);
+        }
+    };
+    queuePriorityBossPreload();
+
     const createSvgButton = (levelData) => {
         const pos = levelData.mapPos || { x: 50, y: 50 };
         const levelNum = levelData.id;

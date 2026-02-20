@@ -59,7 +59,16 @@ export function applyBossSprite(game, avatarElement) {
     const pathWebP = `assets/enemies/${folder}/${fileName}.webp`;
     const pathPng = `assets/enemies/${folder}/${fileName}.png`;
 
+    // Cancela visualmente qualquer sprite anterior ate o novo carregar.
+    const requestId = (game._bossSpriteRequestSeq = (game._bossSpriteRequestSeq || 0) + 1);
+    avatarElement.dataset.spriteRequestId = String(requestId);
+    avatarElement.style.setProperty('background-image', 'none', 'important');
+    avatarElement.style.removeProperty('--boss-sprite-url');
+    avatarElement.style.opacity = '0';
+
     const applySprite = (path) => {
+        if (!avatarElement.isConnected) return;
+        if (avatarElement.dataset.spriteRequestId !== String(requestId)) return;
         const resolvedPath = new URL(path, window.location.href).toString();
         avatarElement.classList.add('boss-sprite');
         avatarElement.setAttribute('data-enemy-id', spriteId);
@@ -74,6 +83,7 @@ export function applyBossSprite(game, avatarElement) {
         }
         avatarElement.style.setProperty('background-size', bgSize, 'important');
         avatarElement.style.setProperty('background-color', 'transparent', 'important');
+        avatarElement.style.opacity = '';
         if (fireOverlayCfg) {
             game.updateIgnisBossUiOverride();
             game.syncIgnisSpriteOverlay();
@@ -83,10 +93,13 @@ export function applyBossSprite(game, avatarElement) {
     const imgWebP = new Image();
     imgWebP.onload = () => applySprite(pathWebP);
     imgWebP.onerror = () => {
+        if (avatarElement.dataset.spriteRequestId !== String(requestId)) return;
         const imgPng = new Image();
         imgPng.onload = () => applySprite(pathPng);
         imgPng.onerror = () => {
             // fallback: keeps emoji if sprite fails
+            if (avatarElement.dataset.spriteRequestId !== String(requestId)) return;
+            avatarElement.style.opacity = '';
         };
         imgPng.src = pathPng;
     };

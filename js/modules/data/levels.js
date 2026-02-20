@@ -1,4 +1,4 @@
-﻿// js/modules/data/levels.js
+// js/modules/data/levels.js
 
 // --- OBSTÁCULOS COMUNS ---
 const LAVA = { type: 'LAVA', key: 'volcano', emoji: '\u{1F30B}' };
@@ -7,13 +7,13 @@ const ROCKS = { type: 'OBSTACLE', key: 'rocks', emoji: '\u{1FAA8}' }; // Rochas 
 const QUICKSAND = { type: 'OBSTACLE', key: 'quicksand', emoji: '\u{1F3DC}\u{FE0F}' }; // Areia Movedi?a do Deserto
 const SHADOWS = { type: 'OBSTACLE', key: 'shadows', emoji: '\u{1F311}' }; // Sombras do Castelo
 
-// Helpers para posiÃ§Ãµes do Grid (Gameplay)
+// Helpers para posicoes do Grid (Gameplay)
 const CORNERS = [{r:0,c:0}, {r:0,c:7}, {r:7,c:0}, {r:7,c:7}];
 const CORNERS_OPPOSITE = [{r:0,c:0}, {r:7,c:7}]; 
 
 export const WORLDS = [
     // =========================================================================
-    // MUNDO 0: O PORTÃƒO (TUTORIAL)
+    // MUNDO 0: O PORTAO (TUTORIAL)
     // =========================================================================
     {
         id: 'tutorial_world',
@@ -25,8 +25,8 @@ export const WORLDS = [
         bossAvatar: '\u{1F5FF}',
         bgImage: '', // Opcional
         
-        // POSIÃ‡ÃƒO DA ILHA NO MAPA DE MUNDOS (0-100%)
-        worldPos: { x: 29, y: 87 }, // LÃ¡ embaixo, na entrada
+        // POSICAO DA ILHA NO MAPA DE MUNDOS (0-100%)
+        worldPos: { x: 29, y: 87 }, // La embaixo, na entrada
         worldSize: 140,
         
         levels: [
@@ -34,7 +34,7 @@ export const WORLDS = [
                 id: 0, 
                 type: 'boss', 
                 boss: { id: 'guardian', name: 'AEGON', emoji: '\u{1F5FF}', maxHp: 15 },
-                musicId: 'boss_theme', // MÃºsica genÃ©rica para o tutorial
+                musicId: 'boss_theme', // Musica generica para o tutorial
                 items: ['amulet', 'dagger', 'ancient_key'], 
                 gridConfig: [], 
                 mapPos: { x: 50, y: 50 } 
@@ -79,11 +79,11 @@ export const WORLDS = [
             // FASE 9
             { id: 9, type: 'normal', goals: { fire: 5, heart: 5, collision: 5 }, items: ['fire', 'heart', 'collision'], gridConfig: [{r:0,c:0, ...LAVA}, {r:7,c:7, ...LAVA}, {r:3,c:3, ...LAVA}], mapPos: { x: 62, y: 53 } },
             
-            // FASE 10: ELITE MAGMOR (MÃºsica Elite 1)
+            // FASE 10: ELITE MAGMOR (Musica Elite 1)
             { 
                 id: 10, type: 'boss', 
                 boss: { id: 'magmor', name: 'Magmor', emoji: '\u{1F47A}', maxHp: 25 },
-                musicId: 'bgm_fire_10', // <--- MÃšSICA TEMA 1
+                musicId: 'bgm_fire_10', // <--- MUSICA TEMA 1
                 items: ['fire', 'heart'], 
                 gridConfig: [{r:0,c:0, ...LAVA}, {r:0,c:7, ...LAVA}, {r:3,c:3, ...LAVA}],
                 mapPos: { x: 74, y: 48 }
@@ -95,11 +95,11 @@ export const WORLDS = [
             { id: 13, type: 'normal', goals: { fire: 12 }, items: ['fire'], gridConfig: [...CORNERS.map(p => ({...p, ...LAVA}))], mapPos: { x: 41, y: 40 } },
             { id: 14, type: 'normal', goals: { fire: 10, heart: 10 }, items: ['fire', 'heart'], gridConfig: [...CORNERS.map(p => ({...p, ...LAVA}))], mapPos: { x: 32, y: 36 } },
             
-            // FASE 15: ELITE FÃŠNIX INFERNAL (MÃºsica Elite 2)
+            // FASE 15: ELITE FENIX INFERNAL (Musica Elite 2)
             { 
                 id: 15, type: 'boss', 
                 boss: { id: 'pyra', name: 'PYRA', emoji: '\u{1F985}', maxHp: 35 },
-                musicId: 'bgm_fire_15', // <--- MÃšSICA TEMA 2
+                musicId: 'bgm_fire_15', // <--- MUSICA TEMA 2
                 items: ['fire', 'heart', 'collision'],
                 gridConfig: [...CORNERS.map(p => ({...p, ...LAVA}))],
                 mapPos: { x: 44, y: 32 }
@@ -111,11 +111,11 @@ export const WORLDS = [
             { id: 18, type: 'normal', goals: { fire: 12, collision: 12 }, items: ['fire', 'collision'], gridConfig: [{r:2,c:2, ...LAVA}, {r:2,c:3, ...LAVA}, {r:2,c:4, ...LAVA}, {r:5,c:2, ...LAVA}, {r:5,c:3, ...LAVA}, {r:5,c:4, ...LAVA}], mapPos: { x: 52, y: 24 } },
             { id: 19, type: 'normal', goals: { collision: 25 }, items: ['collision'], gridConfig: [{r:2,c:2, ...LAVA}, {r:3,c:2, ...LAVA}, {r:4,c:2, ...LAVA}, {r:2,c:5, ...LAVA}, {r:3,c:5, ...LAVA}, {r:4,c:5, ...LAVA}], mapPos: { x: 43, y: 21 } },
 
-            // FASE 20: BOSS FINAL IGNIS (MÃºsica Boss)
+            // FASE 20: BOSS FINAL IGNIS (Musica Boss)
             { 
                 id: 20, type: 'boss', 
                 boss: { id: 'ignis', name: 'Ignis', emoji: '\u{1F409}', maxHp: 50 },
-                musicId: 'bgm_fire_20', // <--- MÃšSICA BOSS FINAL
+                musicId: 'bgm_fire_20', // <--- MUSICA BOSS FINAL
                 items: ['fire', 'heart', 'collision'],
                 gridConfig: [
                     {r:0,c:2},{r:0,c:3},{r:0,c:4},{r:0,c:5},
@@ -164,7 +164,7 @@ export const WORLDS = [
             // FASE 29
             { id: 29, type: 'normal', goals: { leaf: 8, poison: 6, mushroom: 6 }, items: ['leaf', 'poison', 'mushroom'], gridConfig: [{r:0,c:0, ...THORNS}, {r:7,c:7, ...THORNS}, {r:3,c:3, ...THORNS}], mapPos: { x: 25, y: 57 } },
 
-            // FASE 30: ELITE LOBO ALFA (MÃºsica Elite 1)
+            // FASE 30: ELITE LOBO ALFA (Musica Elite 1)
             {
                 id: 30, type: 'boss',
                 boss: { id: 'wolf_alpha', name: 'Fenrir', emoji: '\u{1F43A}', maxHp: 35 },
@@ -180,7 +180,7 @@ export const WORLDS = [
             { id: 33, type: 'normal', goals: { leaf: 15 }, items: ['leaf'], gridConfig: [...CORNERS.map(p => ({...p, ...THORNS}))], mapPos: { x: 83, y: 48 } },
             { id: 34, type: 'normal', goals: { poison: 10, leaf: 12 }, items: ['poison', 'leaf'], gridConfig: [...CORNERS.map(p => ({...p, ...THORNS}))], mapPos: { x: 81, y: 41 } },
 
-            // FASE 35: ELITE ARACNA (MÃºsica Elite 2)
+            // FASE 35: ELITE ARACNA (Musica Elite 2)
             {
                 id: 35, type: 'boss',
                 boss: { id: 'aracna', name: 'Aracna', emoji: '\u{1F577}\u{FE0F}', maxHp: 45 },
@@ -196,7 +196,7 @@ export const WORLDS = [
             { id: 38, type: 'normal', goals: { leaf: 15, mushroom: 15 }, items: ['leaf', 'mushroom'], gridConfig: [{r:2,c:2, ...THORNS}, {r:2,c:3, ...THORNS}, {r:2,c:4, ...THORNS}, {r:5,c:2, ...THORNS}, {r:5,c:3, ...THORNS}, {r:5,c:4, ...THORNS}], mapPos: { x: 28, y: 34 } },
             { id: 39, type: 'normal', goals: { mushroom: 30 }, items: ['mushroom'], gridConfig: [{r:2,c:2, ...THORNS}, {r:2,c:3, ...THORNS}, {r:2,c:4, ...THORNS}, {r:5,c:2, ...THORNS}, {r:5,c:3, ...THORNS}, {r:5,c:4, ...THORNS}], mapPos: { x: 33, y: 27 } },
 
-            // FASE 40: BOSS FINAL SYLVARIS (MÃºsica Boss)
+            // FASE 40: BOSS FINAL SYLVARIS (Musica Boss)
             {
                 id: 40, type: 'boss',
                 boss: { id: 'ent_ancient', name: 'Sylvaris', emoji: '\u{1F333}', maxHp: 60 },
@@ -249,7 +249,7 @@ export const WORLDS = [
             // FASE 49
             { id: 49, type: 'normal', goals: { gold: 10, pickaxe: 8, iron: 8 }, items: ['gold', 'pickaxe', 'iron'], gridConfig: [{r:0,c:0, ...ROCKS}, {r:7,c:7, ...ROCKS}, {r:3,c:3, ...ROCKS}], mapPos: { x: 25, y: 57 } },
 
-            // FASE 50: ELITE TROLL (MÃºsica Elite 1)
+            // FASE 50: ELITE TROLL (Musica Elite 1)
             {
                 id: 50, type: 'boss',
                 boss: { id: 'troll', name: 'Brakkar', emoji: '\u{1F479}', maxHp: 50 },
@@ -265,7 +265,7 @@ export const WORLDS = [
             { id: 53, type: 'normal', goals: { gold: 20 }, items: ['gold'], gridConfig: [...CORNERS.map(p => ({...p, ...ROCKS}))], mapPos: { x: 83, y: 48 } },
             { id: 54, type: 'normal', goals: { pickaxe: 12, gold: 15 }, items: ['pickaxe', 'gold'], gridConfig: [...CORNERS.map(p => ({...p, ...ROCKS}))], mapPos: { x: 81, y: 41 } },
 
-            // FASE 55: ELITE GIGANTE (MÃºsica Elite 2)
+            // FASE 55: ELITE GIGANTE (Musica Elite 2)
             {
                 id: 55, type: 'boss',
                 boss: { id: 'giant', name: 'Kolgar', emoji: '\u{1F5FF}', maxHp: 65 },
@@ -281,7 +281,7 @@ export const WORLDS = [
             { id: 58, type: 'normal', goals: { gold: 18, iron: 18 }, items: ['gold', 'iron'], gridConfig: [{r:2,c:2, ...ROCKS}, {r:2,c:3, ...ROCKS}, {r:2,c:4, ...ROCKS}, {r:5,c:2, ...ROCKS}, {r:5,c:3, ...ROCKS}, {r:5,c:4, ...ROCKS}], mapPos: { x: 28, y: 34 } },
             { id: 59, type: 'normal', goals: { iron: 35 }, items: ['iron'], gridConfig: [{r:2,c:2, ...ROCKS}, {r:2,c:3, ...ROCKS}, {r:2,c:4, ...ROCKS}, {r:5,c:2, ...ROCKS}, {r:5,c:3, ...ROCKS}, {r:5,c:4, ...ROCKS}], mapPos: { x: 33, y: 27 } },
 
-            // FASE 60: BOSS FINAL GOLEM REI (MÃºsica Boss)
+            // FASE 60: BOSS FINAL GOLEM REI (Musica Boss)
             {
                 id: 60, type: 'boss',
                 boss: { id: 'golem_king', name: 'Dravok', emoji: '\u{1F916}', maxHp: 80 },
@@ -334,7 +334,7 @@ export const WORLDS = [
             // FASE 69
             { id: 69, type: 'normal', goals: { bone: 12, sand: 10, skull: 10 }, items: ['bone', 'sand', 'skull'], gridConfig: [{r:0,c:0, ...QUICKSAND}, {r:7,c:7, ...QUICKSAND}, {r:3,c:3, ...QUICKSAND}], mapPos: { x: 25, y: 57 } },
 
-            // FASE 70: ELITE MÃšMIA (MÃºsica Elite 1)
+            // FASE 70: ELITE MUMIA (Musica Elite 1)
             {
                 id: 70, type: 'boss',
                 boss: { id: 'mummy', name: 'Zahur', emoji: '\u{1F9DF}', maxHp: 70 },
@@ -350,7 +350,7 @@ export const WORLDS = [
             { id: 73, type: 'normal', goals: { bone: 25 }, items: ['bone'], gridConfig: [...CORNERS.map(p => ({...p, ...QUICKSAND}))], mapPos: { x: 83, y: 48 } },
             { id: 74, type: 'normal', goals: { sand: 15, bone: 18 }, items: ['sand', 'bone'], gridConfig: [...CORNERS.map(p => ({...p, ...QUICKSAND}))], mapPos: { x: 81, y: 41 } },
 
-            // FASE 75: ELITE ESCORPIÃƒO (MÃºsica Elite 2)
+            // FASE 75: ELITE ESCORPIAO (Musica Elite 2)
             {
                 id: 75, type: 'boss',
                 boss: { id: 'zahrek', name: 'Zahrek', emoji: '\u{1F9D9}\u{200D}\u{2642}\u{FE0F}', maxHp: 85 },
@@ -366,7 +366,7 @@ export const WORLDS = [
             { id: 78, type: 'normal', goals: { bone: 22, skull: 22 }, items: ['bone', 'skull'], gridConfig: [{r:2,c:2, ...QUICKSAND}, {r:2,c:3, ...QUICKSAND}, {r:2,c:4, ...QUICKSAND}, {r:5,c:2, ...QUICKSAND}, {r:5,c:3, ...QUICKSAND}, {r:5,c:4, ...QUICKSAND}], mapPos: { x: 28, y: 34 } },
             { id: 79, type: 'normal', goals: { skull: 40 }, items: ['skull'], gridConfig: [{r:2,c:2, ...QUICKSAND}, {r:2,c:3, ...QUICKSAND}, {r:2,c:4, ...QUICKSAND}, {r:5,c:2, ...QUICKSAND}, {r:5,c:3, ...QUICKSAND}, {r:5,c:4, ...QUICKSAND}], mapPos: { x: 33, y: 27 } },
 
-            // FASE 80: BOSS FINAL WARLORD GROK (MÃºsica Boss)
+            // FASE 80: BOSS FINAL WARLORD GROK (Musica Boss)
             {
                 id: 80, type: 'boss',
                 boss: { id: 'warlord_grok', name: 'Azrakar', emoji: '\u{1F479}', maxHp: 100 },
@@ -399,24 +399,24 @@ export const WORLDS = [
         worldSize: 138,
 
         levels: [
-            // Fase 81 - IntroduÃ§Ã£o ao Castelo (Magia comum)
+            // Fase 81 - Introducao ao Castelo (Magia comum)
             { id: 81, type: 'normal', goals: { magic: 15 }, items: ['magic'], gridConfig: [], mapPos: { x: 36, y: 91 } },
 
             // Fase 82 - Primeiras Sombras
             { id: 82, type: 'normal', goals: { magic: 18 }, items: ['magic'], gridConfig: [{r:3,c:3, ...SHADOWS}], mapPos: { x: 21, y: 87 } },
 
-            // Fase 83 - Aumenta dificuldade (Magia + CrÃ¢nio)
+            // Fase 83 - Aumenta dificuldade (Magia + Cranio)
             { id: 83, type: 'normal', goals: { magic: 12, skull: 8 }, items: ['magic', 'skull'], gridConfig: [{r:0,c:0, ...SHADOWS}, {r:7,c:7, ...SHADOWS}], mapPos: { x: 28, y: 79 } },
 
             // Fase 84 - Sombras nos Cantos
             { id: 84, type: 'normal', goals: { magic: 15, skull: 10 }, items: ['magic', 'skull'],
                 gridConfig: CORNERS.map(pos => ({...pos, ...SHADOWS})), mapPos: { x: 44, y: 77 } },
 
-            // Fase 85 - Introduz Cristal Negro (Ã‰pico)
+            // Fase 85 - Introduz Cristal Negro (Epico)
             { id: 85, type: 'normal', goals: { magic: 10, skull: 8, crystal: 5 }, items: ['magic', 'skull', 'crystal'],
                 gridConfig: [{r:0,c:3}, {r:0,c:4}, {r:7,c:3}, {r:7,c:4}].map(pos => ({...pos, ...SHADOWS})), mapPos: { x: 62, y: 76 } },
 
-            // Fase 86 - PadrÃ£o em Cruz
+            // Fase 86 - Padrao em Cruz
             { id: 86, type: 'normal', goals: { magic: 12, skull: 10, crystal: 6 }, items: ['magic', 'skull', 'crystal'],
                 gridConfig: [{r:0,c:3}, {r:0,c:4}, {r:3,c:0}, {r:4,c:0}, {r:3,c:7}, {r:4,c:7}, {r:7,c:3}, {r:7,c:4}].map(pos => ({...pos, ...SHADOWS})),
                 mapPos: { x: 54, y: 69 } },
@@ -426,23 +426,23 @@ export const WORLDS = [
                 gridConfig: [{r:0,c:0}, {r:0,c:7}, {r:7,c:0}, {r:7,c:7}, {r:2,c:2}, {r:2,c:5}, {r:5,c:2}, {r:5,c:5}].map(pos => ({...pos, ...SHADOWS})),
                 mapPos: { x: 39, y: 68 } },
 
-            // Fase 88 - PreparaÃ§Ã£o para Elite
+            // Fase 88 - Preparacao para Elite
             { id: 88, type: 'normal', goals: { magic: 18, skull: 15, crystal: 10 }, items: ['magic', 'skull', 'crystal'],
                 gridConfig: [{r:0,c:1}, {r:0,c:6}, {r:1,c:0}, {r:1,c:7}, {r:6,c:0}, {r:6,c:7}, {r:7,c:1}, {r:7,c:6}, {r:3,c:3}, {r:4,c:4}].map(pos => ({...pos, ...SHADOWS})),
                 mapPos: { x: 25, y: 65 } },
 
-            // Fase 89 - Ãšltima antes do Elite 1
+            // Fase 89 - Ultima antes do Elite 1
             { id: 89, type: 'normal', goals: { magic: 20, skull: 18, crystal: 12 }, items: ['magic', 'skull', 'crystal'],
                 gridConfig: [{r:0,c:0}, {r:0,c:3}, {r:0,c:4}, {r:0,c:7}, {r:3,c:0}, {r:3,c:7}, {r:4,c:0}, {r:4,c:7}, {r:7,c:0}, {r:7,c:3}, {r:7,c:4}, {r:7,c:7}].map(pos => ({...pos, ...SHADOWS})),
                 mapPos: { x: 25, y: 57 } },
 
-            // FASE 90 - ELITE 1: GÃRGULA
+            // FASE 90 - ELITE 1: GARGULA
             { id: 90, type: 'boss', boss: { id: 'gargoyle', name: 'VEXARA', emoji: '\u{1F987}', maxHp: 100 }, musicId: 'bgm_castle_10',
                 goals: { magic: 25, skull: 20 }, items: ['magic', 'skull', 'crystal'],
                 gridConfig: [{r:0,c:0}, {r:0,c:7}, {r:7,c:0}, {r:7,c:7}, {r:1,c:3}, {r:1,c:4}, {r:6,c:3}, {r:6,c:4}].map(pos => ({...pos, ...SHADOWS})),
                 mapPos: { x: 41, y: 55 } },
 
-            // Fase 91 - PÃ³s Elite 1
+            // Fase 91 - Pos Elite 1
             { id: 91, type: 'normal', goals: { magic: 22, skull: 20, crystal: 15 }, items: ['magic', 'skull', 'crystal'],
                 gridConfig: [{r:0,c:2}, {r:0,c:5}, {r:2,c:0}, {r:2,c:7}, {r:5,c:0}, {r:5,c:7}, {r:7,c:2}, {r:7,c:5}, {r:3,c:3}, {r:4,c:4}, {r:3,c:4}, {r:4,c:3}].map(pos => ({...pos, ...SHADOWS})),
                 mapPos: { x: 58, y: 54 } },
@@ -452,12 +452,12 @@ export const WORLDS = [
                 gridConfig: [{r:0,c:0}, {r:0,c:1}, {r:0,c:6}, {r:0,c:7}, {r:1,c:0}, {r:1,c:7}, {r:6,c:0}, {r:6,c:7}, {r:7,c:0}, {r:7,c:1}, {r:7,c:6}, {r:7,c:7}, {r:3,c:3}, {r:4,c:4}].map(pos => ({...pos, ...SHADOWS})),
                 mapPos: { x: 72, y: 52 } },
 
-            // Fase 93 - PadrÃ£o Diagonal
+            // Fase 93 - Padrao Diagonal
             { id: 93, type: 'normal', goals: { magic: 28, skull: 25, crystal: 20 }, items: ['magic', 'skull', 'crystal'],
                 gridConfig: [{r:0,c:0}, {r:1,c:1}, {r:2,c:2}, {r:5,c:5}, {r:6,c:6}, {r:7,c:7}, {r:0,c:7}, {r:1,c:6}, {r:2,c:5}, {r:5,c:2}, {r:6,c:1}, {r:7,c:0}].map(pos => ({...pos, ...SHADOWS})),
                 mapPos: { x: 83, y: 48 } },
 
-            // Fase 94 - Ãšltima antes do Elite 2
+            // Fase 94 - Ultima antes do Elite 2
             { id: 94, type: 'normal', goals: { magic: 30, skull: 28, crystal: 22 }, items: ['magic', 'skull', 'crystal'],
                 gridConfig: [{r:0,c:0}, {r:0,c:3}, {r:0,c:4}, {r:0,c:7}, {r:1,c:1}, {r:1,c:6}, {r:3,c:0}, {r:3,c:7}, {r:4,c:0}, {r:4,c:7}, {r:6,c:1}, {r:6,c:6}, {r:7,c:0}, {r:7,c:3}, {r:7,c:4}, {r:7,c:7}].map(pos => ({...pos, ...SHADOWS})),
                 mapPos: { x: 81, y: 41 } },
@@ -473,21 +473,21 @@ export const WORLDS = [
                 gridConfig: [{r:0,c:0}, {r:0,c:1}, {r:0,c:2}, {r:0,c:5}, {r:0,c:6}, {r:0,c:7}, {r:1,c:0}, {r:1,c:7}, {r:2,c:0}, {r:2,c:7}, {r:5,c:0}, {r:5,c:7}, {r:6,c:0}, {r:6,c:7}, {r:7,c:0}, {r:7,c:1}, {r:7,c:2}, {r:7,c:5}, {r:7,c:6}, {r:7,c:7}].map(pos => ({...pos, ...SHADOWS})),
                 mapPos: { x: 53, y: 38 } },
 
-            // Fase 97 - Quase ImpossÃ­vel
+            // Fase 97 - Quase Impossivel
             { id: 97, type: 'normal', goals: { magic: 40, skull: 38, crystal: 35 }, items: ['magic', 'skull', 'crystal'],
                 gridConfig: [{r:0,c:0}, {r:0,c:1}, {r:0,c:2}, {r:0,c:3}, {r:0,c:4}, {r:0,c:5}, {r:0,c:6}, {r:0,c:7},
                              {r:1,c:0}, {r:1,c:7}, {r:2,c:0}, {r:2,c:7}, {r:3,c:0}, {r:3,c:7}, {r:4,c:0}, {r:4,c:7}, {r:5,c:0}, {r:5,c:7}, {r:6,c:0}, {r:6,c:7},
                              {r:7,c:0}, {r:7,c:1}, {r:7,c:2}, {r:7,c:3}, {r:7,c:4}, {r:7,c:5}, {r:7,c:6}, {r:7,c:7}].map(pos => ({...pos, ...SHADOWS})),
                 mapPos: { x: 40, y: 37 } },
 
-            // Fase 98 - PenÃºltima do Jogo
+            // Fase 98 - Penultima do Jogo
             { id: 98, type: 'normal', goals: { magic: 42, skull: 40, crystal: 38 }, items: ['magic', 'skull', 'crystal'],
                 gridConfig: [{r:0,c:0}, {r:0,c:1}, {r:0,c:2}, {r:0,c:3}, {r:0,c:4}, {r:0,c:5}, {r:0,c:6}, {r:0,c:7},
                              {r:1,c:0}, {r:1,c:1}, {r:1,c:6}, {r:1,c:7}, {r:2,c:0}, {r:2,c:7}, {r:3,c:0}, {r:3,c:7}, {r:4,c:0}, {r:4,c:7}, {r:5,c:0}, {r:5,c:7}, {r:6,c:0}, {r:6,c:1}, {r:6,c:6}, {r:6,c:7},
                              {r:7,c:0}, {r:7,c:1}, {r:7,c:2}, {r:7,c:3}, {r:7,c:4}, {r:7,c:5}, {r:7,c:6}, {r:7,c:7}].map(pos => ({...pos, ...SHADOWS})),
                 mapPos: { x: 28, y: 34 } },
 
-            // Fase 99 - Ãšltima antes do Boss Final
+            // Fase 99 - Ultima antes do Boss Final
             { id: 99, type: 'normal', goals: { magic: 45, skull: 42, crystal: 40 }, items: ['magic', 'skull', 'crystal'],
                 gridConfig: [{r:0,c:0}, {r:0,c:1}, {r:0,c:2}, {r:0,c:3}, {r:0,c:4}, {r:0,c:5}, {r:0,c:6}, {r:0,c:7},
                              {r:1,c:0}, {r:1,c:1}, {r:1,c:2}, {r:1,c:5}, {r:1,c:6}, {r:1,c:7}, {r:2,c:0}, {r:2,c:1}, {r:2,c:6}, {r:2,c:7},
@@ -510,5 +510,7 @@ export const WORLDS = [
         ]
     }
 ];
+
+
 
 

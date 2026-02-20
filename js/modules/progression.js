@@ -134,7 +134,7 @@ export class PlayerProgression {
             }
         } catch (err) {
             if (this.logger) {
-                this.logger.warn('[PROGRESSION] Falha ao carregar, usando padrÃ£o.', err);
+                this.logger.warn('[PROGRESSION] Falha ao carregar, usando padrao.', err);
             }
         }
         return { ...DEFAULT_STATE };

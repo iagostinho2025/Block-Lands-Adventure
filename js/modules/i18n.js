@@ -6,12 +6,12 @@ export class I18nSystem {
         
         this.supportedLangs = [
             { code: 'en', label: 'English' },
-            { code: 'pt-BR', label: 'Português (Brasil)' }
+            { code: 'pt-BR', label: 'Portugu\u00EAs (Brasil)' }
         ];
     }
 
     async init() {
-        // Detecta idioma (Cache > Navegador > Padrão EN)
+        // Detecta idioma (Cache > Navegador > Padrao EN)
         const savedLang = localStorage.getItem('blocklands_lang');
         const browserLang = navigator.language;
 
@@ -58,7 +58,7 @@ export class I18nSystem {
         }
     }
 
-    // Função auxiliar para juntar objetos (garante que chaves faltantes no PT venham do EN)
+    // Funcao auxiliar para juntar objetos (garante que chaves faltantes no PT venham do EN)
     mergeDeep(target, source) {
         let output = Object.assign({}, target);
         if (isObject(target) && isObject(source)) {
@@ -107,3 +107,4 @@ export class I18nSystem {
 function isObject(item) {
     return (item && typeof item === 'object' && !Array.isArray(item));
 }
+
