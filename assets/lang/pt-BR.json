@@ -467,6 +467,7 @@
 		"elite70": {
 			"title": "M\u00famia",
 			"subtitle": "Elite do Deserto \u2014 N\u00edvel 70",
+			"story": "Zahur vaga pelas ruinas soterradas do Deserto da Morte.\nEnfaixado pela propria areia, ele desperta tumbas antigas a cada movimento.\nSua presenca transforma o caminho em areia movedi\u00e7a e engole os desprevenidos.\nPara atravessar o deserto, voce precisa quebrar sua maldicao.",
 			"boss": {
 				"quicksand_title": "Areia Movedi\u00e7a",
 				"quicksand_desc": "A cada 6 jogadas, transforma Ossos em Areia Movedi\u00e7a."
@@ -475,6 +476,7 @@
 		"elite75": {
 			"title": "Escorpi\u00e3o",
 			"subtitle": "Elite do Deserto \u2014 N\u00edvel 75",
+			"story": "Zahrek reina entre dunas envenenadas, oculto sob o calor cortante.\nRapido e cruel, ele ataca antes que a poeira baixe.\nSeu veneno corrompe a propria areia, tornando cada trilha uma armadilha mortal.\nSobreviver a Zahrek exige precisao, sangue-frio e nenhum passo em falso.",
 			"boss": {
 				"sand_poison_title": "Veneno da Areia",
 				"sand_poison_desc": "A cada 4 turnos, transforma Areia em Areia Movedi\u00e7a.",
@@ -485,6 +487,7 @@
 		"boss80": {
 			"title": "Warlord Grok",
 			"subtitle": "Boss do Deserto \u2014 N\u00edvel 80",
+			"story": "Azrakar, o Warlord Grok, domina o Deserto da Morte com punho de ferro.\nSeu exercito virou po, mas sua vontade permanece intacta.\nSob seu comando, areia, ossos e caveiras se levantam como armas de guerra.\nDerrota-lo e abrir caminho para o Castelo Sombrio e uma prova de resistencia absoluta.",
 			"boss": {
 				"bone_quicksand_title": "Areia Movedi\u00e7a",
 				"bone_quicksand_desc": "A cada 6 jogadas, transforma Ossos em Areia Movedi\u00e7a.",

@@ -205,6 +205,45 @@
     background: linear-gradient(135deg, #F59E0B, #F59E0B) !important;
 }
 
+#app.world-desert.level-type-normal .type-bone-glow {
+    border-color: #d7b9a4;
+    box-shadow: 0 0 15px rgba(124, 90, 70, 0.22);
+    background: linear-gradient(135deg, #7c5a46, #5b4032) !important;
+}
+
+#app.world-desert.level-type-normal .type-sand-glow {
+    border-color: #f0d27a;
+    box-shadow: 0 0 15px rgba(138, 106, 31, 0.22);
+    background: linear-gradient(135deg, #8a6a1f, #5f4714) !important;
+}
+
+#app.world-desert.level-type-normal .type-skull-glow {
+    border-color: #9fb9cf;
+    box-shadow: 0 0 15px rgba(63, 85, 104, 0.22);
+    background: linear-gradient(135deg, #3f5568, #2a3947) !important;
+}
+
+#app.world-desert.level-type-elite .type-bone-glow,
+#app.world-desert.level-type-boss .type-bone-glow {
+    border-color: #f0b7a2;
+    box-shadow: 0 0 15px rgba(143, 59, 46, 0.22);
+    background: linear-gradient(135deg, #8f3b2e, #6a2a20) !important;
+}
+
+#app.world-desert.level-type-elite .type-sand-glow,
+#app.world-desert.level-type-boss .type-sand-glow {
+    border-color: #f5d992;
+    box-shadow: 0 0 15px rgba(154, 106, 26, 0.22);
+    background: linear-gradient(135deg, #9a6a1a, #734f12) !important;
+}
+
+#app.world-desert.level-type-elite .type-skull-glow,
+#app.world-desert.level-type-boss .type-skull-glow {
+    border-color: #c8b4d6;
+    box-shadow: 0 0 15px rgba(74, 59, 82, 0.22);
+    background: linear-gradient(135deg, #4a3b52, #33283a) !important;
+}
+
 
 /* Informações (Texto embaixo) */
 .goal-info {

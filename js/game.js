@@ -390,7 +390,13 @@ const ITEM_SPRITE_PATHS = {
     pickaxe: 'assets/enemies/mountain_world/item_collect_rare.webp',
     iron: 'assets/enemies/mountain_world/item_collect_epic.webp',
     rocks: 'assets/enemies/mountain_world/item_obstaculo.webp',
-    debris: 'assets/enemies/mountain_world/item_obstaculo.webp'
+    debris: 'assets/enemies/mountain_world/item_obstaculo.webp',
+    // Desert world (fallback default)
+    bone: 'assets/enemies/desert_world/item_collect_common.webp',
+    sand: 'assets/enemies/desert_world/item_collect_rare.webp',
+    skull: 'assets/enemies/desert_world/item_collect_epic.webp',
+    quicksand: 'assets/enemies/desert_world/item_obstaculo.webp',
+    sandstorm: 'assets/enemies/desert_world/item_obstaculo.webp'
 };
 
 const MOUNTAIN_COLLECT_SPRITES = {
@@ -403,6 +409,29 @@ const MOUNTAIN_DAMAGE_SPRITES = {
     gold: 'assets/enemies/mountain_world/item_damage_common.webp',
     pickaxe: 'assets/enemies/mountain_world/item_damage_rare.webp',
     iron: 'assets/enemies/mountain_world/item_damage_epic.webp'
+};
+
+const DESERT_COLLECT_SPRITES = {
+    bone: 'assets/enemies/desert_world/item_collect_common.webp',
+    sand: 'assets/enemies/desert_world/item_collect_rare.webp',
+    skull: 'assets/enemies/desert_world/item_collect_epic.webp'
+};
+
+const DESERT_DAMAGE_SPRITES = {
+    bone: 'assets/enemies/desert_world/item_damage_common.webp',
+    sand: 'assets/enemies/desert_world/item_damage_rare.webp',
+    skull: 'assets/enemies/desert_world/item_damage_epic.webp'
+};
+
+const WORLD_CONTEXTUAL_ITEM_SPRITES = {
+    mountain_world: {
+        normal: MOUNTAIN_COLLECT_SPRITES,
+        combat: MOUNTAIN_DAMAGE_SPRITES
+    },
+    desert_world: {
+        normal: DESERT_COLLECT_SPRITES,
+        combat: DESERT_DAMAGE_SPRITES
+    }
 };
 
 const INFO_CARD_HEROES = [
@@ -590,13 +619,14 @@ const INFO_CARD_DATA = {
         sealAltKey: 'desert_info.elite70.title',
         titleKey: 'desert_info.elite70.title',
         subtitleKey: 'desert_info.elite70.subtitle',
+        storyKey: 'desert_info.elite70.story',
         bossPowers: [
             { icon: '\u{1F3DC}\u{FE0F}', titleKey: 'desert_info.elite70.boss.quicksand_title', descKey: 'desert_info.elite70.boss.quicksand_desc' }
         ],
         items: [
-            { icon: '\u{1F9B4}', titleKey: 'desert_info.items.bone_title', descKey: 'desert_info.items.bone_desc' },
-            { icon: '\u{1F3D6}\u{FE0F}', titleKey: 'desert_info.items.sand_title', descKey: 'desert_info.items.sand_desc' },
-            { icon: '\u{1F480}', titleKey: 'desert_info.items.skull_title', descKey: 'desert_info.items.skull_desc' }
+            { iconImage: 'assets/enemies/desert_world/item_damage_common.webp', iconAlt: 'Item comum de dano', titleKey: 'desert_info.items.bone_title', descKey: 'desert_info.items.bone_desc' },
+            { iconImage: 'assets/enemies/desert_world/item_damage_rare.webp', iconAlt: 'Item raro de dano', titleKey: 'desert_info.items.sand_title', descKey: 'desert_info.items.sand_desc' },
+            { iconImage: 'assets/enemies/desert_world/item_damage_epic.webp', iconAlt: 'Item epico de dano', titleKey: 'desert_info.items.skull_title', descKey: 'desert_info.items.skull_desc' }
         ],
         heroes: INFO_CARD_HEROES
     },
@@ -606,14 +636,15 @@ const INFO_CARD_DATA = {
         sealAltKey: 'desert_info.elite75.title',
         titleKey: 'desert_info.elite75.title',
         subtitleKey: 'desert_info.elite75.subtitle',
+        storyKey: 'desert_info.elite75.story',
         bossPowers: [
             { icon: '\u{1F3DC}\u{FE0F}', titleKey: 'desert_info.elite75.boss.sand_poison_title', descKey: 'desert_info.elite75.boss.sand_poison_desc' },
             { icon: '\u{1F3DC}\u{FE0F}', titleKey: 'desert_info.elite75.boss.quicksand_title', descKey: 'desert_info.elite75.boss.quicksand_desc' }
         ],
         items: [
-            { icon: '\u{1F9B4}', titleKey: 'desert_info.items.bone_title', descKey: 'desert_info.items.bone_desc' },
-            { icon: '\u{1F3D6}\u{FE0F}', titleKey: 'desert_info.items.sand_title', descKey: 'desert_info.items.sand_desc' },
-            { icon: '\u{1F480}', titleKey: 'desert_info.items.skull_title', descKey: 'desert_info.items.skull_desc' }
+            { iconImage: 'assets/enemies/desert_world/item_damage_common.webp', iconAlt: 'Item comum de dano', titleKey: 'desert_info.items.bone_title', descKey: 'desert_info.items.bone_desc' },
+            { iconImage: 'assets/enemies/desert_world/item_damage_rare.webp', iconAlt: 'Item raro de dano', titleKey: 'desert_info.items.sand_title', descKey: 'desert_info.items.sand_desc' },
+            { iconImage: 'assets/enemies/desert_world/item_damage_epic.webp', iconAlt: 'Item epico de dano', titleKey: 'desert_info.items.skull_title', descKey: 'desert_info.items.skull_desc' }
         ],
         heroes: INFO_CARD_HEROES
     },
@@ -623,15 +654,16 @@ const INFO_CARD_DATA = {
         sealAltKey: 'desert_info.boss80.title',
         titleKey: 'desert_info.boss80.title',
         subtitleKey: 'desert_info.boss80.subtitle',
+        storyKey: 'desert_info.boss80.story',
         bossPowers: [
             { icon: '\u{1F3DC}\u{FE0F}', titleKey: 'desert_info.boss80.boss.bone_quicksand_title', descKey: 'desert_info.boss80.boss.bone_quicksand_desc' },
             { icon: '\u{1F3DC}\u{FE0F}', titleKey: 'desert_info.boss80.boss.sand_quicksand_title', descKey: 'desert_info.boss80.boss.sand_quicksand_desc' },
             { icon: '\u{1F32A}\u{FE0F}', titleKey: 'desert_info.boss80.boss.sandstorm_title', descKey: 'desert_info.boss80.boss.sandstorm_desc' }
         ],
         items: [
-            { icon: '\u{1F9B4}', titleKey: 'desert_info.items.bone_title', descKey: 'desert_info.items.bone_desc' },
-            { icon: '\u{1F3D6}\u{FE0F}', titleKey: 'desert_info.items.sand_title', descKey: 'desert_info.items.sand_desc' },
-            { icon: '\u{1F480}', titleKey: 'desert_info.items.skull_title', descKey: 'desert_info.items.skull_desc' }
+            { iconImage: 'assets/enemies/desert_world/item_damage_common.webp', iconAlt: 'Item comum de dano', titleKey: 'desert_info.items.bone_title', descKey: 'desert_info.items.bone_desc' },
+            { iconImage: 'assets/enemies/desert_world/item_damage_rare.webp', iconAlt: 'Item raro de dano', titleKey: 'desert_info.items.sand_title', descKey: 'desert_info.items.sand_desc' },
+            { iconImage: 'assets/enemies/desert_world/item_damage_epic.webp', iconAlt: 'Item epico de dano', titleKey: 'desert_info.items.skull_title', descKey: 'desert_info.items.skull_desc' }
         ],
         heroes: INFO_CARD_HEROES
     },
@@ -1736,12 +1768,14 @@ getFlySpritePathByKey(key) {
 
 getItemSpritePathByKey(key) {
         const normalized = String(key || '').toLowerCase();
-        if (normalized === 'gold' || normalized === 'pickaxe' || normalized === 'iron') {
-            const world = this.getCurrentWorldConfig();
+        const world = this.getCurrentWorldConfig();
+        const contextualWorldMap = world?.id ? WORLD_CONTEXTUAL_ITEM_SPRITES[world.id] : null;
+        if (this.currentMode === 'adventure' && contextualWorldMap) {
             const levelType = this.currentLevelConfig?.type || 'normal';
-            if (this.currentMode === 'adventure' && world?.id === 'mountain_world') {
-                const mountainMap = levelType === 'normal' ? MOUNTAIN_COLLECT_SPRITES : MOUNTAIN_DAMAGE_SPRITES;
-                return mountainMap[normalized] || '';
+            const profile = levelType === 'normal' ? 'normal' : 'combat';
+            const contextualSprites = contextualWorldMap[profile] || contextualWorldMap.normal;
+            if (contextualSprites && contextualSprites[normalized]) {
+                return contextualSprites[normalized];
             }
         }
         return runGetItemSpritePathByKey(this, key, { spritePaths: ITEM_SPRITE_PATHS });

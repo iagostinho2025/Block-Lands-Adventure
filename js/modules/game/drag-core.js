@@ -219,10 +219,11 @@ export function attachDragEvents(game, el, piece, deps = {}) {
         clone = el.cloneNode(true);
         clone.classList.add('dragging-active');
         const currentWorld = (typeof game.getCurrentWorldConfig === 'function') ? game.getCurrentWorldConfig() : null;
-        if (game.currentMode === 'adventure' && currentWorld?.id === 'mountain_world') {
+        if (game.currentMode === 'adventure' && (currentWorld?.id === 'mountain_world' || currentWorld?.id === 'desert_world')) {
             const levelType = game.currentLevelConfig?.type || 'normal';
-            if (levelType === 'normal') clone.classList.add('drag-context-mountain-normal');
-            else clone.classList.add('drag-context-mountain-combat');
+            const modeSuffix = levelType === 'normal' ? 'normal' : 'combat';
+            const worldPrefix = currentWorld.id === 'mountain_world' ? 'mountain' : 'desert';
+            clone.classList.add(`drag-context-${worldPrefix}-${modeSuffix}`);
         }
         clone.style.display = 'grid';
 

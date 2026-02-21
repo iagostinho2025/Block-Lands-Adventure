@@ -148,19 +148,41 @@ export function renderControlsUI(game) {
 
         if (game.currentMode === 'adventure') {
             const heroes = [
-                { id: 'thalion', icon: '\u{1F9DD}\u{200D}\u{2642}\u{FE0F}' },
-                { id: 'nyx', icon: '\u{1F43A}' }
+                { id: 'thalion', sprite: 'assets/img/icon_thalion.webp', label: 'Thalion' },
+                { id: 'nyx', sprite: 'assets/img/icon_nyx.webp', label: 'Nyx' }
             ];
 
-            if (game.playerClass === 'mage') heroes.push({ id: 'mage', icon: '\u{1F9D9}\u{200D}\u{2640}\u{FE0F}' });
-            else heroes.push({ id: 'player', icon: '\u{2694}\u{FE0F}' });
+            if (game.playerClass === 'mage') {
+                heroes.push({ id: 'mage', sprite: 'assets/img/icon_mage.webp', label: 'Mage' });
+            } else {
+                heroes.push({ id: 'player', sprite: 'assets/img/icon_warrior.webp', label: 'Warrior' });
+            }
 
             for (const h of heroes) {
                 const btn = document.createElement('div');
                 btn.className = 'ctrl-btn hero locked';
                 btn.id = `btn-hero-${h.id}`;
-                btn.textContent = h.icon;
+                btn.setAttribute('role', 'button');
+                btn.setAttribute('tabindex', '0');
+                btn.setAttribute('aria-label', h.label);
+                btn.title = h.label;
+
+                const iconImg = document.createElement('img');
+                iconImg.className = 'hero-icon-sprite';
+                iconImg.src = h.sprite;
+                iconImg.alt = '';
+                iconImg.loading = 'lazy';
+                iconImg.decoding = 'async';
+                iconImg.setAttribute('aria-hidden', 'true');
+                btn.appendChild(iconImg);
+
                 btn.addEventListener('click', () => game.activateHeroPower(h.id));
+                btn.addEventListener('keydown', (evt) => {
+                    if (evt.key === 'Enter' || evt.key === ' ') {
+                        evt.preventDefault();
+                        game.activateHeroPower(h.id);
+                    }
+                });
 
                 rightGroup.appendChild(btn);
                 game._controlsUI.heroBtns.set(h.id, btn);

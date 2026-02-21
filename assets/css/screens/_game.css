@@ -518,40 +518,158 @@
 
 /* Osso (Bege/marfim) */
 .type-bone, .cell.filled.type-bone, .block-unit.type-bone {
-    background: linear-gradient(135deg, #d6d3d1, #a8a29e) !important;
+    background:
+        var(--item-sprite) center / 78% no-repeat,
+        linear-gradient(135deg, #d6d3d1, #a8a29e) !important;
     border: 2px solid #f5f5f4 !important;
     box-shadow: 0 0 15px rgba(245, 245, 244, 0.5), inset 0 0 10px rgba(0,0,0,0.3) !important;
-    text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+    text-shadow: none;
 }
 
 /* Areia (Amarelo deserto/âmbar) */
 .type-sand, .cell.filled.type-sand, .block-unit.type-sand {
-    background: linear-gradient(135deg, #d97706, #b45309) !important;
+    background:
+        var(--item-sprite) center / 78% no-repeat,
+        linear-gradient(135deg, #d97706, #b45309) !important;
     border: 2px solid #fbbf24 !important;
     box-shadow: 0 0 15px rgba(251, 191, 36, 0.5), inset 0 0 10px rgba(0,0,0,0.4) !important;
-    text-shadow: 0 0 10px rgba(252, 211, 77, 0.8);
+    text-shadow: none;
 }
 
 /* Caveira (Cinza escuro/sombrio) */
 .type-skull, .cell.filled.type-skull, .block-unit.type-skull {
-    background: linear-gradient(135deg, #3f3f46, #27272a) !important;
+    background:
+        var(--item-sprite) center / 78% no-repeat,
+        linear-gradient(135deg, #3f3f46, #27272a) !important;
     border: 2px solid #71717a !important;
     box-shadow: 0 0 15px rgba(113, 113, 122, 0.6), inset 0 0 10px rgba(0,0,0,0.6) !important;
-    text-shadow: 0 0 10px rgba(161, 161, 170, 0.8);
+    text-shadow: none;
 }
 
 /* Areia Movediça (Obstáculo do deserto) */
 .type-quicksand, .cell.filled.type-quicksand, .block-unit.type-quicksand {
-    background: linear-gradient(135deg, #92400e, #78350f) !important;
+    background:
+        var(--item-sprite) center / 78% no-repeat,
+        linear-gradient(135deg, #92400e, #78350f) !important;
     border-color: #b45309 !important;
     box-shadow: inset 0 0 8px rgba(0,0,0,0.7) !important;
 }
 
 /* Tempestade de Areia (Obstáculo especial do Grok) */
 .type-sandstorm, .cell.filled.type-sandstorm, .block-unit.type-sandstorm {
-    background: linear-gradient(135deg, #ca8a04, #a16207) !important;
+    background:
+        var(--item-sprite) center / 78% no-repeat,
+        linear-gradient(135deg, #ca8a04, #a16207) !important;
     border-color: #f59e0b !important;
     box-shadow: inset 0 0 8px rgba(0,0,0,0.6), 0 0 10px rgba(245, 158, 11, 0.4) !important;
+}
+
+#app.world-desert.level-type-normal .type-bone,
+#app.world-desert.level-type-normal .cell.filled.type-bone,
+#app.world-desert.level-type-normal .block-unit.type-bone {
+    background:
+        var(--item-sprite) center / 78% no-repeat,
+        linear-gradient(135deg, #7c5a46, #5b4032) !important;
+    border: 2px solid #d7b9a4 !important;
+    box-shadow: 0 0 15px rgba(124, 90, 70, 0.45), inset 0 0 10px rgba(0,0,0,0.25) !important;
+}
+
+#app.world-desert.level-type-normal .type-sand,
+#app.world-desert.level-type-normal .cell.filled.type-sand,
+#app.world-desert.level-type-normal .block-unit.type-sand {
+    background:
+        var(--item-sprite) center / 78% no-repeat,
+        linear-gradient(135deg, #8a6a1f, #5f4714) !important;
+    border: 2px solid #f0d27a !important;
+    box-shadow: 0 0 15px rgba(138, 106, 31, 0.45), inset 0 0 10px rgba(0,0,0,0.28) !important;
+}
+
+#app.world-desert.level-type-normal .type-skull,
+#app.world-desert.level-type-normal .cell.filled.type-skull,
+#app.world-desert.level-type-normal .block-unit.type-skull {
+    background:
+        var(--item-sprite) center / 78% no-repeat,
+        linear-gradient(135deg, #3f5568, #2a3947) !important;
+    border: 2px solid #9fb9cf !important;
+    box-shadow: 0 0 15px rgba(63, 85, 104, 0.45), inset 0 0 10px rgba(0,0,0,0.28) !important;
+}
+
+.dragging-active.drag-context-desert-normal .block-unit.type-bone {
+    background:
+        var(--item-sprite) center / 78% no-repeat,
+        linear-gradient(135deg, #7c5a46, #5b4032) !important;
+    border: 2px solid #d7b9a4 !important;
+}
+
+.dragging-active.drag-context-desert-normal .block-unit.type-sand {
+    background:
+        var(--item-sprite) center / 78% no-repeat,
+        linear-gradient(135deg, #8a6a1f, #5f4714) !important;
+    border: 2px solid #f0d27a !important;
+}
+
+.dragging-active.drag-context-desert-normal .block-unit.type-skull {
+    background:
+        var(--item-sprite) center / 78% no-repeat,
+        linear-gradient(135deg, #3f5568, #2a3947) !important;
+    border: 2px solid #9fb9cf !important;
+}
+
+#app.world-desert.level-type-elite .type-bone,
+#app.world-desert.level-type-elite .cell.filled.type-bone,
+#app.world-desert.level-type-elite .block-unit.type-bone,
+#app.world-desert.level-type-boss .type-bone,
+#app.world-desert.level-type-boss .cell.filled.type-bone,
+#app.world-desert.level-type-boss .block-unit.type-bone {
+    background:
+        var(--item-sprite) center / 78% no-repeat,
+        linear-gradient(135deg, #8f3b2e, #6a2a20) !important;
+    border: 2px solid #f0b7a2 !important;
+}
+
+#app.world-desert.level-type-elite .type-sand,
+#app.world-desert.level-type-elite .cell.filled.type-sand,
+#app.world-desert.level-type-elite .block-unit.type-sand,
+#app.world-desert.level-type-boss .type-sand,
+#app.world-desert.level-type-boss .cell.filled.type-sand,
+#app.world-desert.level-type-boss .block-unit.type-sand {
+    background:
+        var(--item-sprite) center / 78% no-repeat,
+        linear-gradient(135deg, #9a6a1a, #734f12) !important;
+    border: 2px solid #f5d992 !important;
+}
+
+#app.world-desert.level-type-elite .type-skull,
+#app.world-desert.level-type-elite .cell.filled.type-skull,
+#app.world-desert.level-type-elite .block-unit.type-skull,
+#app.world-desert.level-type-boss .type-skull,
+#app.world-desert.level-type-boss .cell.filled.type-skull,
+#app.world-desert.level-type-boss .block-unit.type-skull {
+    background:
+        var(--item-sprite) center / 78% no-repeat,
+        linear-gradient(135deg, #4a3b52, #33283a) !important;
+    border: 2px solid #c8b4d6 !important;
+}
+
+.dragging-active.drag-context-desert-combat .block-unit.type-bone {
+    background:
+        var(--item-sprite) center / 78% no-repeat,
+        linear-gradient(135deg, #8f3b2e, #6a2a20) !important;
+    border: 2px solid #f0b7a2 !important;
+}
+
+.dragging-active.drag-context-desert-combat .block-unit.type-sand {
+    background:
+        var(--item-sprite) center / 78% no-repeat,
+        linear-gradient(135deg, #9a6a1a, #734f12) !important;
+    border: 2px solid #f5d992 !important;
+}
+
+.dragging-active.drag-context-desert-combat .block-unit.type-skull {
+    background:
+        var(--item-sprite) center / 78% no-repeat,
+        linear-gradient(135deg, #4a3b52, #33283a) !important;
+    border: 2px solid #c8b4d6 !important;
 }
 
 /* ========================================================================= */
@@ -3772,6 +3890,13 @@ html, body {
 .ctrl-btn.pwr-rotate { color: #3b82f6; }
 .ctrl-btn.pwr-swap { color: #22c55e; }
 .ctrl-btn.hero { border-color: #64748b; } /* Heróis borda cinza base */
+.ctrl-btn.hero .hero-icon-sprite {
+    width: 34px;
+    height: 34px;
+    object-fit: contain;
+    display: block;
+    pointer-events: none;
+}
 
 /* ESTADOS */
 .ctrl-btn.locked, .ctrl-btn.disabled {
@@ -5715,6 +5840,157 @@ body {
     width: var(--game-width);
     max-width: 100%;
     margin-inline: auto;
+}
+
+/* =========================================
+   DESERT UI THEME (Dock + Controls only)
+   ========================================= */
+#app.is-screen-adventure.world-desert #dock,
+#app.is-screen-adventure.world-desert .dock-slot {
+    --tray-slot-size: clamp(74px, 20.5vw, 100px);
+    --tray-gap: clamp(10px, 3.4vw, 16px);
+}
+
+#app.is-screen-adventure.world-desert #dock {
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+#app.is-screen-adventure.world-desert .dock-slot {
+    border-radius: 14px;
+    border: 2px solid rgba(245, 158, 11, 0.34);
+    background:
+        radial-gradient(80% 80% at 30% 20%, rgba(251, 191, 36, 0.14), transparent 65%),
+        linear-gradient(145deg, rgba(120, 53, 15, 0.55), rgba(41, 24, 12, 0.66));
+    box-shadow:
+        0 8px 18px rgba(0, 0, 0, 0.28),
+        inset 0 0 12px rgba(0, 0, 0, 0.4);
+}
+
+#app.is-screen-adventure.world-desert .dock-slot.active,
+#app.is-screen-adventure.world-desert .dock-slot:focus-visible {
+    outline: 2px solid rgba(254, 243, 199, 0.9);
+    box-shadow:
+        0 0 16px rgba(245, 158, 11, 0.45),
+        inset 0 0 12px rgba(0, 0, 0, 0.35);
+}
+
+#app.is-screen-adventure.world-desert .dock-slot.is-sealed-left {
+    border-color: rgba(217, 119, 6, 0.75);
+    background:
+        radial-gradient(80% 80% at 50% 20%, rgba(251, 191, 36, 0.18), transparent 70%),
+        linear-gradient(145deg, rgba(120, 53, 15, 0.75), rgba(59, 31, 11, 0.82));
+    box-shadow:
+        0 0 16px rgba(217, 119, 6, 0.32),
+        inset 0 0 14px rgba(0, 0, 0, 0.5);
+}
+
+#app.is-screen-adventure.world-desert .dock-slot .dock-seal-icon {
+    filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.65));
+}
+
+#app.is-screen-adventure.world-desert .controls-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    column-gap: clamp(28px, 10vw, 84px);
+    padding: 8px 12px;
+    border-radius: 18px;
+    border: 1px solid rgba(251, 191, 36, 0.26);
+    background:
+        radial-gradient(140% 120% at 50% -35%, rgba(251, 191, 36, 0.24), transparent 65%),
+        linear-gradient(180deg, rgba(68, 32, 14, 0.92), rgba(30, 20, 13, 0.94));
+    box-shadow:
+        0 12px 24px rgba(0, 0, 0, 0.42),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(4px);
+}
+
+#app.is-screen-adventure.world-desert .controls-group {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 10px;
+    row-gap: 8px;
+    min-width: calc((50px * 2) + 10px);
+}
+
+#app.is-screen-adventure.world-desert #controls-left-group > .ctrl-btn:nth-child(3),
+#app.is-screen-adventure.world-desert #controls-right-group > .ctrl-btn:nth-child(3) {
+    grid-column: 1 / -1;
+    justify-self: center;
+}
+
+#app.is-screen-adventure.world-desert .ctrl-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 13px;
+    border: 2px solid rgba(180, 83, 9, 0.6);
+    background:
+        radial-gradient(90% 90% at 30% 20%, rgba(254, 243, 199, 0.14), transparent 65%),
+        linear-gradient(145deg, #553012, #3b2617);
+    box-shadow:
+        0 6px 14px rgba(0, 0, 0, 0.35),
+        inset 0 0 10px rgba(0, 0, 0, 0.34);
+    color: #fde68a;
+}
+
+#app.is-screen-adventure.world-desert .ctrl-btn.pwr-magnet {
+    color: #fde68a;
+    border-color: rgba(251, 191, 36, 0.65);
+}
+
+#app.is-screen-adventure.world-desert .ctrl-btn.pwr-rotate {
+    color: #fcd34d;
+    border-color: rgba(245, 158, 11, 0.6);
+}
+
+#app.is-screen-adventure.world-desert .ctrl-btn.pwr-swap {
+    color: #fef3c7;
+    border-color: rgba(217, 119, 6, 0.65);
+}
+
+#app.is-screen-adventure.world-desert .ctrl-btn.hero {
+    border-color: rgba(156, 163, 175, 0.58);
+}
+
+#app.is-screen-adventure.world-desert .ctrl-btn.hero .hero-icon-sprite {
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.45));
+}
+
+#app.is-screen-adventure.world-desert .ctrl-btn.ready {
+    border-color: #fef3c7;
+    box-shadow:
+        0 0 0 1px rgba(254, 243, 199, 0.16),
+        0 0 14px rgba(251, 191, 36, 0.5);
+}
+
+#app.is-screen-adventure.world-desert .ctrl-btn.active-mode {
+    color: #2b1a0e;
+    background:
+        radial-gradient(90% 90% at 50% 20%, rgba(255, 255, 255, 0.34), transparent 60%),
+        linear-gradient(145deg, #f59e0b, #d97706);
+    border-color: #fef3c7;
+    box-shadow:
+        0 0 16px rgba(251, 191, 36, 0.62),
+        inset 0 0 10px rgba(120, 53, 15, 0.18);
+}
+
+#app.is-screen-adventure.world-desert .ctrl-btn.locked,
+#app.is-screen-adventure.world-desert .ctrl-btn.disabled {
+    opacity: 0.34;
+}
+
+#app.is-screen-adventure.world-desert .ctrl-btn.used {
+    border-color: rgba(68, 64, 60, 0.95);
+}
+
+#app.is-screen-adventure.world-desert .ctrl-count {
+    background: #2b1a0e;
+    border-color: rgba(245, 158, 11, 0.55);
+    color: #fde68a;
 }
 
 /* Core alignment for mobile layout (Classic) */

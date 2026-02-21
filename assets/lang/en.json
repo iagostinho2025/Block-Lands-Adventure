@@ -464,6 +464,7 @@
 		"elite70": {
 			"title": "Mummy",
 			"subtitle": "Desert Elite - Level 70",
+			"story": "Zahur wanders through the buried ruins of the Desert of Death.\nWrapped in cursed sand, he awakens ancient tombs with every move.\nHis presence turns the path into quicksand and swallows the careless.\nTo cross the desert, you must break his curse.",
 			"boss": {
 				"quicksand_title": "Quicksand",
 				"quicksand_desc": "Every 6 turns, turns Bones into Quicksand."
@@ -472,6 +473,7 @@
 		"elite75": {
 			"title": "Scorpion",
 			"subtitle": "Desert Elite - Level 75",
+			"story": "Zahrek rules the poisoned dunes, hidden beneath the cutting heat.\nFast and ruthless, he strikes before the dust can settle.\nHis venom corrupts the very sand, turning every trail into a deadly trap.\nSurviving Zahrek demands precision, composure, and no false step.",
 			"boss": {
 				"sand_poison_title": "Sand Venom",
 				"sand_poison_desc": "Every 4 turns, turns Sand into Quicksand.",
@@ -482,6 +484,7 @@
 		"boss80": {
 			"title": "Warlord Grok",
 			"subtitle": "Desert Boss - Level 80",
+			"story": "Azrakar, Warlord Grok, commands the Desert of Death with an iron will.\nHis army became dust, but his rule never broke.\nUnder his command, sand, bones, and skulls rise as weapons of war.\nDefeating him to open the road to the Dark Castle is a test of pure endurance.",
 			"boss": {
 				"bone_quicksand_title": "Quicksand",
 				"bone_quicksand_desc": "Every 6 turns, turns Bones into Quicksand.",
